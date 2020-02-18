@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bonita:보니또</title>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css">
+	<script src="https://kit.fontawesome.com/83b564820d.js" crossorigin="anonymous"></script>
+	<title>dynamic_searchbox.html</title>
+	<style type="text/css">
+		div.header_wrap {
+			width: 100%;
+			background-color: white;
+			box-shadow: 0 0 1px 1px rgba(20,23,28,.1),0 3px 1px 0 rgba(20,23,28,.1);
+			z-index: 999;
+		}
+		div.header_content {
+			width: 1400px;
+			margin: 0 auto;
+			height: 80px;
+			box-sizing: border-box;
+		/*	border-left: 1px solid red;
+			border-right: 1px solid red; */
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.header_content_logo {}
+		.header_content_search {}
+		.header_content_search_group {
+			display: flex;
+			align-items: center;
+			background-color: #f2f3f5;
+			border-radius: 2px;
+		}
+		.header_content_search_input {
+			background-color: transparent;
+			border-color: transparent;
+			font-size: 13px;
+			width: 220px;
+			height: 44px;
+			border-radius: 2px;
+			padding: 10px 12px;
+			outline: none; /* input태그 focus시 파랑테두리*/
+		}
+		.header_content_search_btn {
+			background-color: transparent;
+			border-color: transparent;
+			width: 44px;
+			height: 44px;
+			cursor: pointer;
+			color: #3885ca;
+			border-top-right-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
+		.header_content_search_btn:hover {
+			background-color: #3885ca;
+			color: white;
+		}
+		.header_content_nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 490px;
+
+		}
+		/*.header_content_nav > div {
+			border : 1px solid;
+		}*/
+		.header_content_member {
+			/* width: 150px; */
+			display: flex; 
+			align-items: center;
+			justify-content: space-between;
+			flex-direction: row; /* default(생략가능) */
+		}
+		.header_content_member > div {
+			padding :17px 0px 17px 3px;
+		}
+		.header_content_dropdown_group {
+			position: relative;
+		}
+		.header_content_dropdown_wrap:hover .header_dropdown {
+			display: block;
+		}
+		.header_content_dropdown_group > a {
+			display: inline-block;
+			padding: 12px 15px;
+			font-weight: 400;
+			border : 1px solid transparent;
+			border-radius: 2px;
+			height: 45px;
+			color: #506763;
+			line-height: 19px;
+		}
+		.header_content_dropdown_wrap:hover > div > a,
+		.header_content_member_cart:hover > a {
+			background-color: rgba(20,23,28,.05);
+			border-color: rgba(20,23,28,.05);
+		}
+		.header_content_member_cart > a {
+			display: inline-block;
+			width: 45px;
+			height: 45px;
+			border-radius: 50%;
+			color: #506763;
+			border: 1px solid transparent;
+			text-align: center;
+			padding: 12px;
+			line-height: 19px;
+		}
+		.header_content_logo_img {
+			max-width: 140px;
+			width: 135px;
+			vertical-align: middle;
+		}
+		.header_content_logo_text {
+			font-size: 35px;
+			font-weight: bold;
+			vertical-align: middle;
+			font-family: 'Acme', sans-serif;
+		}
+		.header_dropdown_menu {
+			border-bottom-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+			box-shadow: 0 4px 16px rgba(20,23,28,.25);
+			background-color: white;
+			padding: 10px 0;
+		}
+		.header_dropdown_menu a {
+			display: inline-block;
+			font-size: 18px;
+			color: #505763;
+			text-align: center;
+			padding : 5px 15px;
+			font-weight: 400;
+			width: 130px;
+			position: relative;
+			z-index: 100;
+		}
+		.header_dropdown_menu a:hover {
+			color: #007791;
+			background-color: #f2f3f5;
+		}
+		.header_dropdown {
+			position: absolute;
+			top: 53px;
+			left: 0;
+			display: none;
+		}
+		.arrow {
+			position: absolute;
+			top: -4px;
+			left: 15px;
+			width: 15px;
+			height: 15px;
+			transform: rotate(45deg);
+			background-color: white;
+			border-color: transparent transparent #fff transparent;
+			z-index: 99;
+		}
+		.header_content_nav > div {
+			padding: 10px 0;
+		}
+		
+		/* 모달 로그인 창 */
+		.modal_wrap {
+			position: fixed;
+			z-index: 1000;
+			background-color: rgba(0,0,0,0.4);
+			overflow: auto;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			display: none;
+		}
+		.model_content {
+			position: relative;
+			width: 460px;
+			height: 600px;
+			background-color: white;
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),
+					0 4px 20px 0 rgba(0,0,0,0.19);
+			border-radius: 2px;
+			overflow: hidden;
+		}
+
+
+		/*===============================================================================================로그인 창= */
+		* { -webkit-font-smoothing: antialiased; }
+		a:link { text-decoration: none;}
+		a:visited { text-decoration: none;}
+ 		a:hover {  text-decoration: none;}
+
+		div, span {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+			outline: 0;
+			/*border: 1px solid red;*/
+		}
+		ul, li, ol, dl, dt, dd {
+			list-style: none;
+		}
+		.dt_popup {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.5);
+			z-index: 9999;
+		}
+		#pop_login, .dt_popup_inr {
+			width: 450px;
+			padding : 50px 45px;
+			background: #fff;
+			box-sizing: border-box;
+		}
+		.dt_popup, .dt_popup_inr {
+			position : absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%)
+			;
+		}
+		.pop_login_title {
+			font-size: 33px;
+			color: #333333;
+			text-align: center;
+			text-transform: uppercase;
+		}
+		.pop_tab_list {
+			/*padding-top: 31px;*/
+			text-align: center;
+		}
+		.pop_tab_list li {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.tab_content.open {
+			display: block;
+		}
+		.tab_list_title {
+			font-size: 17px;
+		}
+		.MS_login_id, .MS_login_pw {
+			width: 100%;
+			height: 40px;
+			padding-left: 10px;
+			font-size: 12px;
+			border: 1px solid #ddd;
+			box-sizing: border-box;
+		}
+		.login_input_box li {
+			padding-top: 10px;
+		}
+		.save_login {
+			display: inline-block;
+			vertical-align: top;
+			width: 50%;
+		}
+		#chk_save_id {
+			-webkit-appearance : none;
+			display: inline-block;
+			vertical-align: middle;
+			width: 20px;
+			height: 20px;
+			border : 1px solid #ddd;
+			box-sizing: border-box;
+		}
+		.login_utile_box {
+			padding-top: 16px;
+			font-size: 0;
+		}
+		.login_utile_box label {
+			display: inline-block;
+			vertical-align: middle;
+			padding-left: 10px;
+			font-size: 13px;
+			color: #333333;
+			font-weight: 400;
+		}
+		.security_login {
+			display: inline-block;
+			vertical-align: top;
+			width: 47%;
+			text-align: right;
+		}
+		.MS_security_checkbox {
+			-webkit-appearance : none;
+			display: inline-block;
+			vertical-align: middle;
+			width: 13px;
+			height: 16px;
+			box-sizing: border-box;
+		}
+		.security_login label {
+			padding-left: 5px;
+		}
+		.login_btn_box {
+			padding-top: 15px;
+		}
+		.login_input_box {
+			padding-top: 24px;
+		}
+		.login_btn_title {
+			border: 0;
+			outline-style: none;
+			display: block;
+			width: 100%;
+			height: 56px;
+			font-size: 15px;
+			color: #fff;
+			text-align: center;
+			line-height: 56px;
+			background: #333333;
+		}
+		.tab_content.open {
+			display: block;
+		}
+		.join_btn_title {
+			border: 0;
+			padding-top: 10px;
+			display: block;
+			width: 100%;
+			height: 56px;
+			margin-top: 5px;
+			font-size: 15px;
+			color: #363636;
+			text-align: center;
+			line-height: 56px;
+			background: #f2f2f2;
+			padding-bottom: 2px;
+		}
+		.id_pw_find_box {
+			font-size: 12px;
+			padding-top: 20px;
+		}
+
+		.id_pw_find_box dt {
+			display: inline;
+			text-align: right;
+			vertical-align: top;
+			width: 60%;
+			color: #333;
+			font-weight: 400;
+		}
+		.id_pw_find_box dd {
+			display: inline;
+			vertical-align: top;
+			width: 40%;
+			text-align: right;
+		}
+		.id_pw_find_box dd a {
+			display: inline-block;
+			padding-bottom: 2px;
+			font-size: 12px;
+			color: #333;
+			background: space-between;
+			font-weight: 400;
+			border-bottom: 1px solid #333;
+		}
+		.id_pw {
+			width: 50%;
+			display: inline;
+			vertical-align: top;
+
+			text-align: right;
+		}
+		
+		/*====================================================================================로그*/
+		
+		.login_close {
+			position: absolute;
+			top: 7px;
+			right: 7px;
+		}
+		.login_close > button {
+			color: rgb(142, 142, 142);
+			border: none;
+			background: white;
+			font-size: 17px;
+			cursor: pointer;
+			outline: none;
+		}
+		.login_close >button:hover {
+			color: #eba444;
+		}
+		
+
+		/*==============================================================================비밀번호 눈*/
+
+		.pw_eye {
+			position: absolute;
+			color: #aaa;
+			font-size: 17px;
+			top: 0px;
+			right: 7px;
+			cursor: pointer;
+			height: 45px;
+			line-height: 45px;
+			width: 30px;
+			text-align: center;
+		}
+		
+			
+		.input_div{
+			position: relative;
+		}
+
+
+
+
+	</style>
+</head>
+
+<!-------------------------------------------------- 모달창 로그인 ---------------------------------------------------->
+<body>
+	<div class="dt_popup">
+		<div class="dt_popup_inr">
+			<div class="login_close">
+				<button><i class="fas fa-times"></i></button>
+			</div>
+			<div class="pop_login_wrap">
+				<div class="pop_login_inr">
+					<h3 class="pop_login_title roboto_font">
+						<span class="title">LOGIN</span>
+					</h3>
+					<div class="pop_tab_list login_tab_list">
+						<ul>
+							<li class="active">
+								<a href="#" class="tab_list_title js_tab_btn">회원 로그인</a>
+							</li>
+							
+						</ul>
+					</div>
+					<div class="tab_contents">
+						<div class="tab_content open">
+							<form name="formlogin" method="post" action ="">
+								<div class="login_input_box">
+									<ul>
+										<li>
+											<input type="email" name="id" maxlength="20" value class="MS_login_id" placeholder="아이디" required>
+										</li>
+										<li>
+											<div class="input_div">
+												<input type="password" name="passwd" maxlength="20" value class="MS_login_pw" placeholder="비밀번호" required minlength="6" maxlength="18">
+												<span class="pw_eye"><i class="fas fa-eye-slash"></i></span>
+											</div>
+										</li>
+									</ul>
+									<div class="login_utile_box">
+										<div class="save_login">
+											<input type="checkbox" name="save_id" id="chk_save_id" value="on">
+											<label for="chk_save_id">아이디 저장</label>
+										</div>
+										<div class="security_login">
+											<input type="checkbox" name="ssl" value="Y" class="MS_security_checkbox">
+											<label for> 보안접속</label>
+										</div>
+									</div>
+								</div>
+								<div class="login_btn_box">
+									<button type = "submit" class="login_btn_title"><span class="title" >로그인</span></button>
+									<button href = "#" class="join_btn_title"><span class="title" >회원가입</span></button>
+								</div>
+							</form>
+							<div class="id_pw_find_box">
+								<dl>	
+									<dt>아이디/비밀번호를 잊으셨나요?</dt>
+									<div class="id_pw"><dd><a href="#">아이디/비밀번호 찾기</a></dd></div>
+								</dl>
+								<dl>
+									<dt>비회원으로 주문하셨나요?</dt>
+									<div class="id_pw"><dd><a href="#">비회원 주문조회</a></dd></div>
+								</dl>
+							</div>
+						</div>
+						<div class="tab_content"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!---------------------------------------------------------------------------------------------------------------------------->
+	<div class="header_wrap">
+		<div class="header_content">
+			<div class="header_content_logo">
+				<a href="#">
+					<img class="header_content_logo_img" src="../../img/c.png" alt="로고이미지">
+					<span class="header_content_logo_text"></span>	
+				</a>
+			</div>
+			<div class="header_content_search">
+				<form name="frm_search" action="" method="GET">
+					<div class="header_content_search_group">
+						<input type="text" placeholder="검색" name="keyword" class="header_content_search_input">
+						<button type="button" class="header_content_search_btn"><i class="fas fa-search"></i></button>
+
+					</div>
+				</form>
+			</div>
+			<div class="header_content_nav">
+				<div class="header_content_dropdown_group"><a href="#" class="magicline">★즐겨찾기</a></div>
+				<div class="header_content_dropdown_group"><a href="#" class="magicline">폰기종확인</a></div>
+				<div class="header_content_dropdown_group"><a href="#" class="magicline">폰기종메뉴</a></div>
+				
+			<div class="header_content_dropdown_wrap">
+				<div class="header_content_dropdown_group">
+					<a href="#" class="magicline">질문/후기</a>
+					<div class="header_dropdown">
+						<div class="arrow"></div>
+						<ul class="header_dropdown_menu">
+							<li><a href="#">공지사항</a></li>
+							<li><a href="#">이벤트</a></li>
+							<li><a href="#">Q&A게시판</a></li>
+							<li><a href="#">상품후기</a></li>
+							<li><a href="#">자주묻는질문</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+			</div>
+			<div class="header_content_member">
+				<div class="header_content_dropdown_wrap">
+					<div class="header_content_dropdown_group">
+						<!-- 네비게이션 -->
+						<a href="#">마이페이지</a>
+
+						<!-- dropdown 메뉴 -->
+						<div class="header_dropdown">
+							<div class="arrow"></div>
+							<ul class="header_dropdown_menu">
+								<li><a href="#">관심상품</a></li>
+								<li><a href="#">주문조회</a></li>
+								<li><a href="#">적립금</a></li>
+								<li><a href="#">내가쓴글</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div>
+					<div class="header_content_member_cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
+				</div>
+				<div><button type="button" class="btn btn-basic login_open">로그인</button></div>
+				<div><button type="button" class="btn btn-primary">가입하기</button></div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	// jQuery 문법
+	// $('선택자').옵션 ();
+	// $('#test').css('color', 'green');
+	// $ = jQuery
+	// ('#test') = 선택자(id가 test)
+	// .css() = 옵션 (글자색을 녹색)
+
+	// jQuery 이벤트 문법(클릭, 포커스, 블러 등)
+	// $(document).on('이벤트', '선택자', function(){
+	// 			이벤트 발생시 동작할 내용들...
+	// });
+	// $(document).on('click', '#test', function(){
+	// 		$(this).css('color', 'blue');
+	// });
+	// $(document).on() = 문서 전체에서~
+	// ('click')        = 클릭 이벤트가 발생하면
+	// ('#test')		= 아이디가 test인
+	// function() {}	= 익명함수(이름이 없는 함수)
+	// $(this)			= 나 자신(여기서는 #test)
+	// 해석 : 문서전체에서 id가 test인 태그가 클릭되면
+	// 		나를(#test) 글자색을 blue로 변경해라!
+
+	// 로그인 input(id, pw)에 focus되면 테두리색 변경
+	// $(document).on('focus', 'login_input_container', function() {
+	// 	$(this).parent().css('border', '1.5px solid #3885ca');
+	// });
+
+	// $(document).on('blur', 'login_input_container', function() {
+	// 	$(this).parent().css('border', '1.5px solid transparent');
+	// });
+
+
+
+
+
+
+	// Login 버튼 클릭시 modal창 open
+	// 로그인창 들어가면 바로 칠수있게 설정한것 id = "login_id" $('#login_id').focus(); 
+	$(document).on('click','.login_open', function(){
+		$('.dt_popup').css('display','flex');
+		$('#login_id').focus();
+	});
+
+	// modal창의 x버튼을 클릭하면 modal창 close
+	$(document).on('click', '.login_close', function(){
+		$('.dt_popup').css('display', 'none');
+		//$('.frm_login')[0].reset();
+		$('.login_input').val('');
+
+		$('.pw_eye').prev().attr('type', 'password');
+		$('.pw_eye').html('<i class= "fas fa-eye-slash"></i>')
+					.css('color', '#aaa');
+		
+
+	});
+
+	// 값을 가져오는 방법
+		// <span class ="aaa"> 미경 </span>
+		// <input type = "text"> 사과 </input>
+		//
+		// input태그 값 가져오는 방법
+		// : 서버단으로 값을 보낼때 사용하는 태그들이 대부분
+		// $('.aaa').val();
+		// input태그 값 넣는 방법
+		// $('.bbb').val('젤리');
+
+		// input 태그 이외의 값 가져오는 방법
+		// $('.aaa').text();
+		// input 태그 이외의 값 넣는 방법
+		// $('.aaa').text('과자');
+
+		// 태그이 옵션(attribute)을 가져오고 싶을 때
+		// $('.bbb').attr('type');
+		// $('.bbb').attr('class');
+
+
+
+	// login modal창 암호 보이기 or 숨기기. 옵션. 옵션 
+	$(document).on('click', '.pw_eye', function(){
+		var code = $(this).prev().attr('type');
+		
+		if (code == 'password') {
+			$(this).prev().attr('type', 'text');
+			$(this).html('<i class="fas fa-eye"></i>')
+					.css('color', '#666');
+		} else {
+			$(this).prev().attr('type', 'password');
+			$(this).html('<i class="fas fa-eye-slash"></i>')
+					.css('color', '#aaa');
+		}
+
+	});
+
+</script>
+</html>
