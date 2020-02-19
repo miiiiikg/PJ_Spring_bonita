@@ -144,15 +144,15 @@
 			display:block;
 			max-width:400px;
 			margin:0px auto;
-			animation:animatedbang 2s infinite;
+			animation:animatedbang 4s infinite;
 
 		}
 		@keyframes animatedbang
 
 		{
-			0%{transform:translateY(5px);}
-			50%{transform:translateY(-5px);}
-			100%{transform:translateY(5px);}
+			0%{transform:translateY(3px);}
+			50%{transform:translateY(-3px);}
+			100%{transform:translateY(3px);}
 
 		}
 		#header .spot {
@@ -264,6 +264,41 @@
 			font-size: inherit;
 			text-rendering: auto;
 		}
+
+		#header .spot .inner ul.sns {
+			position: absolute;
+			left: 0;
+			bottom: 10px;
+			display: inline-block;
+			font-size: 0;
+		}
+		#header .spot .inner ul.sns li {
+			float: left;
+			margin-right: 5px;
+		}
+		.sns li a {
+			display: inline-block;
+			background: rgba(0,0,0,.16);
+			width: 26px;
+			height: 26px;
+			text-align: center;
+			border-radius: 50%;
+		}
+		.sns li span.text, .sns li i {
+			line-height: 26px;
+			color: #fff;
+			margin: 0;
+			font-style: normal;
+			letter-spacing: 0;
+		}
+		.sns li .instagram i {
+			font-size: 17px;
+		}
+		.sns li .kakao i {
+			font-size: 15px;
+			line-height: 28px;
+		}
+
 
 			
 
@@ -573,7 +608,7 @@
 					<div class="inner">
 						<ul class="gnb">
 							<li class="xans-element- xans-layout xans-layout-statelogoff ">
-								<a href="#" class="log">LOGIN</a>
+								<a href="${path}/member/constract" class="log">LOGIN</a>
 							</li>
 							<li class="xans-element- xans-layout xans-layout-statelogoff ">
 								<a href="#">JOIN US</a>
@@ -640,7 +675,20 @@
 						</a>
 					</h1>
 					<div class="xans-element- xans-layout xans-layout-multishoplist globalThumb"></div>
-					<ul class="sns"></ul>
+					<ul class="sns">
+						<li class="use-kakao" style="display:list-item;">
+							<a href="#" class="kakao put-kakao">
+								<i class="fa fa-quote-right"></i>
+							</a>
+						</li>
+
+						<li class="use-instagram" style="display: list-item;">
+							<a href="#" class="instagram put-instagram">
+								<i class="fab fa-instagram"></i>
+							</a>
+						</li>
+
+					</ul>
 					<div id="search-box">
 						<form id="searchBarForm" name action
 						method="get" target="_self" enctype="multipart/form-data">
