@@ -466,7 +466,7 @@
 								</div>
 								<div class="login_btn_box">
 									<button type = "submit" class="login_btn_title"><span class="title" >로그인</span></button>
-									<button href = "#" class="join_btn_title"><span class="title" >회원가입</span></button>
+									<button href = "#" id="header_btn_join" class="join_btn_title"><span class="title" >회원가입</span></button>
 								</div>
 							</form>
 							<div class="id_pw_find_box">
@@ -550,7 +550,7 @@
 					<div class="header_content_member_cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
 				</div>
 				<div><button type="button" class="btn btn-basic login_open">로그인</button></div>
-				<div><button type="button" class="btn btn-primary">가입하기</button></div>
+				<div><button type="button" id ="header_btn_join" class="btn btn-primary">가입하기</button></div>
 			</div>
 		</div>
 	</div>
@@ -649,6 +649,10 @@
 					.css('color', '#aaa');
 		}
 
+	});
+	
+	$(document).on('click', '#header_btn_join', function(){
+		location.href = "${path}/member/constract";
 	});
 
 </script>

@@ -22,14 +22,19 @@ public class IndexController {
 	@Autowired
 	IndexService iService;
 	
-	@GetMapping("/index")
+	@RequestMapping("/")
 	public String indexView(Model model) {
 		log.info(">>>>>>>>> INDEX PAGE 출력");
 		
 		// 1. view단에 출력할 데이터
+		// 1. view단 출력할 베스트상품 5건
 		// List<ProductDTO> list = iService.bestPdList();
 		model.addAttribute("BestPdt", iService.bestPdList());
 		
+		// 2.view단에 출력할 신상품 5건
+		// : 신상품5건을 출력하는 비즈니스 로직을 처리하는 서비스단으로 이동
+		// iService.newPdtList();
+		model.addAttribute("newPdt", iService.newPdtList());
 		// 2. 출력할 화면을 결정 
 		// 1,2 dispatcher servlet 보내줌
 		return "index";

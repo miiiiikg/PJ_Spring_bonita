@@ -347,766 +347,101 @@
 		</div>
 	</div>
 
+	
 	<div class="item-display-wrap js-main-wrap-7">
 		<h2>
 			<a href="#" class="btn-main-top-more normal-btn small1 m1"></a>
 			<em></em>
 		</h2>
+		<div class="goad-banner">
+			<img src="${path}/resources/img/제목을 입력해주세요._1 (1).png" alt="인기상품" title="인기상품">
+		</div>
 		<div class="goods-content7">
 			<div class="item-display type-gallery">
 				<div class="list">
+			
 					<ul>
+					<c:forEach items ='${BestPdt}' var="pdt">	
 						<li style="width: 33.1%">
 							<div class="space">
 								<div class="thumbnail">
 									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1000001671_add2_091.gif" alt="[하드+♥톡]비비드하트" title="[하드+♥톡]비비드하트">
+										<img src="${path}/resources/img/케이스상품/${pdt.p_img}" alt="[하드+♥톡]비비드하트" title="[하드+♥톡]비비드하트">
 										<span class="hot"></span>
 									</a>
 								</div>
 								<div class="txt">
 									<a href="#">
-										<strong>[하드+♥톡]비비드하트</strong>
+										<strong>${pdt.pmeno}</strong>
 									</a>
 								</div>
 								<div class="price gd-default">
 									<span class="cost">
-										<strong>11,900원</strong>
+										<strong >
+											<fmt:formatNumber type="number" maxFractionDigits="3" value='${pdt.price}'/>원
+										</strong>
 									</span>
 									<br>
 								</div>
 								<div class="display-field"></div>
 							</div>
 						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1000001744_add2_077.gif" alt="[하드+톡]집순이집돌이" title="[하드+톡]집순이집돌이">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>[하드+톡]집순이집돌이</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width: 33.1%">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1000001736_add2_023.gif" alt="[하드+♥톡]피치피치" title="[하드+♥톡]피치피치">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>[하드+♥톡]피치피치</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>11,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width: 33.1%">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1000001740_add2_011.gif" alt="[하드+♥톡]피치피치" title="[하드+♥톡]피치피치">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>[하드+♥톡]피치피치</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>11,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width: 33.1%">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1000001732_add2_015.gif" alt="[하드+♥톡]거울보는중" title="[하드+♥톡]거울보는중">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>[하드+♥톡]거울보는중</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>11,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width: 33.1%">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1000001731_add2_088.jpg" alt="[하프미러]곰제리" title="[하프미러]곰제리">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>[하프미러]곰제리</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/18.jpg" alt="곰제이케이스" title="곰제리케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>곰제리케이스</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>5,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/19.jpg" alt="추카추카케이스" title="추카추카케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>추카추카케이스</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>5,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/20.jpg" alt="햅삐다이노" title="햅삐다이노">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>햅삐다이노</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>4,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/21.jpg" alt="햅삐다이노케이스" title="햅삐다이노케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>햅삐다이노케이스</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>5,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/22.jpg" alt="말랑곰케이스" title="말랑곰케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>말랑곰케이스</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>5,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/23.jpg" alt="[젤리+♥톡]슈퍼곰돌" title="[젤리+♥톡]슈퍼곰돌">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>[젤리+♥톡]슈퍼곰돌</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>11,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
+					</c:forEach>						
 					</ul>
+						<a class="btn-main-bottom-more" data-page="2">
+							<em></em>
+						</a>
+						
 				</div>
 			</div>
 		</div>
-		<a class="btn-main-bottom-more" data-page="2">
-			<em></em>
-		</a>
-	</div>
-<!--인기상품 타이틀---------------------------------------------------------------------------------------------------------------->
-	<div class="goad-banner">
-		<img src="../img/제목을 입력해주세요._1 (1).png" alt="인기상품 타이틀" title="인기상품 타이틀">
-	</div>
-	<div class="item-display-wrap js-main-wrap-11">
-		<h2></h2>
-		<div class="goods-content11">
+		
+		<div class="goad-banner">
+			<img src="${path}/resources/img/제목을 입력해주세요._12.png" alt="신상품" title="신상품">
+		</div>
+			
+		<div class="goods-content7">
 			<div class="item-display type-gallery">
 				<div class="list">
+					
 					<ul>
-						<li style="width:33.1%;">
+					<c:forEach items ='${newPdt}' var="pdt">	
+						<li style="width: 33.1%">
 							<div class="space">
 								<div class="thumbnail">
 									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1.jpg" alt="[하드+톡]계란톡톡" title="[하드+톡]계란톡톡">
+										<img src="${path}/resources/img/케이스상품/${pdt.p_img}" alt="[하드+♥톡]비비드하트" title="[하드+♥톡]비비드하트">
 										<span class="hot"></span>
 									</a>
 								</div>
 								<div class="txt">
 									<a href="#">
-										<strong>"[하드+톡]계란톡톡"</strong>
+										<strong>${pdt.pmeno}</strong>
 									</a>
 								</div>
 								<div class="price gd-default">
 									<span class="cost">
-										<strong>9,900원</strong>
+										<strong >
+											<fmt:formatNumber type="number" maxFractionDigits="3" value='${pdt.price}'/>원
+										</strong>
 									</span>
 									<br>
 								</div>
 								<div class="display-field"></div>
 							</div>
 						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/2.jpg" alt="[하드+톡]뉴그라데이션" title="[하드+톡]뉴그라데이션">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"[하드+톡]뉴그라데이션"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/3.jpg" alt="[하드+톡]앙보카도" title="[하드+톡]앙보카도">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"[하드+톡]앙보카도"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/4.jpg" alt="퓨전 케이스" title="퓨전 케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"퓨전케이스"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>5,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/5.jpg" alt="야호케이스" title="야호케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"야호케이스"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>5,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/6.jpg" alt="나는악어케이스" title="나는악어케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"나는악어케이스"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>5,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
+					</c:forEach>			
 					</ul>
+					<a class="btn-main-bottom-more" data-page="2">
+						<em></em>
+					</a>
+					
 				</div>
 			</div>
 		</div>
-		<a class="btn-main-bottom-more" data-page="2">
-			<em></em>
-		</a>
+		
 	</div>
-<!--하프미러--------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-	<div class="goad-banner">
-		<img src="../img/제목을 입력해주세요._1 (2).png" alt="하프미러" title="하프미러">
-	</div>
-	<div class="item-display-wrap js-main-wrap-11">
-		<h2></h2>
-		<div class="goods-content11">
-			<div class="item-display type-gallery">
-				<div class="list">
-					<ul>
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/1.gif" alt="하프미러" title="하프미러">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"하프미러"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/7.jpg" alt="[하프미러]곰제리" title="[하프미러]곰제리">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"[하프미러]곰제리"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/8.jpg" alt="[하프미러]추카추카" title="[하프미러]추카추카">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"[하프미러]추카추카"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/9.jpg" alt="[하프미러]햅삐다이노" title="[하프미러]햅삐다이노">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"[하프미러]햅삐다이노"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/10.jpg" alt="[하프미러+♥톡]슈퍼곰돌" title="[하프미러+♥톡]슈퍼곰돌">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"[하프미러]햅삐다이노"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>15,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/11.jpg" alt="[하프미러]우리집댕댕이" title="[하프미러]우리집댕댕이">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"[하프미러]우리집댕댕이"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>9,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		<a class="btn-main-bottom-more" data-page="2">
-			<em></em>
-		</a>
-	</div>
-<!--젤리케이스-------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-	<div class="goad-banner">
-		<img src="../img/제목을 입력해주세요._1 (3).png" alt="젤리케이스" title="젤리케이스">
-	</div>
-	<div class="item-display-wrap js-main-wrap-11">
-		<h2></h2>
-		<div class="goods-content11">
-			<div class="item-display type-gallery">
-				<div class="list">
-					<ul>
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/12.jpg" alt="클리어케이스" title="클리어케이스">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"클리어케이스"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>3,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/13.jpg" alt="폰하는고미" title="폰하는고미">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"폰하는고미"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>4,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/14.jpg" alt="야호" title="야호">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"야호"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>4,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/15.jpg" alt="심쿵" title="심쿵">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"심쿵"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>4,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/16.jpg" alt="퓨전" title="퓨전">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"퓨전"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>4,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-						<li style="width:33.1%;">
-							<div class="space">
-								<div class="thumbnail">
-									<a href="#">
-										<img src="${path}/resources/img/케이스상품/17.jpg" alt="별자리젤리" title="별자리젤리">
-										<span class="hot"></span>
-									</a>
-								</div>
-								<div class="txt">
-									<a href="#">
-										<strong>"별자리젤리"</strong>
-									</a>
-								</div>
-								<div class="price gd-default">
-									<span class="cost">
-										<strong>7,900원</strong>
-									</span>
-									<br>
-								</div>
-								<div class="display-field"></div>
-							</div>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		<a class="btn-main-bottom-more" data-page="2">
-			<em></em>
-		</a>
-	</div>
+	
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">

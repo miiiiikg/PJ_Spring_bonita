@@ -15,7 +15,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        				ORDER BY sale_cnt DESC
        			 ) best
     		)
-		WHERE rnum between 1 and 5
+		WHERE rnum between 1 and 6
+	
+	</select>
+	
+	<select id = "newPdtList" resultType="ProductDTO">
+		SELECT *
+		FROM (SELECT rownum rnum, best.*
+    		FROM ( SELECT * FROM tbl_pdt
+       				ORDER BY regdate DESC
+       			 ) best
+    		)
+		WHERE rnum between 1 and 6
 	
 	</select>
 </mapper>
