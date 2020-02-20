@@ -4,167 +4,186 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Bonita:보니또</title>
+	<meta charset="utf-8">
+	<title></title>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
-	<title>dynamic_searchbox.html</title>
+	<script src="https://kit.fontawesome.com/83b564820d.js" crossorigin="anonymous"></script>
 	<style type="text/css">
-		div.header_wrap {
+		div{
+			/*border: 1px solid red;*/
+		}
+		#wrap {
+			position: relative;
+			min-width: 1280px;
+			overflow: hidden;
+		}
+		#header.bar {
 			width: 100%;
-			background-color: white;
-			box-shadow: 0 0 1px 1px rgba(20,23,28,.1),0 3px 1px 0 rgba(20,23,28,.1);
-			z-index: 999;
+			z-index: 98;
+			border-bottom: 1px solid #e8e8e8;
+			border-bottom-color: rgba(0,0,0,.09);
 		}
-		div.header_content {
-			width: 1400px;
+		.inner {
+			padding: 0 10px;
+			width: 1260px;
 			margin: 0 auto;
-			height: 80px;
-			box-sizing: border-box;
-		/*	border-left: 1px solid red;
-			border-right: 1px solid red; */
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
 		}
-		.header_content_logo {}
-		.header_content_search {}
-		.header_content_search_group {
-			display: flex;
-			align-items: center;
-			background-color: #f2f3f5;
-			border-radius: 2px;
+		ul.gnb {
+			float: left;
+			display: inline-block;
+			text-align: center;
 		}
-		.header_content_search_input {
-			background-color: transparent;
-			border-color: transparent;
-			font-size: 13px;
-			width: 220px;
-			height: 44px;
-			border-radius: 2px;
-			padding: 10px 12px;
-			outline: none; /* input태그 focus시 파랑테두리*/
+		#header .bar ul.gnb > li:nth-child(1) {
+			margin-left: 0;
+			transition: margin-left 0.3s 0.6s ease;
 		}
-		.header_content_search_btn {
-			background-color: transparent;
-			border-color: transparent;
-			width: 44px;
-			height: 44px;
-			cursor: pointer;
-			color: #3885ca;
-			border-top-right-radius: 2px;
-			border-bottom-right-radius: 2px;
+		ul.gnb > li {
+			float: left;
+			position: relative;
+			margin-left: 16px;
+			white-space: nowrap;
 		}
-		.header_content_search_btn:hover {
-			background-color: #3885ca;
-			color: white;
+		ul.gnb > li a {
+			font-size: 11px;
+			line-height: 42px;
+			color: #222;
+			letter-spacing: 0.5px;
+			white-space: nowrap;
 		}
-		.header_content_nav {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			width: 490px;
+		ul.gnb > li span.cart-count {
+			display: inline-block;
+			min-width: 11px;
+			height: 14px;
+			line-height: 14px;
+			margin: -1px 0 0 2px;
+			padding: 1px 3px;
+			text-align: center;
+			border-radius: 50%;
+			font-size: 10px;
+			color: #555;
+			letter-spacing: 0.5px;
+			vertical-align: middle;
+		}
+		#header .bar {
+			width: 100%;
+			z-index: 98;
+			border-bottom: 1px solid #e8e8e8;
+			border-bottom-color: rgba(0, 0, 0, .09);
+		}
+		#header .bar ul.bnb {
+			float: right;
+		}
+		#header .bar ul.bnb li:first-child {
+			margin-left: 0;
+		}
+		#header .bar ul.bnb li a {
+			font-size: 11px;
+			line-height: 42px;
+			color: #222;
+			letter-spacing: 0.5px;
+			white-space: nowrap;
+		}
+		#header .bar ul.bnb li {
+			float: left;
+			text-align: center;
+			font-size: 11px;
+			line-height: 42px;
+			margin-left: 19px;
+		}
+		#header .bar ul.gnb > li:hover a {
+			color: #aaa;
+		}
+		/*마이페이지 설정*/
+		#header .bar ul.gnb > li.myshop ul.mnb {
+			display: none;
+			position: absolute;
+			top: 38px;
+			left: 50%;
+			margin-left: -50px;
+			padding: 5px 0;
+			border: 1px solid #ddd;
+			background-color: rgba(255,255,255,0.95);
+			z-index: 90; 
+		}
+		a:hover {  text-decoration: none;}
+		#header .bar ul.gnb > li.myshop ul.mnb li {
+			min-width: 105px;
+			text-align: left;
+		}
+		#header .bar ul.gnb > li.myshop ul.mnb li a {
+			display: block;
+			font-size: 11px;
+			line-height: 23px;
+			padding: 0 13px; 
+			color: #545454;
+		}
+		a:hover {
+    		text-decoration: none;
+		}
+
+		#header .bar ul.gnb > li .msgbox > span {
+			margin: -8px 0 0 0;
+			display: block;
+			padding: 1px 7px;
+			background: #e4e4e4;
+			border-radius: 7px;
+			font-size: 10px;
+			line-height: 18px;
+			color: #333;
+			letter-spacing: 0.5px;
+		}
+
+		
+		#header .bar ul.gnb > li.myshop ul.mnb li:hover a {
+			background: #efefef;
+		}
+		#header .bar ul.gnb > li .msgbox > i {
+			display: block;
+			color: #e4e4e4;
+			font-size: 18px;
+		}
+		#header .bar ul.gnb > li .msgbox {
+			position: relative;
+			display:block;
+			max-width:400px;
+			margin:0px auto;
+			animation:animatedbang 4s infinite;
 
 		}
-		/*.header_content_nav > div {
-			border : 1px solid;
-		}*/
-		.header_content_member {
-			/* width: 150px; */
-			display: flex; 
-			align-items: center;
-			justify-content: space-between;
-			flex-direction: row; /* default(생략가능) */
+		@keyframes animatedbang
+
+		{
+			0%{transform:translateY(3px);}
+			50%{transform:translateY(-3px);}
+			100%{transform:translateY(3px);}
+
 		}
-		.header_content_member > div {
-			padding :17px 0px 17px 3px;
+		#header .spot {
+			width: 100%;
 		}
-		.header_content_dropdown_group {
+		#header .spot .inner {
 			position: relative;
-		}
-		.header_content_dropdown_wrap:hover .header_dropdown {
-			display: block;
-		}
-		.header_content_dropdown_group > a {
-			display: inline-block;
-			padding: 12px 15px;
-			font-weight: 400;
-			border : 1px solid transparent;
-			border-radius: 2px;
-			height: 45px;
-			color: #506763;
-			line-height: 19px;
-		}
-		.header_content_dropdown_wrap:hover > div > a,
-		.header_content_member_cart:hover > a {
-			background-color: rgba(20,23,28,.05);
-			border-color: rgba(20,23,28,.05);
-		}
-		.header_content_member_cart > a {
-			display: inline-block;
-			width: 45px;
-			height: 45px;
-			border-radius: 50%;
-			color: #506763;
-			border: 1px solid transparent;
+			width: 1260px;
+			margin: 0 auto 0;
+			padding: 15px 0;
 			text-align: center;
-			padding: 12px;
-			line-height: 19px;
+			font-size: 0;
+			min-height: 70px;
+			display: table;
+
 		}
-		.header_content_logo_img {
-			max-width: 140px;
-			width: 135px;
+		#header .spot .inner h1.top-logo a.logo {
+			position: relative;
+			display: inline-block;
 			vertical-align: middle;
 		}
-		.header_content_logo_text {
-			font-size: 35px;
-			font-weight: bold;
-			vertical-align: middle;
-			font-family: 'Acme', sans-serif;
+		#header .bar ul.gnb > li {
+			white-space: nowrap;
 		}
-		.header_dropdown_menu {
-			border-bottom-left-radius: 2px;
-			border-bottom-right-radius: 2px;
-			box-shadow: 0 4px 16px rgba(20,23,28,.25);
-			background-color: white;
-			padding: 10px 0;
+		img, fieldset {
+			border: none;
+			vertical-align: top;
 		}
-		.header_dropdown_menu a {
-			display: inline-block;
-			font-size: 18px;
-			color: #505763;
-			text-align: center;
-			padding : 5px 15px;
-			font-weight: 400;
-			width: 130px;
-			position: relative;
-			z-index: 100;
-		}
-		.header_dropdown_menu a:hover {
-			color: #007791;
-			background-color: #f2f3f5;
-		}
-		.header_dropdown {
-			position: absolute;
-			top: 53px;
-			left: 0;
-			display: none;
-		}
-		.arrow {
-			position: absolute;
-			top: -4px;
-			left: 15px;
-			width: 15px;
-			height: 15px;
-			transform: rotate(45deg);
-			background-color: white;
-			border-color: transparent transparent #fff transparent;
-			z-index: 99;
-		}
-		.header_content_nav > div {
-			padding: 10px 0;
-		}
-		
-		/* 모달 로그인 창 */
 		.modal_wrap {
 			position: fixed;
 			z-index: 1000;
@@ -187,6 +206,108 @@
 			border-radius: 2px;
 			overflow: hidden;
 		}
+		#search-box {
+			position: absolute;
+			right: 0;
+			bottom: 11px;
+		}
+		#search-box .xans-layout-searchheader fieldset {
+			position: relative;
+			text-align: left;
+			font-size: 12px;
+		}
+		input {
+			font-size: 100%;
+			color: #353535;
+			vertical-align: middle;
+			outline: none;
+		}
+		legend {
+			visibility: hidden;
+			position: absolute;
+			left: -9999px;
+			top: -9999px;
+			width: 0;
+			height: 0;
+			line-height: 0;
+		}
+		#search-box .xans-layout-searchheader a {
+			display: inline-block;
+			color: #bbb;
+			font-size: 14px;
+			position: absolute;
+			bottom: 6px;
+			top: 7px;
+			right: 0px;
+		}
+		#search-box .xans-layout-searchheader {
+			width: 180px;
+			height: 27px;
+			border: 1px solid #e2e2e2;
+			border-color: rgba(0,0,0,.11);
+			background: rgba(255,255,255,.11);
+			box-sizing: border-box;
+		}
+		#search-box .xans-layout-searchheader #keyword {
+			background: transparent;
+			border-color: transparent;
+			width: 150px;
+			height: 17px;
+			padding: 2px 0 0 8px;
+			line-height: 21px;
+			font-size: 11px;
+			color: #777;
+			box-sizing: border-box;
+		}
+	
+		form { display: block; }
+		.fa {
+			display: inline-block;
+			font: normal normal normal 14px/1 FontAwesome;
+			font-size: inherit;
+			text-rendering: auto;
+		}
+
+		#header .spot .inner ul.sns {
+			position: absolute;
+			left: 0;
+			bottom: 10px;
+			display: inline-block;
+			font-size: 0;
+		}
+		#header .spot .inner ul.sns li {
+			float: left;
+			margin-right: 5px;
+		}
+		.sns li a {
+			display: inline-block;
+			background: rgba(0,0,0,.16);
+			width: 26px;
+			height: 26px;
+			text-align: center;
+			border-radius: 50%;
+		}
+		.sns li span.text, .sns li i {
+			line-height: 26px;
+			color: #fff;
+			margin: 0;
+			font-style: normal;
+			letter-spacing: 0;
+		}
+		.sns li .instagram i {
+			font-size: 17px;
+		}
+		.sns li .kakao i {
+			font-size: 15px;
+			line-height: 28px;
+		}
+		.banner_image {
+			width: 250px;
+			height: 145px;
+		}
+
+
+			
 
 
 		/*===============================================================================================로그인 창= */
@@ -214,7 +335,7 @@
 			height: 100%;
 			background: rgba(0,0,0,0.5);
 			z-index: 9999;
-			display : none;
+			display: none;
 		}
 		#pop_login, .dt_popup_inr {
 			width: 450px;
@@ -304,7 +425,7 @@
 			padding-left: 5px;
 		}
 		.login_btn_box {
-			padding-top: 15px;
+			
 		}
 		.login_input_box {
 			padding-top: 24px;
@@ -326,7 +447,7 @@
 		}
 		.join_btn_title {
 			border: 0;
-			padding-top: 10px;
+			/*padding-top: 10px;*/
 			display: block;
 			width: 100%;
 			height: 56px;
@@ -400,7 +521,7 @@
 			position: absolute;
 			color: #aaa;
 			font-size: 17px;
-			top: 11px;
+			top: 13px;
 			right: 7px;
 			cursor: pointer;
 			height: 45px;
@@ -416,10 +537,10 @@
 
 
 
-
 	</style>
 </head>
 <body>
+	<body>
 	<div class="dt_popup">
 		<div class="dt_popup_inr">
 			<div class="login_close">
@@ -466,7 +587,7 @@
 								</div>
 								<div class="login_btn_box">
 									<button type = "submit" class="login_btn_title"><span class="title" >로그인</span></button>
-									<button href = "#" id="header_btn_join" class="join_btn_title"><span class="title" >회원가입</span></button>
+									<button href = "#" class="join_btn_title"><span class="title" >회원가입</span></button>
 								</div>
 							</form>
 							<div class="id_pw_find_box">
@@ -486,119 +607,133 @@
 			</div>
 		</div>
 	</div>
-<!---------------------------------------------------------------------------------------------------------------------------->
-	<div class="header_wrap">
-		<div class="header_content">
-			<div class="header_content_logo">
-				<a href="#">
-					<img class="header_content_logo_img" src="${path}/resources/img/c.png" alt="로고이미지">
-					<span class="header_content_logo_text"></span>	
-				</a>
-			</div>
-			<div class="header_content_search">
-				<form name="frm_search" action="" method="GET">
-					<div class="header_content_search_group">
-						<input type="text" placeholder="검색" name="keyword" class="header_content_search_input">
-						<button type="button" class="header_content_search_btn"><i class="fas fa-search"></i></button>
 
-					</div>
-				</form>
-			</div>
-			<div class="header_content_nav">
-				<div class="header_content_dropdown_group"><a href="#" class="magicline">★즐겨찾기</a></div>
-				<div class="header_content_dropdown_group"><a href="#" class="magicline">폰기종확인</a></div>
-				<div class="header_content_dropdown_group"><a href="#" class="magicline">폰기종메뉴</a></div>
-				
-			<div class="header_content_dropdown_wrap">
-				<div class="header_content_dropdown_group">
-					<a href="#" class="magicline">질문/후기</a>
-					<div class="header_dropdown">
-						<div class="arrow"></div>
-						<ul class="header_dropdown_menu">
-							<li><a href="#">공지사항</a></li>
-							<li><a href="#">이벤트</a></li>
-							<li><a href="#">Q&A게시판</a></li>
-							<li><a href="#">상품후기</a></li>
-							<li><a href="#">자주묻는질문</a></li>
+	<div id="wrap" class="main">
+		<div id="header">
+			<div style>
+				<div class="bar" df-fixed-id="gnb" style="top:0px;">
+					<div class="inner">
+						<ul class="gnb">
+							<li class="xans-element- xans-layout xans-layout-statelogoff ">
+								<a href="#" class="log">LOGIN</a>
+							</li>
+							<li class="xans-element- xans-layout xans-layout-statelogoff ">
+								<a href="${path}/member/constract">JOIN US</a>
+								<div class="msgbox use-msgbox" style="display:block;">
+									<i class="fa fa-caret-up">
+										
+									</i>
+									<span class="rep-msgbox">+1,000 P</span>
+								</div>
+							</li>
+							<li>
+								<a href="#">CART</a>
+								<span class="xans-element- xans-layout xans-layout-orderbasketcount cart-count EC-Layout_Basket-count-display ">
+									<span class="EC-Layout_Basket-count">0</span>
+								</span>
+							</li>
+							<li>
+								<a href="#">ORDER</a>
+							</li>
+							<li class="myshop">
+								<a href="#">MY PAGE</a>
+								<ul class="xans-element- xans-myshop xans-myshop-main mnb">
+									<li>
+										<a href="#">관심상품</a>
+									</li>
+									<li>
+										<a href="#">주문조회</a>
+									</li>
+									<li>
+										<a href="#">적립금</a>
+									</li>
+									<li>
+										<a href="#">내가쓴글</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#" target="_blank" onclick="winPop(this.href); return false">+BOOKMARK</a>
+							</li>
+						</ul>
+						<ul class="xans-element- xans-layout xans-layout-boardinfo bnb">
+							<li class="xans-record">
+								<a href="#">NOTICE</a>
+							</li>
+							<li class="xans-record">
+								<a href="#">Q&N</a>
+							</li>
+							<li class="xans-record">
+								<a href="#">REVIEW</a>
+							</li>
+							
 						</ul>
 					</div>
 				</div>
 			</div>
 
+			<div class="spot">
+				<div class="inner">
+					<h1 class="xans-element- xans-bannermanage2 xans-bannermanage2-display-18 xans-bannermanage2-display xans-bannermanage2-18 top-logo">
+						<a href="#" class="logo">
+							<span class="xans-record-" style="opacity: 1;">
+								<img class="banner_image" alt="로고" src="${path}/resources/img/이름 없음1.png" >
+							</span>
+						</a>
+					</h1>
+					<div class="xans-element- xans-layout xans-layout-multishoplist globalThumb"></div>
+					<ul class="sns">
+						<li class="use-kakao" style="display:list-item;">
+							<a href="#" class="kakao put-kakao">
+								<i class="fa fa-quote-right"></i>
+							</a>
+						</li>
 
-			</div>
-			<div class="header_content_member">
-				<div class="header_content_dropdown_wrap">
-					<div class="header_content_dropdown_group">
-						<!-- 네비게이션 -->
-						<a href="#">마이페이지</a>
+						<li class="use-instagram" style="display: list-item;">
+							<a href="#" class="instagram put-instagram">
+								<i class="fab fa-instagram"></i>
+							</a>
+						</li>
 
-						<!-- dropdown 메뉴 -->
-						<div class="header_dropdown">
-							<div class="arrow"></div>
-							<ul class="header_dropdown_menu">
-								<li><a href="#">관심상품</a></li>
-								<li><a href="#">주문조회</a></li>
-								<li><a href="#">적립금</a></li>
-								<li><a href="#">내가쓴글</a></li>
-							</ul>
-						</div>
+					</ul>
+					<div id="search-box">
+						<form id="searchBarForm" name action
+						method="get" target="_self" enctype="multipart/form-data">
+							<div class="xans-element- xans-layout xans-layout-searchheader">
+								<fieldset>
+									<legend>검색</legend>
+									<input id="keyword" name="keyword" value type="text">
+									<a href="#" >
+										<i class="fa fa-search"></i>
+									</a>
+								</fieldset>
+							</div>
+							
+						</form>
 					</div>
-
 				</div>
-				<div>
-					<div class="header_content_member_cart"><a href="#"><i class="fas fa-shopping-cart"></i></a></div>
-				</div>
-				<div><button type="button" class="btn btn-basic login_open">로그인</button></div>
-				<div><button type="button" id ="header_btn_join" class="btn btn-primary">가입하기</button></div>
 			</div>
 		</div>
 	</div>
 
 </body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-	// jQuery 문법
-	// $('선택자').옵션 ();
-	// $('#test').css('color', 'green');
-	// $ = jQuery
-	// ('#test') = 선택자(id가 test)
-	// .css() = 옵션 (글자색을 녹색)
-
-	// jQuery 이벤트 문법(클릭, 포커스, 블러 등)
-	// $(document).on('이벤트', '선택자', function(){
-	// 			이벤트 발생시 동작할 내용들...
-	// });
-	// $(document).on('click', '#test', function(){
-	// 		$(this).css('color', 'blue');
-	// });
-	// $(document).on() = 문서 전체에서~
-	// ('click')        = 클릭 이벤트가 발생하면
-	// ('#test')		= 아이디가 test인
-	// function() {}	= 익명함수(이름이 없는 함수)
-	// $(this)			= 나 자신(여기서는 #test)
-	// 해석 : 문서전체에서 id가 test인 태그가 클릭되면
-	// 		나를(#test) 글자색을 blue로 변경해라!
-
+	
 	// 로그인 input(id, pw)에 focus되면 테두리색 변경
-	// $(document).on('focus', 'login_input_container', function() {
-	// 	$(this).parent().css('border', '1.5px solid #3885ca');
-	// });
+	$(document).on('focus', 'login_input_container', function() {
+		$(this).parent().css('border', '1.5px solid #3885ca');
+	});
 
-	// $(document).on('blur', 'login_input_container', function() {
-	// 	$(this).parent().css('border', '1.5px solid transparent');
-	// });
-
-
-
-
-
+	$(document).on('blur', 'login_input_container', function() {
+		$(this).parent().css('border', '1.5px solid transparent');
+	});
 
 	// Login 버튼 클릭시 modal창 open
 	// 로그인창 들어가면 바로 칠수있게 설정한것 id = "login_id" $('#login_id').focus(); 
-	$(document).on('click','.login_open', function(){
+	$(document).on('click','.log', function(){
 		$('.dt_popup').css('display','flex');
-		$('#login_id').focus();
+		$('#log').focus();
 	});
 
 	// modal창의 x버튼을 클릭하면 modal창 close
@@ -614,26 +749,7 @@
 
 	});
 
-	// 값을 가져오는 방법
-		// <span class ="aaa"> 미경 </span>
-		// <input type = "text"> 사과 </input>
-		//
-		// input태그 값 가져오는 방법
-		// : 서버단으로 값을 보낼때 사용하는 태그들이 대부분
-		// $('.aaa').val();
-		// input태그 값 넣는 방법
-		// $('.bbb').val('젤리');
-
-		// input 태그 이외의 값 가져오는 방법
-		// $('.aaa').text();
-		// input 태그 이외의 값 넣는 방법
-		// $('.aaa').text('과자');
-
-		// 태그이 옵션(attribute)을 가져오고 싶을 때
-		// $('.bbb').attr('type');
-		// $('.bbb').attr('class');
-
-
+	
 
 	// login modal창 암호 보이기 or 숨기기. 옵션. 옵션 
 	$(document).on('click', '.pw_eye', function(){
@@ -649,10 +765,6 @@
 					.css('color', '#aaa');
 		}
 
-	});
-	
-	$(document).on('click', '#header_btn_join', function(){
-		location.href = "${path}/member/constract";
 	});
 
 </script>

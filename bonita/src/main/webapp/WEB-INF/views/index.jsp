@@ -290,7 +290,6 @@
 						<a href="#" class>에어팟/버즈케이스</a>
 					</li>
 				</ul>
-				<hr>
 			</div>
 			<ul class="board"></ul>
 		</div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>naver_join.html</title>
-	<link rel="icon" type="image/png" href="../Img/naver/naversm.png">
+	<link rel="icon" type="image/png" href="${path}/resources/Img/naver/naversm.png">
 	<script src="https://kit.fontawesome.com/83b564820d.js" crossorigin="anonymous"></script>
 	<style type="text/css">
 		/*css 시작*/
@@ -35,7 +35,7 @@
 		/*	border: 1px solid black*/;
 		}
 		.header {
-			padding : 62px 0px 20px;
+			padding : 20px 0px 20px;
 			position: relative;
 		/*	border: 1px solid red;*/
 		}
@@ -255,11 +255,7 @@
 	<div class="wrap">
 		<header><div class="header">
 
-			<h1 class="naver_logo">
-				<a href="#" class="n_logo">
-					<img src= "${path}/resources/img/이름 없음1.png" width="250">
-				</a>
-			</h1>
+			
 		</div></header>
 	<!-- section 열기/닫기 -->
 		<section>
@@ -412,7 +408,7 @@
 </body>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../../js/validation.js"></script>
+<script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	$(function(){
 		// 비밀번호가 유효한 값인지 체크해주는 flag값
@@ -439,7 +435,7 @@
 				// console.log(result.code + ", " + result.desc);
 				// 유효성체크  결과로 테두리색과 err메세지를 출력하는 
 				// 함수 실행
-
+				
 				if(result.code == 0) {
 					checkArr[0] = 'true';
 				} else {
@@ -589,7 +585,7 @@
 
 
 		// 버튼활성화
-		$(".int").blur(function(){
+		$(".int").keyup(function(){
 			var checkAll = true;
 
 			for(var i = 0; i < checkArr.lenght; i++) {

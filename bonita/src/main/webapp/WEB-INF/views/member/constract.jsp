@@ -32,12 +32,11 @@
 
 		/* header*/
 		#header {
-			height: 220px;
-			padding-top: 50px;
 			position: relative;
 			
 		}
 		#container {
+			margin : 60px;
 			position: relative;
 			
 		}
@@ -306,22 +305,7 @@
 <body>
 	<div class=" wrap">
 		<header>
-			<div id= "header">
-				<h1 class="naver_logo">
-					<a href="#" class="n_logo">
-						<img src="${path}/resources/img/이름 없음1.png"  width="250">
-					</a>
-				</h1>
-				<div class="lang">
-					<select class="langselect">
-						<option>한국어</option>
-						<option>English</option>
-						<option>中文(简体)</option>
-						<option>中文(台灣)</option>
-					</select>
-
-				</div>
-			</div>
+			
 		</header>
 		<section>
 			<div id="container">

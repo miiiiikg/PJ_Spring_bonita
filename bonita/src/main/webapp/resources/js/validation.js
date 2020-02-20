@@ -144,9 +144,10 @@ var joinValidate = {
 				return this.resultCode.first_special_id;
 			} else if(id.length < 5 || id.length >20 ) { //6. 길이(5~20자 이내)
 				return this.resultCode.length_id;
+			} else if(idCheck(id)){
+				return this.resultCode.overlap_id;
 			} else {
 				return this.resultCode.success_id;
-			
 			}
 
 	},
@@ -211,8 +212,6 @@ var joinValidate = {
 			}  else { // 통과
 				return this.resultCode.success_name;
 			}
-
-
 	}, 
 	checkPhone : function(phone) {
 		var regEmpty = /\s/g;
@@ -227,6 +226,7 @@ var joinValidate = {
 		} else {
 			return this.resultCode.success_phone;
 		}
+		
 	},
 	checkEmail :function(email) {
 		var regEmpty = /\s/g;
@@ -241,6 +241,7 @@ var joinValidate = {
 		} else  {
 			return this.resultCode.success_email;
 		}
+		
 	},
 	checkAddr : function(addrDetail, addrPost) {
 		// 영어대문자, 영어소문자, 한글, -, 공백외에 전부 체크
@@ -256,8 +257,12 @@ var joinValidate = {
 		 else {
 			return this.resultCode.success_email;
 		}
+		
 
-	} 
+	}
+	
+	
 
 }
+
 
