@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bonita.domain.MemberDTO;
 import com.bonita.persistence.MemberDAO;
 
 @Service
@@ -18,8 +19,11 @@ public class MemberServiceImpl implements MemberService{
 		}
 		@Override
 		public int idOverlap(String id) {
-			// TODO Auto-generated method stub
-			return 0;
+			return mDao.idOverLap(id);
+		}
+		@Override
+		public int memInsert(MemberDTO mDto) {
+			return mDao.memInsert(mDto);
 		}
 }
 

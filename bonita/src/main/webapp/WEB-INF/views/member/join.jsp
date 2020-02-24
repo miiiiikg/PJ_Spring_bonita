@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="../include/header.jsp"%> 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>naver_join.html</title>
 	<link rel="icon" type="image/png" href="${path}/resources/Img/naver/naversm.png">
-	<script src="https://kit.fontawesome.com/83b564820d.js" crossorigin="anonymous"></script>
 	<style type="text/css">
 		/*css 시작*/
 		/* 모든 글씨체를 font-family */
@@ -32,7 +32,7 @@
 		.wrap {
 			width: 768px;
 			margin: 0 auto;
-		/*	border: 1px solid black*/;
+		/*	border: 1px solid black*/
 		}
 		.header {
 			padding : 20px 0px 20px;
@@ -248,28 +248,27 @@
 			color: #8E85D6;
 		}
 		
-/*css 종료*/
+	/*css 종료*/
 	</style>
 </head>
 <body>
 	<div class="wrap">
-		<header><div class="header">
-
-			
-		</div></header>
+		<header><div class="header"></div></header>
 	<!-- section 열기/닫기 -->
 		<section>
 			<!--form태그를 작성할때 name action(목적지) method(보내는방식) : get방식 -> 검색 , post방식 -> 개인정보 -->
-			<form name="frm_join" action="" method="POST">
+			<!--<form name="frm_member" action="frm_member" action = '${path}/member/join' method="POST">  -->
+			<form:form id="frm_member" modelAttribute ="memberDTO" autocomplete ="on">
 				<div class="container">
 					<div class="join_content">
 						<div class="row_group">
+			
 							<div class="join_row">
 								<h3 class="join_title">
 									<label for="id">아이디</label>
 								</h3>
 								<span class="ps_box int_id">
-									<input type="text" id="uid" name="uid" class="int">
+									<input type="text" id="uid" name="id" class="int">
 									<!-- <span class="step_url"></span> -->
 								</span>
 								<span class="error_next_box">필수 정보입니다.</span>
@@ -280,106 +279,94 @@
 									<label for="pswd1">비밀번호</label>
 								</h3>
 								<span class="ps_box int_pass">
-									<input type="password" id="upswd1" name="upswd1" class="int">
+									<input type="password" id="upswd1" name="pw" class="int">
 									<span class="step_url"><span class="pw_lock"></span></span>
 								</span>
-								<div>									
-									<div style="margin: 10px 0px;">
-									<span class="ps_box int_pass">
-										<input type="password" id="upswd2" name="upswd2" class="int">
-										<span class="step_url"><span class="repw_lock"></span></span>
-									</span>
-									<span class="error_next_box">필수 정보입니다.</span>
-								
-								</div>
-							</div>
-							<!-- <div class="join_row">
-								<h3 class="join_title">
-									<label for="pswd2">비밀번호 재확인</label>
-								</h3>
+							</div>									
+									
+							<div style="margin:10px 0px;">     
 								<span class="ps_box int_pass">
-									<input type="text" id="upswd2" name="upswd2" class="int">
+									<input type="password" id="upswd2" name="upswd2" class="int">
 									<span class="step_url"><span class="repw_lock"></span></span>
 								</span>
 								<span class="error_next_box">필수 정보입니다.</span>
 							</div>
-						</div> -->
-
-						<div class="row_group">
-							<div class="join_row">
-								<h3 class="join_title">
-									<label for="name">이름</label>
-								</h3>
-								<span class="ps_box">
-									<input type="text" id="uname" name="uname" class="int">
-								</span>
-								<span class="error_next_box">필수 정보입니다.</span>
+					
+							<div class="row_group">
+								<div class="join_row">
+									<h3 class="join_title">
+										<label for="name">이름</label>
+									</h3>
+									<span class="ps_box">
+										<input type="text" id="uname" name="name" class="int">
+									</span>
+									<span class="error_next_box">필수 정보입니다.</span>
+								</div>
 							</div>
-						</div>
-
-						<div class="join_row">
+	
+							<div class="join_row">
 								<h3 class="join_title">
 									<label for="phone">휴대전화</label>
 								</h3>
 								<span class="ps_box">
-									<input type="tel" id="uphone" name="uphone" class="int" placeholder="-없이 입력 예)01012345678">
+									<input type="tel" id="uphone" name="phone" class="int" placeholder="-없이 입력 예)01012345678">
 								</span>
 								<span class="error_next_box">필수 정보입니다.</span>
 							</div>
-
-
+	
+	
 							<div class="join_row">
 								<h3 class="join_title">
 									<label for="email">본인 확인 이메일<span class="choice">(선택)</span></label>
 								</h3>
 								<span class="ps_box">
-									<input type="text" id="uemail" name="uemail" class="int" placeholder="선택입력">
+									<input type="text" id="uemail" name="email" class="int" placeholder="선택입력">
 								</span>
 								<span class="error_next_box">필수 정보입니다.</span>
 							</div>
-
-								<div class="row_group">
-									<div class="join_row">
-										<h3 class="join_title">
-											<label for="name">주소</label>
-										</h3>
-										<div class="bir_yy" >
-											<span class="ps_box">
-												<input type="text" id="sample6_postcode"  class="int" value="" placeholder="우편번호" class="int" readonly>
-											</span>
-										</div>
-										<div class = "bir_mm">
-											<span class="ps_box">
-												<input type="button" id = "btn_post" class="int" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="int"><br>
-											</span>
-										</div>
-										<div class="home">	
-											<span class="ps_box">
-												<input type="text" id="sample6_address" class="int" placeholder="주소" value="" class="int" readonly><br>
-											</span>
-										</div>
-										<div class="home">
-											<span class="ps_box">
-												<input type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" class="int">
-											</span>
-										</div>
-										
-										<span class="error_next_box">필수 정보입니다.</span>
-
+	
+							<div class="row_group">
+								<div class="join_row">
+									<h3 class="join_title">
+										<label for="name">주소</label>
+									</h3>
+									<div class="bir_yy" >
+										<span class="ps_box">
+											<input name = "postcode" type="text" id="sample6_postcode"  class="int"  placeholder="우편번호" class="int" readonly>
+										</span>
 									</div>
-								</div>
-							
-
-								<div class="btn_double_area">
-									<button id = "btn_join" type="button" class ="btn_join btn_agree" >가입하기</button>
-								<!-- <span><a href="#" class="btn_type btn_agree">가입하기</a></span> -->
+									<div class = "bir_mm">
+										<span class="ps_box">
+											<input type="button" id = "btn_post" class="int" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="int"><br>
+										</span>
+									</div>
+									<div class="home">	
+										<span class="ps_box">
+											<input name="addr1"type="text" id="sample6_address" class="int" placeholder="주소"  class="int" readonly><br>
+										</span>
+									</div>
+									<div class="home">
+										<span class="ps_box">
+											<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+											<input name="addr2" type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" class="int">
+										</span>
+									</div>
+									
+									<span class="error_next_box">필수 정보입니다.</span>
 								</div>
 							</div>
-
+												
+							<div class="btn_double_area">
+								<button id = "btn_join" type="button" class ="btn_join btn_agree" >가입하기</button>
+								<!-- <span><a href="#" class="btn_type btn_agree">가입하기</a></span> -->
+							</div>
 						
-				</div>
-			</form>
-		</section>
+					</div><!-- row_group -->
+				</div><!-- join_content -->	
+			</div><!-- container -->
+		</form:form>
+		
+	</section>
 
 	<!-- footer -->
 		<footer>
@@ -411,11 +398,18 @@
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	$(function(){
+		// 비정상적인 접근인지 판단
+		var flag = '${flag}';
+		if(flag == 0) {
+			location.href= "${path}/member/constract"
+		}
+
+
 		// 비밀번호가 유효한 값인지 체크해주는 flag값
 		var pwFlag = false;
 
 		// 유효성체크 여부를 알려주는 배열
-		var checkArr = new Array(7).fill(false);
+		var checkArr = new Array(6).fill(false);
 		// printCheckArr(checkArr);
 
 		// 유효성체크 모두 통과 or 불통 여부를 알려주는 변수
@@ -437,11 +431,11 @@
 				// 함수 실행
 				
 				if(result.code == 0) {
-					checkArr[0] = 'true';
+					checkArr[0] = true;
 				} else {
-					checkArr[0] = 'false';
+					checkArr[0] = false;
 				}
-				printCheckArr(checkArr);
+				// printCheckArr(checkArr);
 				ckDesign(result.code, result.desc, 0, 0); // 테두리색상
 			});
 
@@ -482,7 +476,7 @@
 					checkArr[1] = true;
 					$('.ps_box:eq(1)').css('border-bottom', '2px solid #3885ca');			
 				} else if(result.code == 6) {
-					checkArr[2] = false;
+					checkArr[1] = false;
 					$('.ps_box:eq(1)').css('border-bottom', '2px solid #3885ca');
 				} else {
 					checkArr[1] = false;
@@ -562,10 +556,10 @@
 		$('#sample6_detailAddress').keyup(function(){
 			var addrDetail = $.trim($(this).val());
 			var addrPost = $('#sample6_postcode').val();
-			// console.log('우편번호:' +addrPost+', 상세주소' +addrDetail);
+			
 
 			var result = joinValidate.checkAddr(addrDetail, addrPost);
-
+			console.log(result.code);
 			if(result.code == 3) { // 우편번호 & 주소x
 				ckDesign(result.code, result.desc, 6, 5);
 				ckDesign(result.code, result.desc, 8, 5);
@@ -585,7 +579,7 @@
 
 
 		// 버튼활성화
-		$(".int").keyup(function(){
+		$(".btn_agree").keyup(function(){
 			var checkAll = true;
 
 			for(var i = 0; i < checkArr.lenght; i++) {
@@ -620,6 +614,10 @@
 
 			if(invalidAll) {
 				alert('회원가입 성공!');
+				// submit : form태그 안에 있는 데이터들을 서버단으로 전송
+				// action : 목적지(MemberController '/join')
+				// method : 방법(POST : 숨겨서)
+				$('#frm_member').submit();
 			} else { 
 				alert('유효성체크를 진행해주세요!');
 			}
