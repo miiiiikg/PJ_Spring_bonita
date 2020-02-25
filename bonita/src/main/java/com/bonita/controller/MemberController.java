@@ -1,6 +1,9 @@
 package com.bonita.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bonita.domain.MemberDTO;
+import com.bonita.service.mail.MailService;
 import com.bonita.service.member.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +45,13 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	@Autowired
 	MemberService mService;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private MailService mailService;
+	
 	/*
 	 * SessionAttributs를 사용하기 위해서는
 	 * 반드시 해당 변수를 생성하는 method가 controlller에 있어야 하고
@@ -66,18 +78,29 @@ public class MemberController {
 	 * @ModelAttribute("객체이름")을 필수로 지정해 주어야 한다.
 	 */
 	
-	/*
-	 * 
-	 */
+	
 	@GetMapping("/join")
 	public String getJoin(@ModelAttribute("memberDTO") MemberDTO mDto, 
 			@RequestParam(value="flag", defaultValue="0") String flag,
 			Model model) {
 		log.info(">>>>>>> MEMBER/JOIN PAGE GET 출력");
 		log.info(mDto.toString());
+	
 		model.addAttribute("flag", flag);
 		
 		return "member/join";
+	}
+	
+	// 회원가입 후 email 인증
+	@GetMapping("/keyauth")
+	public String keyAuth(String id, String key, RedirectAttributes rttr) {
+		mailService.keyAuth(id, key);
+		
+		// 인증 후 메시지 출력을 위한 값 전달
+		rttr.addFlashAttribute("id", id);
+		rttr.addFlashAttribute("key", "auth");
+		
+		return "redirect:/";
 	}
 	
 	// 회원가입 ID 중복체크
@@ -112,16 +135,27 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, 
-				SessionStatus sessionStatus) {
-		log.info(">>>>>>>>> MEMBER/JOIN POST DB에 회원정보 저장");
+				SessionStatus sessionStatus, HttpServletRequest request) {
+		log.info(">>>>>>>>> MEMBER/JOIN PAGE POST 출력");
 		
 		log.info(mDto.toString());
 		
+		log.info("password:" + mDto.getPw()); // 사용자 입력pw값
+		// 1. 사용자 암호 hash 변환
+		String encPw = passwordEncoder.encode(mDto.getPw());
+		mDto.setPw(encPw);
+		log.info("Password(+Hash)" + mDto.getPw());
+		
+		// 2. DB에 회원 등록
 		int result = mService.memInsert(mDto);
 		
+		// 3. 회원등록 결과
 		if(result > 0) {
-			log.info(">>>>>>> " + mDto.getId() + "님 회원가입 되셨습니다.");
+			log.info(">>>>>" +mDto.getId()+"님 회원가입되셨습니다.");
 		}
+		
+		// 4. 회원가입 인증 메일 보내기
+		mailService.mailSendUser(mDto.getEmail(), mDto.getId(), request);
 		// SessionAttrubutes를 사용할때 input, update가 완료되고
 		// view로 보내기전 반드시 setComplet()를 실행하여
 		// Session에 담긴 값을 clear 해주어야 한다.
@@ -129,6 +163,8 @@ public class MemberController {
 		
 		return "";
 	}
+	
+	
 
 
 

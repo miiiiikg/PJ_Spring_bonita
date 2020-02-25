@@ -66,9 +66,6 @@
 		  transition: background-color 0.6s ease;
 		}
 
-		.active {
-		  background-color: #717171;
-		}
 
 		/* Fading animation */
 		.fade {
@@ -97,7 +94,6 @@
 
 		.top-service {
 			height: 60px;
-			margin: 0 auto 20px;
 			text-align: center;
 			border-top: 1px solid #ddd;
 			border-bottom: #ddd;

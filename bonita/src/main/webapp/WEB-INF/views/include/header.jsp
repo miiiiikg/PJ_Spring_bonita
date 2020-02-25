@@ -425,7 +425,7 @@
 			padding-left: 5px;
 		}
 		.login_btn_box {
-			
+			padding-top : 17px;
 		}
 		.login_input_box {
 			padding-top: 24px;
@@ -534,13 +534,161 @@
 		.input_div{
 			position: relative;
 		}
+		
+		/*====top버튼===========================================*/
+		.top_btn {
+			bottom: 115px;
+			background-color: #9055A2;
+		}
+		.fix_btn {
+			position: fixed;
+			right: 50px;
+			color: white;
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 30px;
+			cursor: pointer;
+			box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,.19);
+		}
+		.fix_btn > i {
+			transition: transform .3s;
+		}
+		.fas {
+			font-weight: 900;
+		}
+		.fix_btn:hover > i {
+			transform: scale(1.3);
+		}
 
+		/* 모달창 ===========================================================*/
+		* { -webkit-font-smoothing: antialiased; }
+		a:link { text-decoration: none;}
+		a:visited { text-decoration: none;}
+ 		a:hover {  text-decoration: none;}
+
+		div, span {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+			outline: 0;
+		}
+		ul, li, ol, dl, dt, dd {
+			list-style: none;
+		}
+		.dt_popup1 {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.5);
+			z-index: 9999;
+		}
+		#pop_login1, .dt_popup_inr1 {
+			width: 450px;
+			padding : 40px 45px;
+			background: #fff;
+			box-sizing: border-box;
+			border-radius: 10px 10px;
+		}
+		.dt_popup1, .dt_popup_inr1 {
+			position : absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		.modal_close1 {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
+		.modal_close1 > button {
+			color: rgb(142, 142, 142);
+			border : none;
+			background: white;
+			font-size: 17px;
+			cursor: pointer;
+			outline: none;
+
+		}
+		.dt_popup_inr1 {
+			font-size: 18px;
+			color: #333333;
+			/*text-align: center;*/
+			text-transform: uppercase;
+		}
+		.login_btn_box1{
+			display: flex;
+			justify-content: space-around;
+			align-items: center
+
+		}
+		.login_btn_title1 {
+			display: inline-block;
+			width: 40%;
+			height: 56px;
+			font-size: 15px;
+			color: #fff;
+			text-align: center;
+			line-height: 56px;
+			background: #333333;
+			border: 2px solid #333333;
+			border-radius: 5px 5px;
+		}
+		.join_btn_title1 {
+			display: inline-block;
+			width: 40%;
+			height: 56px;
+			/*margin-top: 5px;*/
+			font-size: 15px;
+			color: #363636;
+			text-align: center;
+			line-height: 56px;
+			background: #f2f2f2;
+			padding-bottom: 2px;
+			border: 1px solid #333333;
+			border-radius: 5px 5px;
+		}
+		.title1 {
+			align-items: center
+		}
 
 
 	</style>
 </head>
 <body>
-	<body>
+	<div class="top_btn fix_btn"><i class="fas fa-arrow-up"></i></div>
+	<!-- <div class="dt_popup1">
+		<div class="dt_popup_inr1">
+			<div class="modal_close1">	
+				<button><i class="fas fa-times"></i></button>
+			</div>
+			<div class="pop_login_wrap1">
+				<div class="pop_login_inr1">
+					
+					<div class="pop_tab_list1 login_tab_list1">
+						<ul>
+							<li class="active">
+								<h3 class="pop_login_title1 roboto_font1">
+									<span class="title1">정말로 회원 탈퇴하시겠습니까?</span>
+								</h3>
+							</li>
+							
+						</ul>
+					</div>
+					<div class="login_btn_box1">
+						<a href="#" class="login_btn_title"><span class="title">확인</span></a>
+						<a href="#" class="join_btn_title"><span class="title">취소</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
 	<div class="dt_popup">
 		<div class="dt_popup_inr">
 			<div class="login_close">
@@ -559,6 +707,7 @@
 							
 						</ul>
 					</div>
+					
 					<div class="tab_contents">
 						<div class="tab_content open">
 							<form name="formlogin" method="post" action ="">
@@ -766,6 +915,28 @@
 		}
 
 	});
+	
+	$(document).ready(function(){
+		$('.bar_wrap') .find('.bar_fill').each(function() {
+			var widthVal = $(this).text();
+			$(this).animate({width: widthVal}, 1000);
+		});
+
+	// Scroll Top버튼 생성 및 top으로 이동
+	$(window).scroll(function() { // 스크롤이 움직이면
+		// alert('움직임');
+		// scrollTop 맨위 0부터 시작해서 fadeIn, fadeout:잔상효과 top버튼이 나오게 한다. 기본효과 display: block;
+		if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+			$('.top_btn').fadeIn().css("display","flex");
+		} else {
+			$('.top_btn').fadeOut();
+		}
+	});
+	// animate 스크롤이 서서히 올라가는 효과, 안주면 순간이동 된다. 맨위로 0.8초
+	$('.top_btn').click(function(){
+		$('html, body').animate({ scrollTop: 0 }, 800);
+	})
+  });
 
 </script>
 </html>
