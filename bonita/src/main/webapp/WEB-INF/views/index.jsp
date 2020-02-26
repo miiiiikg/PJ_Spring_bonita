@@ -237,6 +237,7 @@
 	</style>
 </head>
 <body>
+	<%@ include file="include/modal.jsp" %>
 
 	<div class="top-service">
 		<div class="container">

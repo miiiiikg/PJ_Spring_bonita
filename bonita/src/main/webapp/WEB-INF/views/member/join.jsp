@@ -13,7 +13,30 @@
 		* {
 			font-family: Dotum,'돋움', Helvetica, sans-serif;
 			box-sizing: border-box;
+		}
+		#back {
+			position : fixed;
+			z-index : 1200;
+			background-color : rgba(0,0,0,0.4);
+			overflow : auto;
+			width: 100%;
+			height: 100%;
+			top : 0;
+			left : 0;
+			display : none;
+			align-items: center;
+			justify-content : center;
 		}	
+		.loading_img {
+			animation : ani_loading 1.5s infinite linear;
+			font-size : 70px;
+			color : #EBA444;
+		}
+		
+		@keyframes ani_loading {
+			from {-webkit-transform : rotate(0deg);}
+			to 	 {-webkit-transform : rotate(359deg);}
+		}
 
 		body, h1, h2, h3, h4, h5, h6, ul, p {
 			margin: 0;
@@ -614,6 +637,7 @@
 
 			if(invalidAll) {
 				alert('회원가입 성공!');
+				FunLoadingBarStart(); // 로딩바 생성
 				// submit : form태그 안에 있는 데이터들을 서버단으로 전송
 				// action : 목적지(MemberController '/join')
 				// method : 방법(POST : 숨겨서)
@@ -622,12 +646,21 @@
 				alert('유효성체크를 진행해주세요!');
 			}
 			// 유효성체크가 전부 true이면
-
 			// 하나라도 false이면
 		});
+		
+		// 로딩바 출력
+		function FunLoadingBarStart(){
+			var loadingBarImage =''; // 가운데 띄어 줄 이미지
+			loadingBarImage += "<div id = 'back'>";
+			loadingBarImage += "<div id = 'loadingBar'>";
+			loadingBarImage += "<i class='fas fa-spinner loading_img'></i>";
+			loadingBarImage += "<div></div>";
+			$('body').append(loadingBarImage);
+			$('#back').css('display','flex');
+			$('#loadingImg').show();
+		}
 
-
-		//
 
 
 		function ckDesign(code, desc, line, msg) {

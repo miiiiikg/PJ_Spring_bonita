@@ -43,6 +43,10 @@ import lombok.extern.slf4j.Slf4j;
  * 이름을 표준 패턴이 아닌 임의의 이름으로 바꾸고 싶다.
  */
 public class MemberController {
+	/*
+	 * 의존성주입 할 수 있다. 의존성주입(type) 멤버서비스 type
+	 * @Autowired 각각 써줘야 한다.
+	 */
 	@Autowired
 	MemberService mService;
 	
@@ -135,9 +139,11 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(@ModelAttribute("memberDTO") MemberDTO mDto, 
-				SessionStatus sessionStatus, HttpServletRequest request) {
+				SessionStatus sessionStatus, HttpServletRequest request, RedirectAttributes rttr) {
+		// view단에서 Controller단으로 이동
 		log.info(">>>>>>>>> MEMBER/JOIN PAGE POST 출력");
 		
+		// view단에서 전송된 데이터가 잘 전달됐는지 확인
 		log.info(mDto.toString());
 		
 		log.info("password:" + mDto.getPw()); // 사용자 입력pw값
@@ -161,9 +167,23 @@ public class MemberController {
 		// Session에 담긴 값을 clear 해주어야 한다.
 		sessionStatus.setComplete();
 		
-		return "";
+		//회원가입 후 메시지 출력을 위한 값 전달
+		// 값이 바뀌면 redirect forward 디폴트, 
+		
+		// 회원가 lashAttribute("id", mDto.getEmail());
+		rttr.addFlashAttribute("id", mDto.getId());
+		rttr.addFlashAttribute("email", mDto.getEmail());
+		rttr.addFlashAttribute("key", "join");
+		
+		return "redirect:/";
 	}
 	
+//	// 회원가입 후 email 인증
+//	@GetMapping("/keyauth")
+//	public String keyAuth(String id, String key, RedirectAttributes rttr) {
+//		
+//	}
+//	
 	
 
 

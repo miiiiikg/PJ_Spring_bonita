@@ -8,6 +8,7 @@ import com.bonita.domain.MemberDTO;
 import com.bonita.persistence.MemberDAO;
 
 @Service
+/*@Service 자바가 읽을수 있게 하는거*/
 public class MemberServiceImpl implements MemberService{
 		@Autowired
 		public SqlSession sqlSession;
