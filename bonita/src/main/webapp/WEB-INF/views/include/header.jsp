@@ -9,9 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/common.css">
 	<script src="https://kit.fontawesome.com/83b564820d.js" crossorigin="anonymous"></script>
 	<style type="text/css">
-		div{
-			/*border: 1px solid red;*/
-		}
+		
 		#wrap {
 			position: relative;
 			min-width: 1280px;
@@ -64,6 +62,10 @@
 			letter-spacing: 0.5px;
 			vertical-align: middle;
 		}
+	
+		#header .bar ul.gnb > li.myshop:hover ul.mnb {
+			display : block; 
+		}
 		#header .bar {
 			width: 100%;
 			z-index: 98;
@@ -95,7 +97,7 @@
 		}
 		/*마이페이지 설정*/
 		#header .bar ul.gnb > li.myshop ul.mnb {
-			display: none;
+			display : none;
 			position: absolute;
 			top: 38px;
 			left: 50%;
@@ -357,12 +359,18 @@
 			text-transform: uppercase;
 		}
 		.pop_tab_list {
-			/*padding-top: 31px;*/
 			text-align: center;
 		}
 		.pop_tab_list li {
 			display: inline-block;
 			vertical-align: middle;
+		}
+		/*로그인 에러 메세지*/
+		.pop_tab_list1 li a {
+			display: none;
+			font-size: 12px;
+			color: red;
+			text-align: left;
 		}
 		.tab_content.open {
 			display: block;
@@ -539,6 +547,7 @@
 		.top_btn {
 			bottom: 115px;
 			background-color: #9055A2;
+			display : none;
 		}
 		.fix_btn {
 			position: fixed;
@@ -591,19 +600,28 @@
 					
 					<div class="tab_contents">
 						<div class="tab_content open">
-							<form name="formlogin" method="post" action ="">
+							<form name="formlogin" method="post" action ="" onsubmit ="return false;">
 								<div class="login_input_box">
 									<ul>
 										<li>
-											<input type="email" name="id" maxlength="20" value class="MS_login_id" placeholder="아이디" required>
+											<input type="text" id= "login_id" name="id" maxlength="20" value class="MS_login_id" placeholder="아이디" required>
 										</li>
 										<li>
 											<div class="input_div">
-												<input type="password" name="passwd" maxlength="20" value class="MS_login_pw" placeholder="비밀번호" required minlength="6" maxlength="18">
+												<input type="password" id = "login_pw" name="passwd" maxlength="20" value class="MS_login_pw" placeholder="비밀번호" required minlength="6" maxlength="18">
 												<span class="pw_eye"><i class="fas fa-eye-slash"></i></span>
 											</div>
 										</li>
 									</ul>
+									
+									<div class="pop_tab_list1 login_tab_list">
+										<ul>
+											<li class="active" >
+												<a href="#" id = "err_content" class="tab_list_title js_tab_btn" >가입하지 않은 아이디이거나, 잘못된 비밀번호입니다. </a>
+											</li>
+										</ul>
+									</div>
+									
 									<div class="login_utile_box">
 										<div class="save_login">
 											<input type="checkbox" name="save_id" id="chk_save_id" value="on">
@@ -616,7 +634,7 @@
 									</div>
 								</div>
 								<div class="login_btn_box">
-									<button type = "submit" class="login_btn_title"><span class="title" >로그인</span></button>
+									<button type = "submit" class="login_btn_title" id="btn_login"><span class="title"   >로그인</span></button>
 									<button href = "#" class="join_btn_title"><span class="title" >회원가입</span></button>
 								</div>
 							</form>
@@ -640,22 +658,31 @@
 
 	<div id="wrap" class="main">
 		<div id="header">
-			<div style>
+			<div style="">
 				<div class="bar" df-fixed-id="gnb" style="top:0px;">
 					<div class="inner">
 						<ul class="gnb">
-							<li class="xans-element- xans-layout xans-layout-statelogoff ">
-								<a href="#" class="log">LOGIN</a>
-							</li>
-							<li class="xans-element- xans-layout xans-layout-statelogoff ">
-								<a href="${path}/member/constract">JOIN US</a>
-								<div class="msgbox use-msgbox" style="display:block;">
-									<i class="fa fa-caret-up">
+							<c:choose>
+								<c:when test="${empty sessionScope.userid}">
+									<li class="xans-element- xans-layout xans-layout-statelogoff ">
+										<a href="#" class="log">LOGIN</a>
+									</li>
+									<li class="xans-element- xans-layout xans-layout-statelogoff ">
+										<a href="${path}/member/constract">JOIN US</a>
 										
-									</i>
-									<span class="rep-msgbox">+1,000 P</span>
-								</div>
 							</li>
+								</c:when><!-- if -->
+								<c:otherwise>
+									<li class="xans-element- xans-layout xans-layout-statelogoff ">
+										<a href="#" class="log">LOGOUT</a>
+									</li>
+								</c:otherwise> <!-- else -->
+							</c:choose>
+							<div class="msgbox use-msgbox" style="display:block;">
+							<i class="fa fa-caret-up"></i>
+									<span class="rep-msgbox">+1,000 P</span>
+							</div>
+							
 							<li>
 								<a href="#">CART</a>
 								<span class="xans-element- xans-layout xans-layout-orderbasketcount cart-count EC-Layout_Basket-count-display ">
@@ -705,7 +732,7 @@
 			<div class="spot">
 				<div class="inner">
 					<h1 class="xans-element- xans-bannermanage2 xans-bannermanage2-display-18 xans-bannermanage2-display xans-bannermanage2-18 top-logo">
-						<a href="#" class="logo">
+						<a href="${path}/" class="logo">
 							<span class="xans-record-" style="opacity: 1;">
 								<img class="banner_image" alt="로고" src="${path}/resources/img/bobo.png" >
 							</span>
@@ -797,11 +824,41 @@
 
 	});
 	
-	$(document).ready(function(){
-		$('.bar_wrap') .find('.bar_fill').each(function() {
-			var widthVal = $(this).text();
-			$(this).animate({width: widthVal}, 1000);
-		});
+	// Login 버튼 클릭시 AJAX 동작
+	$(document).on('click','#btn_login', function(){
+		 // id와 pw값 받아와서 null이면 작동x 
+		 var id = $('#login_id').val();
+		 var pw = $('#login_pw').val();
+		 
+		 // 유효성 체크 (id,pw) null 체크
+		 if(id != '' && pw != '' && id.length != 0 && pw.length != 0) {
+		 	$.ajax({
+		 		url:'${path}/login/in', 
+		 		type:'POST',
+		 		data : 'id='+id+'&pw='+pw,
+		 		success: function(data) {
+		 			alert('System Success:)');
+		 			console.log(data);
+		 			
+		 			if(data == 0 || data == 3) {
+		 				$('#err_content').css('display', 'block')
+		 				.text('로그인 중 문제가 발생하였습니다. 아이디와 비밀번호를 확인하거나 계정을 생성하십시오.')
+		 			} else if(data == 1) {
+		 				console.log('로그인 성공');
+		 				location.reload(); // 새로고침
+		 			} else if(data == 2) {
+		 				$('#err_content').css('display', 'block')
+		 				.text('이메일 인증 후 로그인 할 수 있습니다.')
+		 			}
+		 		},
+		 		error: function(){
+		 			alert('System Error:/');
+		 		}
+		 	});
+		 }
+		 
+	});
+	
 
 	// Scroll Top버튼 생성 및 top으로 이동
 	$(window).scroll(function() { // 스크롤이 움직이면
@@ -816,8 +873,8 @@
 	// animate 스크롤이 서서히 올라가는 효과, 안주면 순간이동 된다. 맨위로 0.8초
 	$('.top_btn').click(function(){
 		$('html, body').animate({ scrollTop: 0 }, 800);
-	})
-  });
+	});
+  
 
 </script>
 </html>
