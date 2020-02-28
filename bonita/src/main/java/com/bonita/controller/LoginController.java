@@ -3,10 +3,10 @@ package com.bonita.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.bonita.domain.MemberDTO;
 import com.bonita.service.login.LoginService;
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/login")
 @Slf4j
-@Controller
+@RestController
 public class LoginController {
 	
 	@Autowired

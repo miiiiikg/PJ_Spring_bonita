@@ -291,7 +291,7 @@
 									<label for="id">아이디</label>
 								</h3>
 								<span class="ps_box int_id">
-									<input type="text" id="uid" name="id" class="int">
+									<input type="text" id="uid" name="id" class="int" value='${user.id}'>
 									<!-- <span class="step_url"></span> -->
 								</span>
 								<span class="error_next_box">필수 정보입니다.</span>
@@ -305,15 +305,17 @@
 									<input type="password" id="upswd1" name="pw" class="int">
 									<span class="step_url"><span class="pw_lock"></span></span>
 								</span>
+								<div style="margin:10px 0px;">     
+									<span class="ps_box int_pass">
+										<input type="password" id="upswd2" name="upswd2" class="int">
+										<span class="step_url"><span class="repw_lock"></span></span>
+									</span>
+									<span class="error_next_box" >필수 정보입니다.</span>
+								</div>
+								
+								
 							</div>									
 									
-							<div style="margin:10px 0px;">     
-								<span class="ps_box int_pass">
-									<input type="password" id="upswd2" name="upswd2" class="int">
-									<span class="step_url"><span class="repw_lock"></span></span>
-								</span>
-								<span class="error_next_box">필수 정보입니다.</span>
-							</div>
 					
 							<div class="row_group">
 								<div class="join_row">
@@ -321,7 +323,7 @@
 										<label for="name">이름</label>
 									</h3>
 									<span class="ps_box">
-										<input type="text" id="uname" name="name" class="int">
+										<input type="text" id="uname" name="name" class="int" value='${user.name}'>
 									</span>
 									<span class="error_next_box">필수 정보입니다.</span>
 								</div>
@@ -332,7 +334,7 @@
 									<label for="phone">휴대전화</label>
 								</h3>
 								<span class="ps_box">
-									<input type="tel" id="uphone" name="phone" class="int" placeholder="-없이 입력 예)01012345678">
+									<input type="tel" id="uphone" name="phone" class="int" value='${user.phone}' placeholder="-없이 입력 예)01012345678">
 								</span>
 								<span class="error_next_box">필수 정보입니다.</span>
 							</div>
@@ -343,7 +345,7 @@
 									<label for="email">본인 확인 이메일<span class="choice">(선택)</span></label>
 								</h3>
 								<span class="ps_box">
-									<input type="text" id="uemail" name="email" class="int" placeholder="선택입력">
+									<input type="text" id="uemail" name="email" class="int" placeholder="선택입력" value='${user.email}'>
 								</span>
 								<span class="error_next_box">필수 정보입니다.</span>
 							</div>
@@ -355,23 +357,23 @@
 									</h3>
 									<div class="bir_yy" >
 										<span class="ps_box">
-											<input name = "postcode" type="text" id="sample6_postcode"  class="int"  placeholder="우편번호" class="int" readonly>
+											<input name = "postcode" type="text" id="sample6_postcode"  class="int"  placeholder="우편번호" value='${user.postcode}' class="int" readonly>
 										</span>
 									</div>
 									<div class = "bir_mm">
 										<span class="ps_box">
-											<input type="button" id = "btn_post" class="int" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="int"><br>
+											<input type="button" id = "btn_post" class="int" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"  class="int"><br>
 										</span>
 									</div>
 									<div class="home">	
 										<span class="ps_box">
-											<input name="addr1"type="text" id="sample6_address" class="int" placeholder="주소"  class="int" readonly><br>
+											<input name="addr1"type="text" id="sample6_address" class="int" placeholder="주소"  class="int" readonly value='${user.addr1}'><br>
 										</span>
 									</div>
 									<div class="home">
 										<span class="ps_box">
 											<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
-											<input name="addr2" type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" class="int">
+											<input name="addr2" type="text" id="sample6_detailAddress" class="int" placeholder="상세주소" class="int" value='${user.addr2}'>
 										</span>
 									</div>
 									
@@ -421,11 +423,25 @@
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	$(function(){
-		// 비정상적인 접근인지 판단
-		var flag = '${flag}';
-		if(flag == 0) {
-			location.href= "${path}/member/constract"
+		
+		alert('user:'+ '${user}');
+		
+		if('${user}' != '') {
+			// 회원정보수정 디자인 변경
+			// →버튼 텍스트가 수정하기
+			$('#btn_join').text('수정하기');
+			// →비밀번호, 비밀번호 재설정 제거
+			$('.join_row:eq(1)').css('display', 'none');
+			// →id에 readonly효과를 줘서 입력이 불가능
+			// id=#id를 제거해서 우리가 입력한 유효성체크 동작 불가능
+			$('.join_row_input:eq(0)').attr('readonly', 'true')
+										   .removeAttr('id');
 		}
+		// 비정상적인 접근인지 판단
+		//var flag = '${flag}';
+		//if(flag == 0) {
+		//	location.href= "${path}/member/constract"
+		//}
 
 
 		// 비밀번호가 유효한 값인지 체크해주는 flag값
