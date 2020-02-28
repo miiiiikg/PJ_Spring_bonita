@@ -307,9 +307,16 @@
 			width: 250px;
 			height: 145px;
 		}
-
-
-			
+		.login_name {
+			float : left;
+			position : relative;
+			margin-left: 16px;
+			font-size: 11px;
+			line-height:42px;
+			color: #222;
+			letter-spacing : 0.5px;
+			white-space : nowrap;
+		}
 
 
 		/*===============================================================================================로그인 창= */
@@ -669,19 +676,20 @@
 									</li>
 									<li class="xans-element- xans-layout xans-layout-statelogoff ">
 										<a href="${path}/member/constract">JOIN US</a>
-										
-							</li>
-								</c:when><!-- if -->
-								<c:otherwise>
-									<li class="xans-element- xans-layout xans-layout-statelogoff ">
-										<a href="#" class="log">LOGOUT</a>
+										<div class="msgbox use-msgbox" style="display:block;">
+											<i class="fa fa-caret-up"></i>
+											<span class="rep-msgbox">+1,000 P</span>
+										</div>
 									</li>
-								</c:otherwise> <!-- else -->
+								</c:when>
+								<c:otherwise>
+								
+									<div class = "login_name"><span >${sessionScope.userid}(${sessionScope.name}) 님 </span></div>
+									<li class="xans-element- xans-layout xans-layout-statelogoff ">
+										<a href="#" class="log" id ="header_btn_logout">LOGOUT</a>
+									</li>
+								</c:otherwise>
 							</c:choose>
-							<div class="msgbox use-msgbox" style="display:block;">
-							<i class="fa fa-caret-up"></i>
-									<span class="rep-msgbox">+1,000 P</span>
-							</div>
 							
 							<li>
 								<a href="#">CART</a>
@@ -805,6 +813,22 @@
 		
 
 	});
+	
+	/* 로그아웃 기능*/
+	$(document).on('click', '#header_btn_logout', function(){
+		$.ajax({
+			url: '${path}/login/out',
+			type:'POST',
+			success:function(){
+				//console.log('Logout Success:)');
+				location.reload();
+			},
+			error:function(){
+				alert('System Error:/');
+			}
+		}); 
+		
+	});
 
 	
 
@@ -837,7 +861,7 @@
 		 		type:'POST',
 		 		data : 'id='+id+'&pw='+pw,
 		 		success: function(data) {
-		 			alert('System Success:)');
+		 			//alert('System Success:)');
 		 			console.log(data);
 		 			
 		 			if(data == 0 || data == 3) {

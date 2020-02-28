@@ -1,6 +1,5 @@
 package com.bonita.controller;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +31,13 @@ public class LoginController {
 		int result = lService.login(mDto, session);
 		
 		return result;
+	}
+	@ResponseBody
+	@PostMapping("/out")
+	public void logOut(HttpSession session) {
+		log.info(">>>>>>> POST : LOGOUT/LOGOUT ACTION");
+		
+		lService.logout(session);
+		
 	}
 }
