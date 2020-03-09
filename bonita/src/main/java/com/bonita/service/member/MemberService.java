@@ -1,5 +1,7 @@
 package com.bonita.service.member;
 
+import javax.servlet.http.HttpSession;
+
 import com.bonita.domain.MemberDTO;
 
 public interface MemberService {
@@ -12,6 +14,10 @@ public interface MemberService {
 	
 	// 1명의 회원정보
 	public MemberDTO userView(String id);
+	
+	// 회원수정 (DB에 수정)
+	public void memUpdate(MemberDTO mDto, HttpSession session);
+
 	
 	
 

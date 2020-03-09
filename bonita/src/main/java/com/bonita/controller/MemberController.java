@@ -208,6 +208,21 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@PostMapping("/update")
+	public String memUpdate(MemberDTO mDto, HttpSession session) {
+		log.info(">>>>>>> POST : Member Update Action");
+		log.info(mDto.toString());
+		
+		mService.memUpdate(mDto, session);
+		//if(result > 0) {
+		//	log.info(">>>>> Member Update Sucess");
+		//} else { 
+		//	log.info(">>>>> Member Update Fail");
+		//}
+		
+		return "redirect:/";
+	}
+	
 	
 
 

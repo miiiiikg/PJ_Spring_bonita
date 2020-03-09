@@ -1,5 +1,7 @@
 package com.bonita.service.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,23 @@ public class MemberServiceImpl implements MemberService{
 		public MemberDTO userView(String id) {
 			return mDao.userView(id);
 		}
+		@Override
+		public void memUpdate(MemberDTO mDto, HttpSession session) {
+			int result = mDao.memUpdate(mDto);
+			
+			
+			// session.name = '체리'
+			//  -----------> login 정보 '체리'
+			// 회원정보 수정 name = '체리'
+			if(result > 0) { // 수정성공
+				// 세션에 로그인유저 정보를 수정된 정보로 변경
+				session.removeAttribute("name");
+				session.setAttribute("name", mDto.getName());
+			}
+			
+		}
+		
+
 }
 
 

@@ -611,11 +611,11 @@
 								<div class="login_input_box">
 									<ul>
 										<li>
-											<input type="text" id= "login_id" name="id" maxlength="20" value class="MS_login_id" placeholder="아이디" required>
+											<input type="text" id= "login_id" name="id" maxlength="20" value class="login_input MS_login_id" placeholder="아이디" required>
 										</li>
 										<li>
 											<div class="input_div">
-												<input type="password" id = "login_pw" name="passwd" maxlength="20" value class="MS_login_pw" placeholder="비밀번호" required minlength="6" maxlength="18">
+												<input type="password" id = "login_pw" name="passwd" maxlength="20" value class="login_input MS_login_pw" placeholder="비밀번호" required minlength="6" maxlength="18">
 												<span class="pw_eye"><i class="fas fa-eye-slash"></i></span>
 											</div>
 										</li>
