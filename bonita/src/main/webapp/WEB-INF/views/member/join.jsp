@@ -423,26 +423,6 @@
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	$(function(){
-		
-		alert('user:'+ '${user}');
-		
-		if('${user}' != '') {
-			// 회원정보수정 디자인 변경
-			// →버튼 텍스트가 수정하기
-			$('#btn_join').text('수정하기');
-			// →비밀번호, 비밀번호 재설정 제거
-			$('.join_row:eq(1)').css('display', 'none');
-			// →id에 readonly효과를 줘서 입력이 불가능
-			// id=#id를 제거해서 우리가 입력한 유효성체크 동작 불가능
-			$('.join_row_input:eq(0)').attr('readonly', 'true')
-										   .removeAttr('id');
-		}
-		// 비정상적인 접근인지 판단
-		//var flag = '${flag}';
-		//if(flag == 0) {
-		//	location.href= "${path}/member/constract"
-		//}
-
 
 		// 비밀번호가 유효한 값인지 체크해주는 flag값
 		var pwFlag = false;
@@ -453,6 +433,46 @@
 
 		// 유효성체크 모두 통과 or 불통 여부를 알려주는 변수
 		var checkAll = true;
+		
+		alert('user:'+ '${user}');
+		
+		if('${user}' != '') {
+			// 회원정보수정 디자인 변경
+			// →버튼 텍스트가 수정하기
+			$('#btn_join').text('수정하기');
+			// →비밀번호, 비밀번호 재설정 제거
+			// display , none
+			$('.join_row:eq(1)').css('visibility', 'hidden')
+								.css('height', '0px')
+								.css('margin-top', '-17px');
+		
+			// →id에 readonly효과를 줘서 입력이 불가능
+			// id=#id를 제거해서 우리가 입력한 유효성체크 동작 불가능
+			$('.join_row_input:eq(0)').attr('readonly', 'true')
+										   .removeAttr('id');
+			
+			var name = '${user.name}';
+			var phone = '${user.phone}';
+			var email = '${user.email}';
+			var postcode = '${user.postcode}';
+			var addr1 = '${user.addr1}';
+			var addr2 = '${user.addr2}';
+			ckName(name);
+			ckPhone(phone);
+			ckEmail(email);
+			ckAddr(postcode, addr2);
+			checkArr[0] = true;
+			checkArr[1] = true;
+			ckColorBtn();
+			printCheckArr(checkArr);
+		}
+		// 비정상적인 접근인지 판단
+		//var flag = '${flag}';
+		//if(flag == 0) {
+		//	location.href= "${path}/member/constract"
+		//}
+
+
 
 		
 			// 아이디 유효성체크 :
@@ -530,23 +550,31 @@
 				var name = $.trim($('#uname').val());
 				// console.log(name);
 				// alert(name);
+				ckName(name);
+			});
+		
+			function ckName(name){
 				var result = joinValidate.checkName(name);
-
+					// printCheckArr(checkArr);
+				ckDesign(result.code, result.desc, 3, 2);
+	
 				if (result.code == 0) {
 					checkArr[2] = true;
 				} else {
 					checkArr[2] =false;
 				}
-				// printCheckArr(checkArr);
-				ckDesign(result.code, result.desc, 3, 2);
-
-			});
+					
+			}
 
 		// 전화번호 유효성체크
 			$('#uphone').keyup(function(){
 				var phone = $.trim($('#uphone').val());
+				ckPhone(phone);
 				// console.log(phone);
+			});
+			function ckPhone(phone) {
 				var result = joinValidate.checkPhone(phone);
+				ckDesign(result.code, result.desc, 4, 3);
 
 
 				if (result.code == 0) {
@@ -556,16 +584,18 @@
 				}
 				// printCheckArr(checkArr);
 				
-				ckDesign(result.code, result.desc, 4, 3);
-
-			});
+			}
 
 		// 이메일 유효성체크
 		$('#uemail').keyup(function(){
 			var email = $.trim($(this).val());
-			// console.log(email);
+			ckEmail(email);
+			// console.log(email);				
+		});
+		
+		function ckEmail(email) {
 			var result = joinValidate.checkEmail(email);
-
+			ckDesign(result.code, result.desc, 5, 4);
 
 				if (result.code == 0) {
 					checkArr[4] = true;
@@ -573,9 +603,7 @@
 					checkArr[4] =false;
 				}
 				// printCheckArr(checkArr);
-				
-			ckDesign(result.code, result.desc, 5, 4);
-		});
+		}
 
 		$('.addr_only').click(function(){
 			// 사용자가 우편번호 또는 주소 input을 클릭했을 때
@@ -596,9 +624,12 @@
 			var addrDetail = $.trim($(this).val());
 			var addrPost = $('#sample6_postcode').val();
 			
-
+			ckAddr(addrPost, addrDetail);
+			// printCheckArr(checkArr);
+		});
+		function ckAddr(addrPost, addrDetail) {
 			var result = joinValidate.checkAddr(addrDetail, addrPost);
-			console.log(result.code);
+			// console.log(result.code);
 			if(result.code == 3) { // 우편번호 & 주소x
 				ckDesign(result.code, result.desc, 6, 5);
 				ckDesign(result.code, result.desc, 8, 5);
@@ -612,15 +643,17 @@
 			} else {
 				ckDesign(result.code, result.desc, 9, 5);
 				checkArr[5] = false;
-			}
-			// printCheckArr(checkArr);
-		});
+			}			
+		}
 
 
 		// 버튼활성화
 		$(".btn_agree").keyup(function(){
+			ckColorBtn();
+		});
+		
+		function ckColorBtn(){
 			var checkAll = true;
-
 			for(var i = 0; i < checkArr.lenght; i++) {
 				if (!checkArr[i]) {
 					checkAll = false;
@@ -635,7 +668,7 @@
 				// $('#btn_join').prop('disabled', false)
 				$('#btn_join').css('cursor' , 'no-drop');
 			}
-		});
+		}
 
 		// 회원가입 버튼 클릭!
 		$('#btn_join').click(function(){
