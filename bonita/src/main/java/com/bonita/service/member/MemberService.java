@@ -18,6 +18,11 @@ public interface MemberService {
 	// 회원수정 (DB에 수정)
 	public void memUpdate(MemberDTO mDto, HttpSession session);
 
+	// 비밀번호 수정 : 현재비밀번호 체크 
+	public int pwCheck(String id, String pw);
+	
+	// 비밀번호 수정 : DB에 수정
+	public void pwUpdate(MemberDTO mDto);
 	
 	
 

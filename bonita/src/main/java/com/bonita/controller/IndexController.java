@@ -2,6 +2,8 @@ package com.bonita.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,7 @@ public class IndexController {
 	IndexService iService;
 	
 	@RequestMapping("/")
-	public String indexView(Model model) {
+	public String indexView(Model model, HttpSession session) {
 		log.info(">>>>>>>>> INDEX PAGE 출력");
 		
 		// 1. view단에 출력할 데이터
@@ -35,6 +37,12 @@ public class IndexController {
 		// : 신상품5건을 출력하는 비즈니스 로직을 처리하는 서비스단으로 이동
 		// iService.newPdtList();
 		model.addAttribute("newPdt", iService.newPdtList());
+		
+		// 개발 종료시 삭제할 것!
+		session.removeAttribute("userid");
+		session.removeAttribute("name");
+		session.setAttribute("userid", "gpfhdzlxl");
+		session.setAttribute("name", "미경");
 		// 2. 출력할 화면을 결정 
 		// 1,2 dispatcher servlet 보내줌
 		return "index";

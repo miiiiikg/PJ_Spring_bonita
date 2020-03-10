@@ -59,6 +59,7 @@ public class LoginServiceImpl implements LoginService {
 		}
 		
 		
+		
 		// 회원정보가 잇고 인증을 안한 경우
 		if(loginDto != null) {
 			// 아이디와 패스워드가 같은지 체크

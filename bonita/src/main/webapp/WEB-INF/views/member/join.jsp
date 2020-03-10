@@ -498,14 +498,14 @@
 				ckDesign(result.code, result.desc, 0, 0); // 테두리색상
 			});
 
-		// 비밀번호 유효성체크
+			// 비밀번호 유효성체크
 			$('#upswd1').keyup(function(){
 				// 1. 사용자가 입력한 값 받기
 				var pw = $.trim($('#upswd1').val());
 				var rpw = $.trim($('#upswd2').val());
 				// alert( pw+ "," +rpw);
 				// 2. 유효성 체크 하기
-				var result = joinValidate.checkPw(pw ,rpw);
+				var result = joinValidate.checkPw("",pw ,rpw);
 				if (result.code == 0 || result.code == 10 || result.code == 6) {
 					// $('.ps_box:eq(2)').css('border-bottom', '2px solid #3885ca');	
 					pwFlag = true;
@@ -685,7 +685,7 @@
 			printCheckArr(checkArr);
 
 			if(invalidAll) {
-				alert('회원가입 성공!');
+				//alert('회원가입 성공!');
 				FunLoadingBarStart(); // 로딩바 생성
 				// submit : form태그 안에 있는 데이터들을 서버단으로 전송
 				// action : 목적지(MemberController '/join')
@@ -721,7 +721,7 @@
 				return true;		
 			} else { // 통과 O
 				$('.ps_box:eq('+line +')').css('border-bottom', '2px solid #d95339'); //테두리색상변경
-				$('.error_next_box:eq('+ msg +')').css('visibility', 'visible') //
+				$('.error_next_box:eq('+ msg +')').css('visibility', 'visible') 
 									   .text(desc)
 									   .css('color','#d95339');
 				return false;

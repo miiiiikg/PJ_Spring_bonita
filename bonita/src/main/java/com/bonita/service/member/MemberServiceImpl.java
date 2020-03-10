@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bonita.domain.MemberDTO;
@@ -12,6 +13,10 @@ import com.bonita.persistence.MemberDAO;
 @Service
 /*@Service 자바가 읽을수 있게 하는거*/
 public class MemberServiceImpl implements MemberService{
+	
+		@Autowired
+		PasswordEncoder passwordEncoder;
+		
 		@Autowired
 		public SqlSession sqlSession;
 		
@@ -46,6 +51,21 @@ public class MemberServiceImpl implements MemberService{
 				session.setAttribute("name", mDto.getName());
 			}
 			
+		}
+		@Override
+		public int pwCheck(String id, String pw) {
+			
+			String encPw = mDao.pwCheck(id);
+			int result = 0;
+			if(passwordEncoder.matches(pw, encPw)) {
+				result = 1;
+			}
+			
+			return result;
+		}
+		@Override
+		public void pwUpdate(MemberDTO mDto) {
+			mDao.pwUpdate(mDto);
 		}
 		
 
