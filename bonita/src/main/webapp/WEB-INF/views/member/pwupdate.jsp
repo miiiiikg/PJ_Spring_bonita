@@ -180,7 +180,7 @@
 							<label for="pswd1">새 비밀번호</label>
 						</h3>
 						<span class="ps_box int_pass">
-							<input type="password" id="upswd2" name="upswd2"  class="int">
+							<input type="password" id="upswd2" name="pw"  class="int">
 							<span class="step_url"><span class="pw_lock"></span></span>
 						</span>
 						<span class="error_next_box">필수 정보입니다.</span>
@@ -190,7 +190,7 @@
 							<label for="pswd1">새 비밀번호 확인</label>
 						</h3>
 						<span class="ps_box int_pass">
-							<input type="password" id="upswd3" name="upswd3" class="int">
+							<input type="password" id="upswd3" name="pw" class="int">
 							<span class="step_url"><span class="pw_lock"></span></span>
 						</span>
 						<span class="error_next_box">필수 정보입니다.</span>
@@ -304,11 +304,11 @@
 			
 		});
 			$('#btn_join').click(function(){
-				var incalidAll = true;
+				var invalidAll = true;
 				for(var i = 0; i< checkArr.length; i++) {
 					if(!checkArr[i]) {
 						invalidAll = false;
-						$('.error_next_box:eq('+ msg +')').css('visibility', 'visible') 
+						$('.error_next_box:eq('+ i +')').css('visibility', 'visible') 
 						   .text(desc)
 						   .css('color','#d95339');
 					}

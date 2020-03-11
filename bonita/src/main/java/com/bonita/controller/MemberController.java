@@ -250,12 +250,27 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/pwcheck")
 	public Integer pwCheck(String pw, HttpSession session) {
-		log.info(">>>>> POST : PWCheck(AJAX");
+		log.info(">>>>> POST : PWCheck(AJAX)");
 		
 		// 사용자가 입력한 pw DB에 가서 pw가 같은지 체크
 		String id = (String)session.getAttribute("userid");
 		
 		return mService.pwCheck(id,pw);
+	}
+	
+	@GetMapping("/drop")
+	public String drop() {
+		log.info(">>>>> POST : Member Drop drop");
+		
+		return "member/drop";
+		
+	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		log.info(">>>>> POST : Member Mypage mypage");
+		
+		return "member/mypage";
 	}
 
 

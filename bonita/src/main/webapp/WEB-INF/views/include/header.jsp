@@ -705,11 +705,12 @@
 								<ul class="xans-element- xans-myshop xans-myshop-main mnb">
 									<li><a href="#">관심상품</a></li>
 									<li><a href="#">주문조회</a></li>
-									<li><a href="#">적립금</a></li>
 									<li><a href="#">내가쓴글</a></li>
 									<c:if test="${not empty userid}">
+										<li><a href="${path}/member/mypage">내 정보</a></li>
 										<li><a href="${path}/member/update">회원정보수정</a></li>
 										<li><a href="${path}/member/pwupdate">비밀번호 수정</a></li>
+										<li><a href="${path}/member/drop">회원 탈퇴</a></li>
 									</c:if>
 								</ul>
 							</li>
