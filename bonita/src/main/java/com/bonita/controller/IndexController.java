@@ -39,10 +39,10 @@ public class IndexController {
 		model.addAttribute("newPdt", iService.newPdtList());
 		
 		// 개발 종료시 삭제할 것!
-		session.removeAttribute("userid");
-		session.removeAttribute("name");
-		session.setAttribute("userid", "gpfhdzlxl");
-		session.setAttribute("name", "미경");
+		//session.removeAttribute("userid");
+		//session.removeAttribute("name");
+		//session.setAttribute("userid", "asdfg123");
+		//session.setAttribute("name", "쿠쉬쿠쉬");
 		// 2. 출력할 화면을 결정 
 		// 1,2 dispatcher servlet 보내줌
 		return "index";

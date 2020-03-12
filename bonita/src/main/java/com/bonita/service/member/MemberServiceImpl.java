@@ -67,8 +67,19 @@ public class MemberServiceImpl implements MemberService{
 		public void pwUpdate(MemberDTO mDto) {
 			mDao.pwUpdate(mDto);
 		}
-		
-
+		@Override
+		public void memDrop(HttpSession session, String id) {
+			// 비즈니스 로직(회원탈퇴)
+			// 1) 해당회원의 useyn=n 으로 Update(DB)
+			int result = mDao.memDrop(id);
+			// 로그인 => session('초롱') : session 값이 있으면 로그인 OK
+			// '초롱' => 회원탈퇴 session도 초기화
+			
+			// 2) 로그인 정보를 삭제(session 초기화)
+			if(result > 0) {
+				session.invalidate();
+			}
+		}
 }
 
 

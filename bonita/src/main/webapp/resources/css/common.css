@@ -50,8 +50,8 @@ button.btn-basic:hover {
 	border-color: #2f3138;
 }
 button.btn-primary {
-	background-color: #AAABD3;
-	color: white;
+	background-color: #white;
+	color: black;
 }
 button.btn-primary:hover {
 	background-color: #8E85D6;

@@ -190,7 +190,7 @@
 							<label for="pswd1">새 비밀번호 확인</label>
 						</h3>
 						<span class="ps_box int_pass">
-							<input type="password" id="upswd3" name="pw" class="int">
+							<input type="password" id="upswd3" name="pw1" class="int">
 							<span class="step_url"><span class="pw_lock"></span></span>
 						</span>
 						<span class="error_next_box">필수 정보입니다.</span>
@@ -241,7 +241,7 @@
 		// 약식으로 $(function()) = $(document).ready(function(){})
 		$('#upswd1').keyup(function(){ //나혼자만 독단적으로 동작
 			var upswd1 = $(this).val();
-			// console.log('입력 :'+upswd1);
+			console.log('입력 :'+upswd1);
 			// code: 1, 2, 6, 100
 			
 			var result = joinValidate.checkNowpw(upswd1);
@@ -260,6 +260,7 @@
 			var nowpw= $.trim($('#upswd1').val());
 			var pw = $.trim($('#upswd2').val());
 			var rpw = $.trim($('#upswd3').val());
+			console.log('입력 :'+pw);
 			
 			var result = joinValidate.checkPw(nowpw, pw ,rpw);
 			if (result.code == 0 || result.code == 10 || result.code == 6) {

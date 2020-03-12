@@ -63,7 +63,8 @@
 			margin-right: 10px;
 		}
 		.km-button.highlighted {
-			background-color: #8E85D6;
+			cursor : no-drop; /* 마우스 x 표시*/
+			color : black;
 		}
 		.wrap {
 			width: 768px;
@@ -162,8 +163,8 @@
 	</style>
 </head>
 <body>
+<%@ include file="../include/modal.jsp" %>
 	<div class="wrap">
-		
 		<div class="compatible-wrap" style="height:auto;">
 			<div class="page-deactivate-web km-page-active" data-role="page" id="page-deactivate-intro">
 				<div class="km" data-back ="#back" data-role="header">
@@ -175,8 +176,8 @@
 					<div class="km-container">
 						<h1 class="km-deactivate km-title">보니또계정 탈퇴 전 꼭 확인해주세요!</h1>
 						<p class="km-deactivate km-section deactivate_desc1">보니또계정을 탈퇴하면 계정 정보 및 보니또 서비스 이용기록 등 모든 정보가 삭제 됩니다.</p>
-						<p class="km-deactivate km-section">탈퇴한 카카오계정 정보와 서비스 이용기록 등 복구할 수 없으니 신중하게 선택하시길 바랍니다.</p>
-						<div class = "pw_box" style = "padding: 0 170px;">
+						<p class="km-deactivate km-section">탈퇴한 보니또계정 정보와 서비스 이용기록 등 복구할 수 없으니 신중하게 선택하시길 바랍니다.</p>
+						<div class = "pw_box" style ="padding: 0 170px;">
 							<h3 class="join_title">
 								<label for="pswd1">비밀번호</label>
 							</h3>
@@ -185,28 +186,86 @@
 								<span class="step_url"><span class="pw_lock"></span></span>
 							</span>
 							<div style="margin:10px 0px;">     
-							<span class="ps_box int_pass" >
-								<input type="password" id="upswd2" name="upswd2" class="int">
-								<span class="step_url"><span class="repw_lock"></span></span>
-							</span>
+
 							<span class="error_next_box" >필수 정보입니다.</span>
 						</div>
 						</div>
-						<form class="km-section">
-							<div class="ka-section-footer">
-								<a class = "km-button deactivate-link-close" href="#">
-									<span>탈퇴 취소</span>
-								</a>
-								<a class = "km-button highlighted submit deactivate-link-intro" href="#">
-									<span>확인</span>
-								</a>
-							</div>
-						</form>
-					
+						
+						<div class="ka-section-footer">
+							<button class = "km-button deactivate-link-close" id="btn_no" style = "background-color:white;">
+								<span>탈퇴 취소</span>
+							</button>
+							<button class = "km-button highlighted submit deactivate-link-intro" id ="drop_yes">
+								<span>확인</span>
+							</button>
+						</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 </body>
+<script src="${path}/resources/js/validation.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var checkArr = false;
+		$('#upswd1').keyup(function(){
+			var pw = $(this).val();
+			//console.log(pw);
+			// return 4개중 1개 (0, 1, 6, 100)
+			var result = joinValidate.checkNowpw(pw);
+			console.log(result.code+ "," + result.desc)
+			
+			if(result.code == 100) {
+				$('.error_next_box:eq(0)').css('visibility','visible')
+										  .text(result.desc)
+										  .css('color', '#3885CA');
+				checkArr= true;
+			} else {
+				$('.error_next_box:eq(0)').css('visibility','visible')
+										  .text(result.desc)
+				  						  .css('color', '#d95339');
+				checkArr = false;		
+			}
+			
+			ckColorBtn();
+		});
+		function ckColorBtn(){
+			
+			if(checkArr) {
+				$('#drop_yes').addClass('btn-primary');
+				$('#drop_yes').css('cursor', 'pointer');
+				              
+			} else {
+				$('#drop_yes').removeClass('btn-primary');
+				$('#drop_yes').css('cursor' , 'no-drop');
+			}
+		}
+		
+		$('#drop_yes').click(function(){
+			if(checkArr == false) {
+				$('.error_next_box:eq(0)').css('visibility','visible');
+			} else {
+			
+			}
+			
+			if(checkArr) {
+				$('.dt_popup1').css('display', 'flex');
+			} else {
+				return false;
+			}
+		
+		});
+	
+		$('#btn_no').click(function(){
+			location.href = "${path}/";
+		});
+		
+		$('#modal_msg_yes').click(function(){
+			location.href = '${path}/member/dropAction';
+		});
+	});
+
+</script>
 </html>

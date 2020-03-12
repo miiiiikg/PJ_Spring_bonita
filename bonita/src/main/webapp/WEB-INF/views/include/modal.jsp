@@ -107,7 +107,7 @@
 						<ul>
 							<li class="active">
 								<h3 class="pop_login_title1 roboto_font1">
-									<span class="title1">님 회원가입을 축하드립니다.</span>
+									<span class="title1"></span>
 								</h3>
 							</li>
 							
@@ -117,15 +117,15 @@
 						<ul>
 							<li class="active">
 								<h3 class="pop_login_title1 roboto_font1">
-									<span class="title2">으로 인증메일을 보냈습니다.<br> 인증하셔야만 사이트 활동이 가능합니다.</span>
+									<span class="title2"></span>
 								</h3>
 							</li>
 							
 						</ul>
 					</div>
 					<div class="login_btn_box1">
-						<a href="#" id ="modal_msg_yes" class="login_btn_title"><span class="title">확인</span></a>
-						<!-- <a href="#" class="join_btn_title" id = "modal_msg_close"><span class="title">취소</span></a> -->
+						<a href="#" id ="modal_msg_yes" class="login_btn_title" style ="margin-right : 10px;"><span class="title">확인</span></a>
+						<a href="#" class="join_btn_title" id = "modal_msg_close"><span class="title">취소</span></a>
 					</div>
 				</div>
 			</div>
@@ -143,23 +143,37 @@
 		var join_sub_txt = email + '으로 인증 메일을 보냈습니다. 인증하셔야만 사이트 횔동이 가능합니다.';
 		var auth_main_txt = id + '님 이메일 인증되셨습니다.';
 		var auth_sub_txt = '지금부터 사이트 활동이 가능합니다. 감사합니다 :)';
+		var drop_main_txt = '${userid}님 정말 탈퇴하시겠습니까?';
+		var dropResult_main_txt = id+'님 탈퇴되셨습니다.' ;
+		var dropResult_sub_txt = '그동안 bonita를 이용해주셔서 감사합니다. ';
 		
 		if(key == 'join') {
 			$('.title1').text(join_main_txt); // 메인 텍스트
 			$('.title2').text(join_sub_txt); // 서브 텍스트
-			$('.modal_close1').css('display', 'none'); // 취소버튼 제거
+			$('.modal_msg_yes').css('display', 'none');
+			$('#modal_msg_close').text('확 인'); // 확인버튼 제거
 			$('.dt_popup1').css('display', 'flex'); // 모달창 출력
 		} else if(key == 'auth') {
 			$('.title1').text(join_main_txt);
 			$('.title2').text(auth_sub_txt);
-			$('.modal_close1').css('display', 'none');
+			$('.modal_msg_yes').css('display', 'none');
+			$('#modal_msg_close').text('확 인');
+			$('.dt_popup1').css('display', 'flex');
+		} else if (key == 'drop') {
+			$('.title1').text(drop_main_txt);
+		} else if (key == 'dropResult'){
+			$('.title1').text(dropResult_main_txt); 
+			$('.title2').text(dropResult_sub_txt); 
+			$('.modal_msg_yes').css('display', 'none');
+			$('#modal_msg_close').text('확 인'); 
 			$('.dt_popup1').css('display', 'flex');
 		}
 		
-		$('#modal_msg_yes').on('click', function(){
+		
+		$('.modal_close1').on('click', function(){
 			$('.dt_popup1').css('display', 'none');
 		});
-		$('.modal_close1').on('click', function(){
+		$('.login_btn_title').on('click', function(){
 			$('.dt_popup1').css('display', 'none');
 		});
 		
