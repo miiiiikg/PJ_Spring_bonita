@@ -2,6 +2,7 @@ package com.bonita.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 
 // Spring Context에 Beans로 등록되있는 객체들만 의존성주입 가능(DI패턴)
 @RequestMapping("/sample")
-@Controller
+@Controller  
 public class SampleController {
 	
 	// sample.jsp 출력!
