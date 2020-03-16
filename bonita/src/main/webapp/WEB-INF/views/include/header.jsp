@@ -706,8 +706,8 @@
 									<li><a href="#">관심상품</a></li>
 									<li><a href="#">주문조회</a></li>
 									<li><a href="#">내가쓴글</a></li>
+									<li><a href="${path}/member/mypage">마이페이지</a></li>
 									<c:if test="${not empty userid}">
-										<li><a href="${path}/member/mypage">마이페이지</a></li>
 									</c:if>
 								</ul>
 							</li>
@@ -778,6 +778,17 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+	$(function(){
+		var message = '${message}';
+		if(message == 'nologin') {
+			$('.dt_popup').css('display','flex');
+			$('#log').focus();
+			$('#err_content').css('display', 'block')
+							 .text('로그인이 필요한 기능입니다.');
+			
+		}
+		
+	});
 	
 	// 로그인 input(id, pw)에 focus되면 테두리색 변경
 	$(document).on('focus', 'login_input_container', function() {
