@@ -707,6 +707,7 @@
 									<li><a href="#">주문조회</a></li>
 									<li><a href="#">내가쓴글</a></li>
 									<li><a href="${path}/member/mypage">마이페이지</a></li>
+									<li><a href="${path}/board/list">자유게시판</a></li>
 									<c:if test="${not empty userid}">
 									</c:if>
 								</ul>
