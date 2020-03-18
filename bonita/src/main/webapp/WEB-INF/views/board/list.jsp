@@ -173,10 +173,23 @@
 		    0% {opacity:0;}
 		    100% {opacity:1;}
 		}
+		.twincle_eff {
+			animation-name:twinkle;
+			animation-duration : 1.2s;
+			animation-iteration-count: infinite;
+		}
+		@keyframes twinkle {
+			0% {opacity:0;}
+			100% {opacity:1;}
+		}
 
 	</style>
 </head>
 <body>
+	<!-- now라는 변수를 만들고  -->
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<!-- 현재시간 -->
+	<fmt:formatDate value="${now}" pattern ="yyyy-MM-dd" var="today"/>					
 	<div id="content">
 		<div class="contents-inner cs-page">
 			<div class="section">
@@ -212,132 +225,38 @@
 							<th>조회수</th>
 							<th>추천</th>
 						</thead>
-						<tbody>
-							<tr style="height: 50px">
-								<td class="ta-c">010</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[8]</a>
-									<i class="far fa-image"></i>
-									<img src="${path}/resources/img/icons8-n-501.png" class = "blinking">
-								</td>
-								<td class="ta-c">쿠쉬쿠쉬</td>
-								<td class="ta-c">100</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">009</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[2]</a>
-									<i class="far fa-image"></i>
-									<img src="${path}/resources/img/icons8-n-501.png" class = "blinking">
-								</td>
-								<td class="ta-c">여우</td>
-								<td class="ta-c">10</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">008</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[4]</a>
-									<i class="far fa-image"></i>
-									<img src="${path}/resources/img/icons8-n-501.png" class = "blinking">
-								</td>
-								<td class="ta-c">밝은안경</td>
-								<td class="ta-c">80</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">007</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[20]</a>
-									<i class="far fa-image"></i>
-									<img src="${path}/resources/img/icons8-n-501.png" class = "blinking">
-								</td>
-								<td class="ta-c">미경</td>
-								<td class="ta-c">100</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
+						
+						<!-- 게시글 -->
+						<c:forEach items='${map.list}' var='list'>
+						<!-- 년/월/일로 바꿈 -->
+						<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd" var="regdate"/>
+							<tbody>
 								<tr style="height: 50px">
-								<td class="ta-c">005</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[3]</a>
-									<i class="far fa-image"></i>
-								</td>
-								<td class="ta-c">초승달</td>
-								<td class="ta-c">50</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">005</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[5]</a>
-									<i class="far fa-image"></i>
-								</td>
-								<td class="ta-c">레몬</td>
-								<td class="ta-c">24</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">004</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[7]</a>
-									<i class="far fa-image"></i>
-								</td>
-								<td class="ta-c">딸기</td>
-								<td class="ta-c">36</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">003</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[3]</a>
-									<i class="far fa-image"></i>
-								</td>
-								<td class="ta-c">사과</td>
-								<td class="ta-c">52</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">002</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[7]</a>
-									<i class="far fa-image"></i>
-								</td>
-								<td class="ta-c">송주은</td>
-								<td class="ta-c">89</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-							<tr style="height: 50px">
-								<td class="ta-c">001</td>
-								<td class="tit" style="text-align: left;">
-									<a href="#">글 제목 라라라랄~:)</a>
-									<a href="#" class="txt_point num  b">[19]</a>
-									<i class="far fa-image"></i>
-								</td>
-								<td class="ta-c">로야또야</td>
-								<td class="ta-c">12</td>
-								<td class="ta-c">2020.03.16</td>
-								<td class="ta-c">0</td>
-							</tr>
-						</tbody>
+									<td class="ta-c">${list.bno}</td>
+									<td class="tit" style="text-align: left;">
+										<a href="${list.title}">글 제목 라라라랄~:)</a>
+										<a href="#" class="txt_point num  b">[8]</a>
+										<i class="far fa-image"></i>
+										<c:if test="${today == regdate}">
+											<img src="${path}/resources/img/icons8-n-501.png" class = "blinking twinkle">
+										</c:if>
+									</td>
+									<td class="ta-c">${list.writer}</td>
+									<td class="ta-c">
+										<c:choose>
+											<c:when test="${today == regdate}">
+												<fmt:formatDate value="${list.updatedate}" pattern="HH:mm:ss"/>
+											</c:when>
+											<c:otherwise>
+												<fmt:formatDate value="${list.updatedate}" pattern="yyyy-MM-dd"/>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td class="ta-c">${list.viewcnt}</td>
+									<td class="ta-c">${list.goodcnt}</td>
+								</tr>
+							</tbody>
+						</c:forEach>
 					</table>
 				</div>
 				<fieldset class="boardSearch">
