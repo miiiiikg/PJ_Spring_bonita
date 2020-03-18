@@ -1,0 +1,168 @@
+-- 상품테이블
+DROP TABLE tbl_pdt;
+CREATE TABLE tbl_pdt(
+     pno NUMBER PRIMARY KEY,
+     pname VARCHAR2(500) NOT NULL,
+     ptype VARCHAR2(500),
+     pmeno VARCHAR2(2000),
+     price NUMBER DEFAULT 0,
+     avail_cnt NUMBER DEFAULT 0,
+     sale_cnt NUMBER DEFAULT 0,
+     p_img VARCHAR2(300),
+     regdate DATE DEFAULT SYSDATE
+     
+);
+
+
+DROP SEQUENCE seq_pdt;
+CREATE SEQUENCE seq_pdt
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE;
+    
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','[하드+♥톡]비비드하트', 11900 , 5, 10, '1000001671_add2_091.gif');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','[하드+톡]집순이집돌이', 9900, 2, 120, '/1000001744_add2_077.gif');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','[하드+♥톡]피치피치', 11900, 3, 99,'1000001736_add2_023.gif');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','[하드+♥톡]거울보는중', 11900 , 5, 147,'1000001732_add2_015.gif');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','[하프미러]곰제리', 9900 , 6, 180, '1000001731_add2_088.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','곰제리케이스', 5900 , 7, 130, '18.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','추카추카케이스', 5900 , 2, 145, '19.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','햅삐다이노', 4900 , 5, 170, '20.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','햅삐다이노케이스', 5900 , 4, 120, '21.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','말랑곰케이스', 5900 , 8, 210, '22.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','[젤리+♥톡]슈퍼곰돌', 11900 , 4, 250,'23.jpg');
+INSERT INTO tbl_pdt(pno, pname, ptype, pmeno, price, avail_cnt, sale_cnt, p_img)
+VALUES(seq_pdt.NEXTVAL, '핸드폰케이스','케이스','"[하드+톡]계란톡톡"', 9900 , 6, 176, '1.jpg');
+COMMIT;
+
+
+
+
+SELECT *
+FROM (SELECT rownum rnum, best.*
+    FROM ( SELECT * FROM tbl_pdt
+       ORDER BY sale_cnt DESC
+       ) best
+    )
+WHERE rnum between 1 and 6;
+
+SELECT *
+FROM (SELECT rownum rnum, best.*
+	FROM ( SELECT * FROM tbl_pdt
+        ORDER BY regdate DESC
+         ) best
+    )
+WHERE rnum between 1 and 6;
+
+-- 학원 테이블
+DROP TABLE tbl_member;
+CREATE TABLE tbl_member(
+    id VARCHAR2(100) PRIMARY KEY,
+    pw VARCHAR2(200) NOT NULL,
+    name VARCHAR2(100) NOT NULL,
+    phone VARCHAR2(50) NOT NULL,
+    email VARCHAR2(100) NOT NULL,
+    postcode VARCHAR2(30) NOT NULL,
+    addr1 VARCHAR2(300) NOT NULL,
+    addr2 VARCHAR2(300) NOT NULL,
+    useon VARCHAR2(20) NOT NULL,
+    primaryon VARCHAR2(20) NOT NULL,
+    locon VARCHAR2(20) DEFAULT 'false',
+    eventon VARCHAR2(20) DEFAULT 'false',
+    useyn VARCHAR2(200) DEFAULT 'n',
+    regdate DATE DEFAULT SYSDATE
+);
+
+INSERT INTO tbl_member(id, pw, name, phone, email, postcode, addr1, addr2, useon, primaryon)
+VALUES('abmin', '1234', '관리자', '01012345678','admin@gamil.com', '12345', '2334', '56565','광주광역시','광산구');  
+INSERT INTO tbl_member(id, pw, name, phone, email, postcode, addr1, addr2, useon, primaryon)
+VALUES('miiiiiik', '1234', '진미경', '01011112222', 'miiiiiik@gamil.com', '12345','2345', '45456','광주광역시','서구');
+COMMIT;
+
+SELECT * FROM tbl_member;
+
+
+
+show user;
+
+-- 자유게시판
+-- QnA게시판
+-- 고객게시판
+-- 공지사항
+-- tbl_board 통합형 게시판
+-- type: free, qna, cs, noti
+
+-- 게시판 Sequence 생성
+DROP SEQUENCE seq_board;
+CREATE SEQUENCE seq_board
+    START WITH 1
+    INCREMENT BY 1
+    NOCYCLE;
+    
+-- 게시판 Table 생성 
+DROP TABLE tbl_board CASCADE CONSTRAINTS;
+CREATE TABLE tbl_board (
+    bno number(10, 0),
+    type CHAR(4) NOT NULL,
+    title VARCHAR2(200) NOT NULL,
+    content VARCHAR2(4000) NOT NULL,
+    writer VARCHAR2(50) NOT NULL,
+    viewcnt NUMBER DEFAULT 0,
+    replycnt NUMBER DEFAULT 0,
+    goodcnt NUMBER DEFAULT 0,
+    regdate DATE DEFAULT SYSDATE,
+    updatedate DATE DEFAULT SYSDATE,
+    show CHAR(1) DEFAULT 'y',
+    ref NUMBER NOT NULL,
+    re_step NUMBER NOT NULL,
+    re_level NUMBER NOT NULL
+);
+-- 게시판 테이블 PK Key 추가
+ALTER TABLE tbl_board ADD CONSTRAINT pk_board
+PRIMARY KEY(bno);
+
+-- 게시물 총 15건 추가 ref=1, re_step=1, re_level=1  type = free, writer= 가입한 유저
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글2', '게시글2', '필기', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글3', '게시글3', '안경', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글4', '게시글4', '필기', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글5', '게시글5', '안경', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글6', '게시글6', '필기', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글7', '게시글7', '안경', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글8', '게시글8', '필기', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글9', '게시글9', '안경', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글10', '게시글10', '필기', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글11', '게시글11', '안경', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글12', '게시글12', '필기', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글13', '게시글13', '안경', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글14', '게시글14', '필기', 1, 1, 1 );
+INSERT INTO tbl_board(bno, type, title, content, writer, ref, re_step, re_level)
+VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글15', '게시글15', '안경', 1, 1, 1 );
+COMMIT;
+
+SELECT * FROM tbl_board;
