@@ -17,7 +17,7 @@
 			vertical-align: top;
 		}
 		.cs-page {
-			padding-top : 30px;
+			padding : 30px;
 		}
 		.cs-page .section-header {
 			overflow: hidden;
@@ -138,7 +138,7 @@
 			color: #30A9DE;
 		}
 		.h2 {
-			margin: 5px 427px;
+			margin: 10px 366px;
 			font-size: 25px;
 			color:#6d6d6d;
 		}
