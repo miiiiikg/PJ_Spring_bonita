@@ -133,7 +133,9 @@
 			text-align: center;
 		}
 		.txt_point {
-			font-size: 12px;
+			font-size: 13px;
+			color: #ff5e00;
+			font-weight : bold;
 		}
 		.far {
 			color: #30A9DE;
@@ -227,10 +229,10 @@
 					<h2 class="h2">자유 게시판</h2>
 					<div class="option type1">
 						<div class="sun">
-							<a href="#" style="margin: 0px 12px;">최신순</a>
-							<a href="#" style="margin: 0px 12px;">조회순</a>
-							<a href="#" style="margin: 0px 12px;">댓글순</a>
-							<a href="#"style="margin: 0px 12px;">추천순</a>
+							<a href="${path}/board/list?sort_option=new&keyword=${map.keyword}" style="margin: 0px 12px;" id="sort_new">최신순</a>
+							<a href="${path}/board/list?sort_option=cnt&keyword=${map.keyword}" style="margin: 0px 12px;" id="sort_cnt">조회순</a>
+							<a href="${path}/board/list?sort_option=reply&keyword=${map.keyword}" style="margin: 0px 12px;" id="sort_reply">댓글순</a>
+							<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}"style="margin: 0px 12px;" id="sort_good">추천순</a>
 						</div>
 						<a href="#" class="skinbtn base2 contactus-write">게시글 등록</a>
 					</div>
@@ -250,7 +252,7 @@
 						<thead>
 							<th>게시글번호</th>
 							<th>제목</th>
-							<th>글쓴이</th>
+							<th>작성자</th>
 							<th>작성일</th>
 							<th>조회수</th>
 							<th>추천</th>
@@ -264,8 +266,8 @@
 								<tr style="height: 50px">
 									<td class="ta-c">${list.bno}</td>
 									<td class="tit" style="text-align: left;">
-										<a href="${list.title}">글 제목 라라라랄~:)</a>
-										<a href="#" class="txt_point num  b">[8]</a>
+										<a href="#">${list.title}</a>
+										<a href="#" class="txt_point num  b">[${list.replycnt}]</a>  
 										<i class="far fa-image"></i>
 										<c:if test="${today == regdate}">
 											<img src="${path}/resources/img/icons8-n-501.png" class = "blinking twinkle">
@@ -292,20 +294,28 @@
 				<fieldset class="boardSearch">
 					<legend></legend>
 					<p>
-						<select id = "seach_date" name = "search_date">
+						<select id = "seach_date">
 							<option value="week">일주일</option>
 							<option value="month">한달</option>
 							<option value="month3">세달</option>
 							<option value="all">전체</option>
 						</select>
-						<select id="search_key" name="search_key">
-							<option value="subject">제목</option>
+						
+						<select id="search_key" name="search_option">
+							<option value="title">제목</option>
 							<option value="content">내용</option>
-							<option value="writer_name">글쓴이</option>
-							<option value="member_id">아이디</option>
+							<option value="writer">작성자</option>
+
 						</select>
-						<input id = "search" name="search" class="inputTypeText" value type="text">
-						<a href="#none" class="btn_white btn_04">찾기</a>
+						
+						<div class ="inputTypeText">
+							<form action="${path}/board/list" method = "GET">
+								<input type = "text" name = "keyword" class= "input_search" placeholder="검색어를 입력하세요." value>
+								<button type = "submit" class = "btn_search btn_search_board" >
+									<i class= "fas fa-search"></i>
+								</button>
+							</form>
+						</div>
 					</p>
 				</fieldset>
 				
@@ -338,6 +348,21 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+$(function(){
+	var sort_option = '${map.sort_option}';
+	if(sort_option != null) {
+		$('#sort_' + sort_option).css('color', '#2b90d9');
+		$('#sort_' + sort_option).css('border-radius', '5px');
+		$('#sort_' + sort_option).css('font-weight', 'bold');
+	}
+	
+	
+	$('.write_btn').click(function(){
+		location.href="/bonita/board/write";
+	});
+});
 
+</script>
 </body>
 </html>

@@ -30,17 +30,24 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	// list 15건
-	public List<BoardDTO> listAll(int start, int end) {
+	public List<BoardDTO> listAll(String search_option, String keyword, String sort_option, int start, int end) {
 		Map<String, Object> map = new HashMap<>();
+		map.put("sort_option", sort_option);
 		map.put("start" , start);
 		map.put("end", end);
+		map.put("search_option", search_option);
+		map.put("keyword" , "%"+keyword+"%");
 		
 		return bDao.listAll(map);
 	}
 
 	@Override
-	public int countArticle() {
-		return bDao.countArticle();
+	public int countArticle(String search_option, String keyword) {
+		Map<String, String> map = new HashMap<>();
+		map.put("search_option", search_option);
+		map.put("keyword" , "%"+keyword+"%");
+		
+		return bDao.countArticle(map);
 	}
 	
 	
