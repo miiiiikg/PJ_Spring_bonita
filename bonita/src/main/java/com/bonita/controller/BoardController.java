@@ -35,6 +35,7 @@ public class BoardController {
 		// 게시글 갯수 계산 
 		int count = bService.countArticle();
 		
+		// 페이지 관련 설정
 		Pager pager = new Pager(count, curPage);
 		int start = pager.getPageBegin();
 		int end = pager.getPageEnd();
@@ -45,6 +46,7 @@ public class BoardController {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("list", list);
 		map.put("count", count);
+		map.put("pager", pager);
 		
 		model.addAttribute("map",map);
 		//model.addAttribute("map", bService.listAll());

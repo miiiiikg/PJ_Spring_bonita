@@ -11,6 +11,7 @@
 		a:link { color: black; text-decoration: none;}
 		a:visited { color: black; text-decoration: none;}
  		a:hover { color: black; text-decoration: underline;}
+		ul li {list-style-type: none; float:left;}
 		#content {
 			width: 980px;
 			margin : 0 auto;
@@ -145,7 +146,11 @@
 		.paging {
 			padding: 0 75px 0 0;
 			text-align: center;
-			font-size: 12px;
+			font-size: 15px;
+			display: flex;
+			margin : 0 auto;
+			justify-content : center;
+			
 		}
 		.paging span.num_prev {
 			display: inline-block;
@@ -182,6 +187,31 @@
 			0% {opacity:0;}
 			100% {opacity:1;}
 		}
+		#check_color {
+			font-weight: 200;
+		}
+		.paging > li > a {
+			padding : 0px 8px;
+			color : #515151;
+			border : 1px solid #ddd;
+			font-size : lrem;
+			display: inline-block;
+			margin: 0px 5px;
+			border-radius : 2px;
+			line-height : 28px;
+			height : 30px;
+		}
+		#check_color {
+			border : 1px solid #8E85D6;
+			background-color : #8E85D6;
+		}
+		.paging > li > a:hover {
+			background-color : #ddd;
+			box-shadow : 0 14px 26px -12px hsla(0, 0%, 60%, .42),
+						0 4px 23px 0 rgba(0, 0, 0, .12),
+						0 8px 10px -5px hsla(0, 0%, 60%, .2);
+		}
+		
 
 	</style>
 </head>
@@ -278,25 +308,33 @@
 						<a href="#none" class="btn_white btn_04">찾기</a>
 					</p>
 				</fieldset>
-				<nav>
+				
 					<div class="paging">
-						<span class="num_prev">
-							<span class="txt_sub"></span>
-						</span>
-						<a href="#" class="txt_point u b">1</a>
-						<a href="#" class ="num_box">2</a>
-						<a href="#" class ="num_box">3</a>
-						<a href="#" class ="num_box">4</a>
-						<a href="#" class ="num_box">5</a>
-						<a href="#" class ="num_box">6</a>
-						<a href="#" class ="num_box">7</a>
-						<a href="#" class ="num_box">8</a>
-						<a href="#" class ="num_box">9</a>
-						<span class="num_next">
-							<a href="#" class="arrow txt_sub"></a>
-						</span>
+						<c:if test="${map.pager.curBlock > 1}">
+							<li><a href="${path}/board/list?curPage=${map.pager.blockBegin-10}&sort_option=${map.sort_option}&keyword=${map.keyword}" class ="page_left"><i class= "fas fa-angle-left"></i></a></li>
+							<li><a href="${path}/board/list?curPage=1&sort_option=${map.sort_option}&keyword=${map.keyword}" class="">1</a></li>
+							<li><span>...</span></li>
+						</c:if>
+						
+						<c:forEach var="num" begin="${map.pager.blockBegin}" end="${map.pager.blockEnd}">
+							<c:choose>
+								<c:when test="${num == map.pager.curPage}">
+									<li><a href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}" id="check_color">${num}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="${path}/board/list?curPage=${num}&sort_option=${map.sort_option}&keyword=${map.keyword}">${num}</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						
+						<c:if test="${map.pager.curBlock < map.pager.totBlock}">
+							<li><span>...</span></li>
+							<li><a href="${path}/board/list?curPage=${map.pager.totPage}&sort_option=${map.sort_option}&keyword=${map.keyword}" class="">${map.pager.totPage}</a></li>
+							<li><a href="${path}/board/list?curPage=${map.pager.blockEnd + 1}&sort_option=${map.sort_option}&keyword=${map.keyword}" class ="page_right"><i class= "fas fa-angle-right"></i></a></li>
+						</c:if>
+						
+						
 					</div>
-				</nav>
 			</div>
 		</div>
 	</div>
