@@ -213,6 +213,48 @@
 						0 4px 23px 0 rgba(0, 0, 0, .12),
 						0 8px 10px -5px hsla(0, 0%, 60%, .2);
 		}
+		.search_cnt {
+			font-size : 14px;
+			padding-left : 11px;
+			padding-top : 20px;
+		}
+		.fa {
+			display : inline-block;
+			font-size : inherit;
+			text-rendring : auto;
+			-webkit-font-smoothing : autialiased;
+			transform: translate(0, 0);
+			color : #a3a1a1;
+		}
+		.bonita_board_search {
+			border : 1.5px solid ##00b9f1;
+			border-radius : 2px;
+			padding : 0px 0px 0xp 5px;
+			position : relative;
+			overflow : hidden;
+			margin-right: 95px;
+		}
+		.bonita_board_search input {
+			margin : 7px 5px;
+			width: 140px;
+			outline : none;
+			border : 0px;
+			transition : .5s;
+		}
+		.btn_search_board {
+			
+			width : 35px;
+			height : 35px;
+			background-color : white;
+			display: inline-flex;
+			justify-content : center;
+			align-items : center;
+			transition : 0.4s;
+			text-decoration : none;
+			border-radius : 4px;
+			border : none;
+			cursor : pointer;
+		}
 		
 
 	</style>
@@ -235,6 +277,13 @@
 							<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}"style="margin: 0px 12px;" id="sort_good">추천순</a>
 						</div>
 						<a href="#" class="skinbtn base2 contactus-write">게시글 등록</a>
+					</div>
+					<div class="search_cnt">
+						<span >검색결과 ${map.keyword}는 ${map.count}건 검색되었습니다.</span>
+						<a href ="#" class= "btn btn-warning">
+							<i class = "fa fa-times-circle"></i>
+							
+						</a>
 					</div>
 				</div>
 			</div>
@@ -294,28 +343,17 @@
 				<fieldset class="boardSearch">
 					<legend></legend>
 					<p>
-						<select id = "seach_date">
-							<option value="week">일주일</option>
-							<option value="month">한달</option>
-							<option value="month3">세달</option>
-							<option value="all">전체</option>
-						</select>
-						
-						<select id="search_key" name="search_option">
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-							<option value="writer">작성자</option>
-
-						</select>
-						
-						<div class ="inputTypeText">
-							<form action="${path}/board/list" method = "GET">
-								<input type = "text" name = "keyword" class= "input_search" placeholder="검색어를 입력하세요." value>
-								<button type = "submit" class = "btn_search btn_search_board" >
-									<i class= "fas fa-search"></i>
-								</button>
-							</form>
-						</div>
+						<c:if test="${!empty map.keyword}">
+							<div class ="bonita_board_search">
+								<form action="${path}/board/list" method = "GET">
+									<input type = "text" name = "keyword" class= "input_search" placeholder="검색어를 입력하세요." value="${map.keyword}">
+									<button type = "submit" class = "btn_search btn_search_board" >
+										<a class="btn btn-warning" href ="${path}/board/list" ><i class= "fas fa-search"></i></a>
+										CLEAR
+									</button>
+								</form>
+							</div>
+						</c:if>
 					</p>
 				</fieldset>
 				
