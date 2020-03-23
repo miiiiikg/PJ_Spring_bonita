@@ -315,7 +315,7 @@
 								<tr style="height: 50px">
 									<td class="ta-c">${list.bno}</td>
 									<td class="tit" style="text-align: left;">
-										<a href="#">${list.title}</a>
+										<a href="${path}/board/view?bno=${list.bno}">${list.title}</a>
 										<a href="#" class="txt_point num  b">[${list.replycnt}]</a>  
 										<i class="far fa-image"></i>
 										<c:if test="${today == regdate}">

@@ -60,5 +60,11 @@ public class BoardController {
 		
 		return "board/list";
 	}
+	@GetMapping("/view") 
+	public String view (int bno) {
+		log.info(">>>>> POST : board Detail Page");
+		
+		return "board/view";
+	}
 
 }
