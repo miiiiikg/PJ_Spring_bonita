@@ -301,24 +301,22 @@
 					<div class="board-view">
 						<div class="board-view-head">
 							<div class="board-view-title">
-								<h2>
-									제목제목 
-								</h2>
+								<h2>${one.title}</h2>
 							</div>
 							<div class="board-view-info">
 								<div class="author">
 									<span class="text1">
-										<strong>미경</strong>
+										<strong>${one.writer}</strong>
 									</span>
 									</span>
 									<span class="divide-bar">&nbsp;</span>
-									<span class="text2">2020.03.20 13:48:21</span>
+									<span class="text2" pattern="yyyy-MM-dd HH:mm:ss">${one.updatedate}</span>
 									<i class="fas fa-heart"></i>
 								</div>
 								<div class="value">
 									<span class="text4">
 										<strong>조회수</strong>
-										1
+										${one.viewcnt}
 									</span>
 								</div>
 
@@ -337,10 +335,12 @@
 								<a href="#" class="btnNormalFix sizeS">목록</a>
 								<a href="#" class="btnNormalFix sizeS">답변</a>
 							</span>
-							<span class="gRight">
-								<a href="#" class="btnNormalFix sizeS">수정</a>
-								<a href="#" class="btnNormalFix sizeS">삭제</a>
-							</span>
+							<c:if test="${name == one.writer}">
+								<span class="gRight">
+									<a href="#" class="btnNormalFix sizeS">수정</a>
+									<a href="#" class="btnNormalFix sizeS">삭제</a>
+								</span>
+							</c:if>
 						</div>
 
 						<div class="board-view-comment" style="padding-top: 20px;">
@@ -348,7 +348,7 @@
 								<div class="head">
 									<div class="comment-count">	
 										<span>
-											<strong>댓글</strong>  11 
+											<strong>댓글</strong> ${one.replycnt}
 											<span class="nobr" style="padding-top: 20px;"></span>
 										</span>
 										<br>

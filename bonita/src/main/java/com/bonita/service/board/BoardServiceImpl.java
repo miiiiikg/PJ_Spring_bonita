@@ -53,11 +53,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void view(BoardDAO bDao) {
+	public BoardDTO view(int bno) {
 		
-		return bDao.view();
-		
+		return bDao.view(bno);
 	}
+
+	
 	
 	
 

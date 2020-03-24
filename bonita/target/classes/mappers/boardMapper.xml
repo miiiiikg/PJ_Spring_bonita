@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</choose> 
 	</sql>
 	
-	<select id="boardview" resultType="boardDTO">
+	<select id="view" resultType="boardDTO">
 		SELECT * FROM tbl_board
 		WHERE bno=#{bno}
 	</select>
