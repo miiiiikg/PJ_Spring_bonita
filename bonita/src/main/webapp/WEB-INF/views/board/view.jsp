@@ -333,7 +333,7 @@
 						</div>
 						<div class="ec-base-button">
 							<span class="gLeft">
-								<a href="#" class="btnNormalFix sizeS">목록</a>
+								<a href="${header.referer}" class="btnNormalFix sizeS" >목록</a>
 								<a href="#" class="btnNormalFix sizeS">답변</a>
 							</span>
 							<c:if test="${name == one.writer}">
@@ -436,6 +436,8 @@
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	$(function(){
+		
+		//alert('이전 URL: ${header.referer}');
 		
 		// 삭제버튼 클릭시 모달창 open
 		$('#drop_yes').click(function(){
