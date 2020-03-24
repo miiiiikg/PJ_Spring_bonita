@@ -124,7 +124,7 @@
 						</ul>
 					</div>
 					<div class="login_btn_box1">
-						<a href="#" id ="modal_msg_yes" class="login_btn_title" style ="margin-right : 10px;"><span class="title">확인</span></a>
+						<a href="#" id ="modal_msg_yes" class="login_btn_title" style ="color: white; margin-right : 10px;"><span class="title">확인</span></a>
 						<a href="#" class="join_btn_title" id = "modal_msg_close"><span class="title">취소</span></a>
 					</div>
 				</div>
@@ -147,6 +147,9 @@
 		var dropResult_main_txt = id+'님 탈퇴되셨습니다.' ;
 		var dropResult_sub_txt = '그동안 bonita를 이용해주셔서 감사합니다. ';
 		
+		var dropBoard_main_txt = "정말 삭제하시겠습니까?";
+		var dropBoardNo_main_txt = "댓글이 있는 게시글은 삭제할 수 없습니다.";
+		
 		if(key == 'join') {
 			$('.title1').text(join_main_txt); // 메인 텍스트
 			$('.title2').text(join_sub_txt); // 서브 텍스트
@@ -167,6 +170,14 @@
 			$('.modal_msg_yes').css('display', 'none');
 			$('#modal_msg_close').text('확 인'); 
 			$('.dt_popup1').css('display', 'flex');
+		} else if (key == 'dropBoard') {
+			if('${one.replycnt}' == 0) { // 댓글이 없는 경우
+				$('.title1').text(dropBoard_main_txt); 
+			} else { // 댓글이 있는 경우
+				$('.title1').text(dropBoardNo_main_txt);
+				$('.modal_msg_yes').css('display', 'none');
+				$('#modal_msg_close').text('확 인');
+			}
 		}
 		
 		

@@ -19,6 +19,8 @@ public interface BoardService {
 	// 조회수 +1증가
 	public void increaseViewCnt(int bno, HttpSession sesssion);
 	
+	// 게시글 삭제
+	public void delBoard(int bno);
 	
 
 }

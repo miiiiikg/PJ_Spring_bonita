@@ -285,6 +285,7 @@
 	</style>
 </head>
 <body>
+<%@ include file="../include/modal.jsp" %>
 	<div id="content">
 		<div class="contents-inner cs-page">
 			<div class="section">
@@ -294,7 +295,7 @@
 					<input type="hidden" name="sno" value = "27454">
 				</form>
 				<div class="section-header">
-					<h2 class="h2">커뮤니티</h2>
+					<h2 class="h2">자유게시판</h2>
 					<div class="option type1"></div>
 				</div>
 				<div class="section-body">
@@ -338,7 +339,7 @@
 							<c:if test="${name == one.writer}">
 								<span class="gRight">
 									<a href="#" class="btnNormalFix sizeS">수정</a>
-									<a href="#" class="btnNormalFix sizeS">삭제</a>
+									<a href="#" class="btnNormalFix sizeS" id="drop_yes">삭제</a>
 								</span>
 							</c:if>
 						</div>
@@ -432,4 +433,20 @@
 	</div>
 
 </body>
-</html>
+<script src="${path}/resources/js/validation.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		// 삭제버튼 클릭시 모달창 open
+		$('#drop_yes').click(function(){
+			$('.dt_popup1').css('display', 'flex');
+		});
+		// 삭제 알림 모달창에서 확인버튼 click => 게시글 삭제
+		$('#modal_msg_yes').click(function(){
+			// alert("text");
+			location.href= '${path}/board/delete?bno=${one.bno}';
+			
+		});			
+
+	});
+</script>
