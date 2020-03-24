@@ -2,9 +2,9 @@ package com.bonita.service.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import com.bonita.domain.BoardDTO;
-import com.bonita.persistence.BoardDAO;
 
 public interface BoardService {
 	
@@ -15,6 +15,9 @@ public interface BoardService {
 	public List<BoardDTO> listAll(String search_option, String keyword, String sort_option, int start, int end);
 	
 	public BoardDTO view(int bno);
+	
+	// 조회수 +1증가
+	public void increaseViewCnt(int bno, HttpSession sesssion);
 	
 	
 

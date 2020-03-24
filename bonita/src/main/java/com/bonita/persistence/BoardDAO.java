@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.ui.Model;
 
 import com.bonita.domain.BoardDTO;
 
@@ -17,5 +16,8 @@ public interface BoardDAO {
 	public List<BoardDTO> listAll(@Param("map") Map<String, Object> map);
 	
 	public BoardDTO view(int bno);
+	
+	// 조회수 +1 증가
+	public void increaseViewCnt(@Param("bno") int bno);
 	
 }
