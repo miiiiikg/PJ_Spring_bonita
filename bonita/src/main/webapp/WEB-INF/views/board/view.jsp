@@ -176,6 +176,7 @@
 		}
 		.comment_pos:first-child {
 			margin-top: -13px;
+			padding-left: 12px;
 		}
 		.comment_pos {
 			position: relative;
@@ -279,6 +280,11 @@
 			height: 100px;
 			resize: none;
 		}
+		.login_re {
+			background-color : white;
+			border : 1px solid #bbb;
+			padding : 13px 23px 15px 19px;
+		}
 
 	
 
@@ -374,6 +380,10 @@
 			
 		});			
 
+	});
+	
+	$(document).on('click', '.reply_login_btn', function(){
+		$('.dt_popup').css('display', 'flex');
 	});
 	
 	// 댓글 목록 출력 함수 replycontroller

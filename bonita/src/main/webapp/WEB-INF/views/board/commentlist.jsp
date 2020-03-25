@@ -58,13 +58,34 @@
 											<div class="c1">&nbsp;</div>
 										</div>
 									</c:forEach>
+									<c:if test="${list.size() == 0 }">
+										<div class="id_admin">
+											<span>
+												<a href="#" class="b">관리자</a>
+											</span>
+												<span class="comment_date txt_sub p11 ls0" value ="${now}" pattern="yyyy-MM-dd"></span>
+													
+												</div>
+												<div class="comment" style="display: block;">
+													<span class="comment-contents">등록된 게시글이 없습니다 :(</span>
+												</div>
+												
+												<div class="c1">&nbsp;</div>
+									</c:if>
 								</div>
 									<div class="longtail_editor longtail_reply">
 										<div class="longtail_editor_layout">
 											<table>
 												<tbody>
 													<tr>
-														<td class="longtail_comment inp">
+													<c:choose>
+														<c:when test="${empty userid}">
+															<td class="longtail_comment inp">
+															<div class = "login_re">
+																<span class="reply_login_btn">로그인</span>을 하셔야 댓글 등록이 됩니다. 
+															</div>
+														</c:when>
+														<c:otherwise>
 															<div class="longtail_comment_wrap">
 																<textarea class="inp scroll txt_sub" name=comment_view rows="3" cols="56" style ="resize:none; width: 572px; height: 60px;" ></textarea>
 															</div>
@@ -74,6 +95,8 @@
 																<a href="#" class="btnNormalFix sizeS">등록</a>
 															</a>
 														</td>
+														</c:otherwise>	
+													</c:choose>
 													</tr>
 												</tbody>
 											</table>
