@@ -82,10 +82,7 @@ public class BoardServiceImpl implements BoardService {
 			// 조회수 올린 시간 저장
 			session.setAttribute("update_time_" + bno, current_time);
 		}
-		
-		
-		
-		
+	
 	}
 
 	@Override
