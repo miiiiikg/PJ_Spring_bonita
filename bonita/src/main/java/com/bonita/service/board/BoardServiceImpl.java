@@ -89,10 +89,7 @@ public class BoardServiceImpl implements BoardService {
 	public void delBoard(int bno) {
 		bDao.delBoard(bno);
 		
+		
 	}
-
-	
-	
-	
 
 }

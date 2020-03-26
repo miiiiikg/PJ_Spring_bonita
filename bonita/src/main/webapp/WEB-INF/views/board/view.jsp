@@ -285,6 +285,25 @@
 			border : 1px solid #bbb;
 			padding : 13px 23px 15px 19px;
 		}
+		.reply_login_btn {
+			color : #4FB0C6;
+		}
+		.error_next_box {
+			margin-left : 12px;
+			color : red;
+			font-size : 14px;
+			visibility: hidden;
+		}
+		.texton {
+			padding: 9px 10px;
+			margin: 0 1px;
+			cursor: pointer;
+			text-align: center;
+   			border-radius: 10px;
+   			background-color : white;
+			border : 1px solid #bbb;
+			padding : 9px 33px 9px 33px;
+   		}
 
 	
 
@@ -295,11 +314,7 @@
 	<div id="content">
 		<div class="contents-inner cs-page">
 			<div class="section">
-				<form method="post" name="frmView" id="frmView" action="board_ps.php">
-					<input type="hidden" name="bdId" value="goodsreview">
-					<input type="hidden" name="mode" value>
-					<input type="hidden" name="sno" value = "27454">
-				</form>
+
 				<div class="section-header">
 					<h2 class="h2">자유게시판</h2>
 					<div class="option type1"></div>
@@ -322,8 +337,14 @@
 								</div>
 								<div class="value">
 									<span class="text4">
-										<strong>조회수</strong>
-										${one.viewcnt}
+										댓글수
+										<strong>${one.replycnt}</strong>
+										
+										
+									</span>
+									<span class="text3">
+										조회수
+										<strong>${one.viewcnt}</strong>
 									</span>
 								</div>
 
@@ -386,15 +407,51 @@
 		$('.dt_popup').css('display', 'flex');
 	});
 	
+	
+	//문서에서 btnNormalFix 찾아서 버튼을 클릭하면 맨 위에 function에 넣으면 안된다.
+	$(document).on('click', '.texton',function(){
+		var reply_txt = $('.inp').val();
+		//alert(reply_txt);
+		
+		if(reply_txt == '' || reply_txt.length == 0) {
+			$('.inp').focus();
+			$('.error_next_box').css('visibility', 'visible');
+			return false;
+		}
+		
+		$('.reply_bno').val('${one.bno}');
+		$('.reply_type').val('${one.type}');
+		$('.reply_writer').val('${name}');
+		
+		
+		$.ajax({
+			url : '${path}/reply/insert',
+			type : 'POST',
+			data : $('.frm_reply').serialize(),
+			success : function() {
+				listReply();
+			},
+			error : function() {
+				alert('실패');
+			}
+			
+			
+		});
+	});
+	
 	// 댓글 목록 출력 함수 replycontroller
 	function listReply() {
 		$.ajax({
 			type:"get",
+			async : false,
 			url:"${path}/reply/list?bno=${one.bno}",
 			success:function(result) {
 				// result : responseText 응답텍스트 (html)
 				$("#listReply").html(result);
 			}
 		});
+		
+		
+		$('.text4 > strong').text($('.replyListCnt').val());
 	}
 </script>

@@ -30,4 +30,15 @@ public class ReplyServiceImpl implements ReplyService {
 		return rDao.list(bno);
 	}
 
+	@Override
+	public void insert(ReplyDTO rDto) {
+		
+		rDao.insert(rDto);
+		
+		rDao.replyCntPlus(rDto.getBno());
+	}
+
+	
+
+
 }

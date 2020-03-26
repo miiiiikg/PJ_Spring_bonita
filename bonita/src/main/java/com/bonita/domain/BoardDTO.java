@@ -16,6 +16,7 @@ import lombok.ToString;
 public class BoardDTO {
 	private int bno; 			// 게시글 번호		
 	private String title; 		// 게시글 제목
+	private String type;		// 게시글 종류
 	private String cntent; 		// 게시글 내용
 	private String writer; 		// 게시글 작성자
 	private int viewcnt; 		// 조회수

@@ -315,12 +315,13 @@
 								<tr style="height: 50px">
 									<td class="ta-c">${list.bno}</td>
 									<td class="tit" style="text-align: left;">
-										<a href="${path}/board/view/${list.bno}">${list.title}</a>
-										<a href="#" class="txt_point num  b">[${list.replycnt}]</a>  
-										<i class="far fa-image"></i>
-										<c:if test="${today == regdate}">
-											<img src="${path}/resources/img/icons8-n-501.png" class = "blinking twinkle">
-										</c:if>
+										<a href="${path}/board/view/${list.bno}">${list.title}
+											<span  class="txt_point num  b">[${list.replycnt}]</span>  
+											<i class="far fa-image"></i>
+											<c:if test="${today == regdate}">
+												<img src="${path}/resources/img/icons8-n-501.png" class = "blinking twinkle">	
+											</c:if>
+										</a>
 									</td>
 									<td class="ta-c">${list.writer}</td>
 									<td class="ta-c">
