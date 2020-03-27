@@ -304,6 +304,11 @@
 			border : 1px solid #bbb;
 			padding : 9px 33px 9px 33px;
    		}
+   		.commentno {
+   			border : 1px solid #ddd;
+   			background-color : white;
+   			padding : 1px 1px 1px 1px;
+   		}
 
 	
 
@@ -436,6 +441,20 @@
 			}
 			
 			
+		});
+	});
+	
+	$(document).on('click', '.commentno', function(){
+		var rno = $(this).attr('data_num');
+		var bno = '${one.bno}';
+		
+		$.ajax({
+			type:"POST",
+			url:'${path}/reply/delete',
+			data:{'rno': rno, 'bno': bno},
+			success:function(){
+				listReply();
+			}
 		});
 	});
 	

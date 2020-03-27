@@ -31,18 +31,21 @@
 									<span>
 										<a href="#" class="b">${reply.writer}</a>
 									</span>
-									<span class="comment_date txt_sub p11 ls0">${reply.regdate}</span>
-									<i class="fas fa-heart"></i>
-								</div>
+									<c:if test="${name == reply.writer}">
+										<button type ="button" class="commentno" data_num="${reply.rno}">삭제</button>
+									</c:if>
+										<span class="comment_date txt_sub p11 ls0">${reply.regdate}</span>
+										<i class="fas fa-heart"></i>
+										
+									</div>
 									<div class="comment" style="display: block; margin: 8px 1px 20px 1px;">
 										<span class="comment-contents">${reply.content}</span>
 									</div>
 									<div class="txt_btn p11">
-											<a href="#">신고</a>
+										<a href="#">신고</a>
 									</div>
 									<div class="c1">&nbsp;</div>
-									
-									</c:forEach>
+								</c:forEach>
 									<c:if test="${list.size() == 0 }">
 									
 										<div class="id_admin">

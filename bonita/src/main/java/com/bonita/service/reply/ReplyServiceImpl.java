@@ -1,5 +1,6 @@
 package com.bonita.service.reply;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bonita.domain.ReplyDTO;
+import com.bonita.persistence.BoardDAO;
 import com.bonita.persistence.ReplyDAO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,12 @@ public class ReplyServiceImpl implements ReplyService {
 		rDao = sqlSession.getMapper(ReplyDAO.class);
 	}
 	
+	public BoardDAO bDao;
+	@Autowired
+	public void newBoardDAO() {
+		bDao = sqlSession.getMapper(BoardDAO.class);
+	}
+	
 	@Override
 	public List<ReplyDTO> list(int bno) {
 		
@@ -36,6 +44,19 @@ public class ReplyServiceImpl implements ReplyService {
 		rDao.insert(rDto);
 		
 		rDao.replyCntPlus(rDto.getBno());
+	}
+
+	@Override
+	public void delete(int rno, int bno) {
+		// 1. 댓글 삭제
+		rDao.delete(rno);
+		
+		// 2. 게시글 댓글 수 -1
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("type", "minus");
+		bDao.replyCntUpdate(map);
+		
 	}
 
 	

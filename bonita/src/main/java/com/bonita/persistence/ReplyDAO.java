@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.bonita.domain.ReplyDTO;
 
-public interface ReplyDAO {
+public interface ReplyDAO{
 	// 이름이 없으면 @param1 @param2로 정해진다.
 	// replydao = mapper 맨위에 이름이 같아야한다. 
 	// package com.bonita.persistence; = <mapper namespace="com.bonita.persistence.ReplyDAO">
@@ -15,6 +15,11 @@ public interface ReplyDAO {
 	public int insert(ReplyDTO rDto);
 	
 	public void replyCntPlus(@Param("bno") int bno);
+	
+	public void replyCntMinus(@Param("bno")int bno);
+	
+	public void delete(@Param("rno")int rno);
+	
 	
 
 }
