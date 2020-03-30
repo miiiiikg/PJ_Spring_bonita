@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bonita.domain.ReplyDTO;
 import com.bonita.persistence.BoardDAO;
@@ -37,7 +38,7 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return rDao.list(bno);
 	}
-
+	@Transactional
 	@Override
 	public void insert(ReplyDTO rDto) {
 		
@@ -45,7 +46,7 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		rDao.replyCntPlus(rDto.getBno());
 	}
-
+	@Transactional
 	@Override
 	public void delete(int rno, int bno) {
 		// 1. 댓글 삭제

@@ -414,10 +414,15 @@
 	
 	
 	//문서에서 btnNormalFix 찾아서 버튼을 클릭하면 맨 위에 function에 넣으면 안된다.
+	// 1. 사용자가 댓글을 입력하고 댓글등록버튼을 클릭
 	$(document).on('click', '.texton',function(){
+		// 2. reply_txt라고 변수에 사용자가 입력한 댓글내용을 작성
 		var reply_txt = $('.inp').val();
 		//alert(reply_txt);
 		
+		// 3. 조건문 사용자가 입력한 값이 ''이거나 길이가 0이면
+		// 	널 값이기 때문에 댓글 입력부분으로 포커스를 이동하고 경고메시지를 출력하고 여기서 이벤트를 종료
+		//	사용자가 입력한값이 있으면 실행하지 않고 통과
 		if(reply_txt == '' || reply_txt.length == 0) {
 			$('.inp').focus();
 			$('.error_next_box').css('visibility', 'visible');
@@ -431,7 +436,11 @@
 		
 		$.ajax({
 			url : '${path}/reply/insert',
-			type : 'POST',
+			type : "POST",
+			// hashmap json이용방식 data = {"bno": bno, "type" : type, "writer" : writer, "content" : content}
+			// keyvalue
+			// qestring (쿼리스트링)이용방식 url = '${path}/reply/insert?bno='+bno '&type='+type+'&writer'= name + '&content'+content
+			// serialize 직렬화 쿼리스트링을 자동으로 생성후 보냄 위에 방법은 보내는 값이 많을 경우 사용 input name값으로 서버단으로 받을수 있는것은 name밖에 없다.
 			data : $('.frm_reply').serialize(),
 			success : function() {
 				listReply();
