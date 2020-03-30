@@ -391,9 +391,12 @@
 <script type="text/javascript">
 	// 문서가 완료되면 시작 listReply 호출
 	$(function(){
+		// 자바 내장함수
+		setInterval(refreshReply, 180000);
 		
-		listReply();
 		//alert('이전 URL: ${header.referer}');
+		listReply();
+		
 		
 		// 삭제버튼 클릭시 모달창 open
 		$('#drop_yes').click(function(){
@@ -411,6 +414,13 @@
 	$(document).on('click', '.reply_login_btn', function(){
 		$('.dt_popup').css('display', 'flex');
 	});
+	
+	// 새로운 댓글 확인하기 버튼 클릭시
+	$(document).on('click','#reply_refresh_btn', function(){
+		// alert("text");
+		listReply();
+	});
+	
 	
 	
 	//문서에서 btnNormalFix 찾아서 버튼을 클릭하면 맨 위에 function에 넣으면 안된다.
@@ -479,6 +489,10 @@
 			}
 		});
 		
+		function refreshReply() {
+			alert('zzzz');
+			listReply();
+		}
 		
 		$('.text4 > strong').text($('.replyListCnt').val());
 	}

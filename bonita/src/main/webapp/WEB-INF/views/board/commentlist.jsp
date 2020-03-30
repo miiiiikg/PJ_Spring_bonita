@@ -15,6 +15,7 @@
 					<span>
 						<input type="hidden" class="replyListCnt" value ="${list.size()}">
 						<strong>댓글 ${list.size()}</strong>
+						<i class="fas fa-sync-alt" id="reply_refresh_btn">새로운 댓글 확인</i>
 						<span class="nobr" style="padding-top: 20px;"></span>
 					</span>
 					<br>
