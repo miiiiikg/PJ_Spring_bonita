@@ -92,4 +92,11 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void writer() {
+		
+		bDao.writer();
+		
+	}
+
 }

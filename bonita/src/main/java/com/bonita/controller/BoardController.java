@@ -83,5 +83,13 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	@GetMapping("/writer")
+	public String writer () {
+		
+		log.info(">>>>> POST : board writer writer");
+		
+		return "board/writer";
+	}
 
 }

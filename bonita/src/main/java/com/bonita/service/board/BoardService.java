@@ -22,5 +22,7 @@ public interface BoardService {
 	// 게시글 삭제
 	public void delBoard(int bno);
 	
+	public void writer();
+	
 
 }

@@ -29,6 +29,8 @@ public interface BoardDAO {
 	
 	// 댓글 수
 	public void replyCntUpdate(@Param("map") HashMap<String, Object> map);
+	
+	public void writer();
 
 	
 	
