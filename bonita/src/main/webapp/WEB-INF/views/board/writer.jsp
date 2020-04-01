@@ -125,6 +125,15 @@
 			width: 723px;
 			height: 27px;
 		}
+		.error_next_box {
+			display: none;
+			margin: 5px 0 -2px;
+			font-size: 12px;
+			line-height: 14px;
+			color: #d95339;
+			height: 15px;
+			
+		}
 
 	</style>
 </head>
@@ -148,9 +157,11 @@
 							</tr>
 	
 							<tr class="first">
-								<th scope="row" name ="title" class="thead txtLess">제목 </th>
+								<th scope="row" id="board_title" class="thead txtLess">제목 </th>
+								
 								<td>
-									<input type="text" name="subject" id="subject" maxlength="125">
+									<input type="text" name="title" id="subject" maxlength="125">
+									<div class="error_next_box">제목을 입력해주세요.</div>
 								</td>
 							</tr>
 	
@@ -200,13 +211,14 @@
 							<button type="button" class="btnNormalFix cancel_btn" style="width:100px;">취소</button>
 						</span>
 						<span class="gRight">
-							<button type="button" class="btnNormalFix sizeS">등록</button>
+							<button type="button" class="btnNormalFix insert_btn">등록</button>
 						</span>
 					</div>
 				</div>
 			</form:form>
 		</div>
 	</div>
+<script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
@@ -226,13 +238,40 @@
 		}
 		
 	});
+	
+	$(document).on('click', '.insert_btn', function(){
+		
+		// 유효성 체크(제목)
+		var title = $('#subject').val();
+		
+		if(title == '' || title.legnth == 0) {
+			// 에러메시지 '제목을 입력해주세요.'
+			$('.error_next_box').css('display','block');
+			return false;
+		} else {
+			//서버로 전송
+			// 에디터의 내용이 textarea에 적용된다.
+ 			oEditors.getById["board_content"].exec("UPDATE_CONTENTS_FIELD", []);
+			$('#frm_board').submit();
+		}
+		
+		
+	});
+	
+	$(document).on('keyup','#subject', function(){
+		var len = $(this).length;
+		
+		if(len != 0) {
+			$('.error_next_box').css('display','none');
+		}
+	});
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
  		oAppRef: oEditors,
  		elPlaceHolder: "board_content",
  		sSkinURI: "${path}/resources/smarteditor/SmartEditor2Skin.html",
  		fCreator: "createSEditor2"
-		});
+	});
 </script>
 </body>
 </html>

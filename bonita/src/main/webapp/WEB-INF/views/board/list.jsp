@@ -276,7 +276,7 @@
 							<a href="${path}/board/list?sort_option=reply&keyword=${map.keyword}" style="margin: 0px 12px;" id="sort_reply">댓글순</a>
 							<a href="${path}/board/list?sort_option=good&keyword=${map.keyword}"style="margin: 0px 12px;" id="sort_good">추천순</a>
 						</div>
-						<a href="${path}/board/writer" class="skinbtn base2 contactus-write">게시글 등록</a>
+						<a href="${path}/board/write" class="skinbtn base2 contactus-write">게시글 등록</a>
 					</div>
 					<div class="search_cnt">
 						<span >검색결과 ${map.keyword}는 ${map.count}건 검색되었습니다.</span>
@@ -400,6 +400,7 @@ $(function(){
 	$('.write_btn').click(function(){
 		location.href="/bonita/board/write";
 	});
+	
 });
 
 </script>

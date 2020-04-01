@@ -30,7 +30,8 @@ public interface BoardDAO {
 	// 댓글 수
 	public void replyCntUpdate(@Param("map") HashMap<String, Object> map);
 	
-	public void writer();
+	// 게시글 등록
+	public void write(BoardDTO bDto);
 
 	
 	

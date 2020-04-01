@@ -17,7 +17,7 @@ public class BoardDTO {
 	private int bno; 			// 게시글 번호		
 	private String title; 		// 게시글 제목
 	private String type;		// 게시글 종류
-	private String cntent; 		// 게시글 내용
+	private String content; 		// 게시글 내용
 	private String writer; 		// 게시글 작성자
 	private int viewcnt; 		// 조회수
 	private int replycnt; 		// 댓글수
@@ -29,6 +29,6 @@ public class BoardDTO {
 	private String[] files;		// 첨부파일 이름 배열
 	private int ref; 			// 답변 그룹 번호
 	private int re_step; 		// 답변 출력 순번
-	private int re_level; 		// 답변 단계(계층형)
+	private int re_level; 		// 답변 단계(계층형) 
 
 }

@@ -344,8 +344,6 @@
 									<span class="text4">
 										댓글수
 										<strong>${one.replycnt}</strong>
-										
-										
 									</span>
 									<span class="text3">
 										조회수
@@ -358,9 +356,8 @@
 						<div class="board-view-body">
 							<div class="textfield">
 								<br>
-								<p class="word">
-									테스트 페이지
-								</p>
+								${one.content}
+								<br>
 							</div>
 						</div>
 						<div class="ec-base-button">
