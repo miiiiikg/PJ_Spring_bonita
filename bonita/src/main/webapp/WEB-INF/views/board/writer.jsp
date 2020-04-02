@@ -158,9 +158,8 @@
 	
 							<tr class="first">
 								<th scope="row" id="board_title" class="thead txtLess">제목 </th>
-								
 								<td>
-									<input type="text" name="title" id="subject" maxlength="125">
+									<input type="text" name="title" id="subject" value="${one.title}">
 									<div class="error_next_box">제목을 입력해주세요.</div>
 								</td>
 							</tr>
@@ -168,9 +167,9 @@
 							<tr class="first">
 								<th scope="row" class="thead txtLess">종류 </th>
 								<td>
-									<select id="subject"  name ="type" class="board_div">
+									<select id="subject" name ="type" class="board_div">
 										<option value="free">자유게시판</option>
-										<option value="qna">Q&N게시판</option>
+										<option value="qna" selected>Q&N게시판</option>
 										<option value="review">REVIEW</option>
 									</select>
 								</td>
@@ -183,7 +182,7 @@
 								</th>
 								<td>
 									<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-									<textarea name="content" id="board_content" rows="10" cols="100" style="height: 500px;"></textarea>
+									<textarea name="content" id="board_content" rows="10" cols="100" style="height: 500px;">${one.content}</textarea>
 								</td>
 							</tr>
 	
@@ -211,7 +210,7 @@
 							<button type="button" class="btnNormalFix cancel_btn" style="width:100px;">취소</button>
 						</span>
 						<span class="gRight">
-							<button type="button" class="btnNormalFix insert_btn">등록</button>
+							<button type="button" class="btnNormalFix insert_btn" style="width: 100px;">등록</button>
 						</span>
 					</div>
 				</div>
@@ -222,6 +221,19 @@
 <script type="text/javascript">
 	$(function(){
 		
+		// register => 게시글 등록과 게시글 수정
+		// ${one}에 값이 있으면 수정페이지 로딩! dto 객체
+		
+		if('${one}' != '') {
+			//alert('데이터:' +  ${one});	
+			// 수정페이지로 디자인 변경
+			$('.tit-board > h2 > font').text('게시글 수정');
+			$('.insert_btn').text('수정');
+			
+			// selectBox 값으로 selected
+			$('.board_div').val('${one.type}').attr('selected','selected');
+			
+		}
 	});
 	
 	$(document).on('click', '.cancel_btn', function(){

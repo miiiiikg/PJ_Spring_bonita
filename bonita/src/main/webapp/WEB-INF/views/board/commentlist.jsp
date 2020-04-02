@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- now라는 변수를 만들고  -->
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<!-- 현재시간 -->
+	<fmt:formatDate value="${now}" pattern ="yyyy-MM-dd" var="today"/>
 	<div class="board-view-comment" style="padding-top: 20px;">
 		<div class="comment-wrap js-comment-area" data-bdid="goodsreview" data-sno="27448">
 			<div class="head">
@@ -33,11 +37,11 @@
 										<a href="#" class="b">${reply.writer}</a>
 									</span>
 									<c:if test="${name == reply.writer}">
-										<button type ="button" class="commentno" data_num="${reply.rno}">삭제</button>
+										<button type ="button" class="commentno" data-num="${reply.rno}">삭제</button>
 									</c:if>
-										<span class="comment_date txt_sub p11 ls0">${reply.regdate}</span>
-										<i class="fas fa-heart"></i>
-										
+										<span class="comment_date txt_sub p11 ls0">
+											<fmt:formatDate value="${reply.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+										</span>		
 									</div>
 									<div class="comment" style="display: block; margin: 8px 1px 20px 1px;">
 										<span class="comment-contents">${reply.content}</span>
@@ -53,14 +57,16 @@
 											<span>
 												<a href="#" class="b">관리자</a>
 											</span>
-												<span class="comment_date txt_sub p11 ls0" value ="${now}" pattern="yyyy-MM-dd"></span>
+											<span class="comment_date txt_sub p11 ls0">
+												<fmt:formatDate value="${reply.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+											</span>
 													
-												</div>
-												<div class="comment" style="display: block;">
-													<span class="comment-contents">등록된 게시글이 없습니다 :(</span>
-												</div>
-												
-												<div class="c1">&nbsp;</div>
+										</div>
+										<div class="comment" style="display: block;">
+											<span class="comment-contents">등록된 게시글이 없습니다 :(</span>
+										</div>
+										
+										<div class="c1">&nbsp;</div>
 									</c:if>
 								</div>
 									<div class="longtail_editor longtail_reply">

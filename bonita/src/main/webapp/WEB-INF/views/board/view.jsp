@@ -316,6 +316,10 @@
 </head>
 <body>
 <%@ include file="../include/modal.jsp" %>
+<!-- now라는 변수를 만들고  -->
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<!-- 현재시간 -->
+	<fmt:formatDate value="${now}" pattern ="yyyy-MM-dd" var="today"/>	
 	<div id="content">
 		<div class="contents-inner cs-page">
 			<div class="section">
@@ -335,10 +339,8 @@
 									<span class="text1">
 										<strong>${one.writer}</strong>
 									</span>
-									</span>
 									<span class="divide-bar">&nbsp;</span>
-									<span class="text2" pattern="yyyy-MM-dd HH:mm:ss">${one.updatedate}</span>
-									<i class="fas fa-heart"></i>
+									<fmt:formatDate value="${one.updatedate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 								</div>
 								<div class="value">
 									<span class="text4">
@@ -362,12 +364,12 @@
 						</div>
 						<div class="ec-base-button">
 							<span class="gLeft">
-								<a href="${header.referer}" class="btnNormalFix sizeS" >목록</a>
+								<a href="${header.referer}" class="btnNormalFix sizeS">목록</a>
 								<a href="#" class="btnNormalFix sizeS">답변</a>
 							</span>
 							<c:if test="${name == one.writer}">
 								<span class="gRight">
-									<a href="#" class="btnNormalFix sizeS">수정</a>
+									<a href="${path}/board/update?bno=${one.bno}" class="btnNormalFix sizeS">수정</a>
 									<a href="#" class="btnNormalFix sizeS" id="drop_yes">삭제</a>
 								</span>
 							</c:if>
@@ -389,7 +391,7 @@
 	// 문서가 완료되면 시작 listReply 호출
 	$(function(){
 		// 자바 내장함수
-		setInterval(refreshReply, 180000);
+		setInterval(newReply, 180000);
 		
 		//alert('이전 URL: ${header.referer}');
 		listReply();
@@ -461,7 +463,7 @@
 	});
 	
 	$(document).on('click', '.commentno', function(){
-		var rno = $(this).attr('data_num');
+		var rno = $(this).attr('data-num');
 		var bno = '${one.bno}';
 		
 		$.ajax({
@@ -485,12 +487,10 @@
 				$("#listReply").html(result);
 			}
 		});
-		
-		function refreshReply() {
-			alert('zzzz');
+	}	
+	function newReply() {
 			listReply();
-		}
-		
-		$('.text4 > strong').text($('.replyListCnt').val());
 	}
+		
+	//$('.text4 > strong').text($('.replyListCnt').val());
 </script>

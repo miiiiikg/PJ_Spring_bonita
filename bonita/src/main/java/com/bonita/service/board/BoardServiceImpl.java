@@ -98,4 +98,10 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void updateBoard(BoardDTO bDto) {
+		bDao.updateBoard(bDto);
+		
+	}
+
 }

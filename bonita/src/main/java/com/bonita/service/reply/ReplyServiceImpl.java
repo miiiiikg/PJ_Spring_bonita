@@ -44,8 +44,13 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		rDao.insert(rDto);
 		
-		rDao.replyCntPlus(rDto.getBno());
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("bno", rDto.getBno());
+		map.put("type", "minus");
+		
+		rDao.replyCntUpdate(map);
 	}
+	
 	@Transactional
 	@Override
 	public void delete(int rno, int bno) {
@@ -56,7 +61,7 @@ public class ReplyServiceImpl implements ReplyService {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("bno", bno);
 		map.put("type", "minus");
-		bDao.replyCntUpdate(map);
+		rDao.replyCntUpdate(map);
 		
 	}
 

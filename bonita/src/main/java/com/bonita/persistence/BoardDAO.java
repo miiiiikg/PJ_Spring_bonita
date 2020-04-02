@@ -27,11 +27,10 @@ public interface BoardDAO {
 	// 게시글삭제
 	public void delBoard(@Param("bno") int bno);
 	
-	// 댓글 수
-	public void replyCntUpdate(@Param("map") HashMap<String, Object> map);
-	
 	// 게시글 등록
 	public void write(BoardDTO bDto);
+
+	public void updateBoard(BoardDTO bDto);
 
 	
 	

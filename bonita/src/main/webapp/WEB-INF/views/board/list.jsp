@@ -317,7 +317,6 @@
 									<td class="tit" style="text-align: left;">
 										<a href="${path}/board/view/${list.bno}">${list.title}
 											<span  class="txt_point num  b">[${list.replycnt}]</span>  
-											<i class="far fa-image"></i>
 											<c:if test="${today == regdate}">
 												<img src="${path}/resources/img/icons8-n-501.png" class = "blinking twinkle">	
 											</c:if>
@@ -326,7 +325,7 @@
 									<td class="ta-c">${list.writer}</td>
 									<td class="ta-c">
 										<c:choose>
-											<c:when test="${today == regdate}">
+											<c:when test="${today == update}">
 												<fmt:formatDate value="${list.updatedate}" pattern="HH:mm:ss"/>
 											</c:when>
 											<c:otherwise>
@@ -349,7 +348,7 @@
 								<form action="${path}/board/list" method = "GET">
 									<input type = "text" name = "keyword" class= "input_search" placeholder="검색어를 입력하세요." value="${map.keyword}">
 									<button type = "submit" class = "btn_search btn_search_board" >
-										<a class="btn btn-warning" href ="${path}/board/list" ><i class= "fas fa-search"></i></a>
+										<a class="btn btn-warning" href ="${path}/board/list"><i class= "fas fa-search"></i></a>
 										CLEAR
 									</button>
 								</form>

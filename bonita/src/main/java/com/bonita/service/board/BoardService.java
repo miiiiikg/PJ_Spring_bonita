@@ -24,6 +24,9 @@ public interface BoardService {
 	
 	// 게시글 등록
 	public void write(BoardDTO bDto);
+
+	
+	public void updateBoard(BoardDTO bDto);
 	
 
 }
