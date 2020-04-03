@@ -14,22 +14,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (seq_reply.NEXTVAL, #{type}, #{content}, #{writer}, #{bno})
 	</insert>
 	
-	<update id="replyCntPlus">
-		UPDATE tbl_board
-			SET replycnt = replycnt + 1
-		WHERE bno = #{bno}
-	</update>
-	
 	<delete id="delete">
 		DELETE FROM tbl_reply
 		WHERE rno = #{rno}
 	</delete>
-	
-	<update id="replyCntMinus">
-		UPDATE tbl_board
-			SET replycnt = replycnt - 1
-		WHERE bno = #{bno}
-	</update>
 	
 	<update id="replyCntUpdate">
 		UPDATE tbl_board

@@ -46,7 +46,7 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("bno", rDto.getBno());
-		map.put("type", "minus");
+		map.put("type", "plus");
 		
 		rDao.replyCntUpdate(map);
 	}

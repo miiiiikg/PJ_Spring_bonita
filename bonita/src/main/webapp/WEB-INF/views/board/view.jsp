@@ -309,6 +309,9 @@
    			background-color : white;
    			padding : 1px 1px 1px 1px;
    		}
+   		.textfield {
+   			padding : 20px 0 20px 7px;
+   		}
 
 	
 
