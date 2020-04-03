@@ -64,16 +64,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			//
 			if(nextUrl.equals("/board/update") || nextUrl.contentEquals("/board/delete")) {
 				if(request.getParameter("title") == null) { 
-				// 상세게시글에서 나한테 넘어오는 애들만 처리해준다
-				// indexof("board/view")
-				// 게시글, 수정 이 있으면 전에 주소 왔던 곳이 상세게시글에서 왔으면 정상 상세게시글 수정, 삭제 버튼만  
-				// 작성자와 로그인 이 같아야지 버튼이 생긴다. 나왔을때만 상세게시글이 넘어온다. 
-				log.info("alasdfasdf :" + prevUrl.indexOf("board/view"));
-				// board/view에서 안왔으면 -1값이 들어오면서 비정상적인 접근이 되면서 finalUrl로 가면서 false값을 가져간다. 
-				if(prevUrl.indexOf("board/view") == -1) {
-					log.info("WARNING >> 비정상적인 접근 :(" );
-					response.sendRedirect(finalUrl);
-					return false;
+					// 상세게시글에서 나한테 넘어오는 애들만 처리해준다
+					// indexof("board/view")
+					// 게시글, 수정 이 있으면 전에 주소 왔던 곳이 상세게시글에서 왔으면 정상 상세게시글 수정, 삭제 버튼만  
+					// 작성자와 로그인 이 같아야지 버튼이 생긴다. 나왔을때만 상세게시글이 넘어온다. 
+					log.info("alasdfasdf :" + prevUrl.indexOf("board/view"));
+					// board/view에서 안왔으면 -1값이 들어오면서 비정상적인 접근이 되면서 finalUrl로 가면서 false값을 가져간다. 
+					if(prevUrl.indexOf("board/view") == -1) {
+						log.info("WARNING >> 비정상적인 접근 :(" );
+						response.sendRedirect(finalUrl);
+						return false;
 					}
 				}
 			}
