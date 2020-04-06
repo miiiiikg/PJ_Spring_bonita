@@ -134,25 +134,25 @@ ALTER TABLE tbl_board ADD CONSTRAINT pk_board
 PRIMARY KEY(bno);
 
 -- 게시물 총 15건 추가 ref=1, re_step=1, re_level=1  type = free, writer= 가입한 유저
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
-INSERT INTO tbl_board(bno, type, title, content, writer)
+INSERT INTO tbl_board(bno, type, title, search_content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
 INSERT INTO tbl_board(bno, type, title, content, writer)
 VALUES (seq_board.NEXTVAL, 'free', '테이블 게시글1', '게시글1', '안경');
