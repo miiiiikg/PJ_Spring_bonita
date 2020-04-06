@@ -312,6 +312,9 @@
    		.textfield {
    			padding : 20px 0 20px 7px;
    		}
+   		.updatedate {
+   			text-decoration: underline;
+   		}
 
 	
 
@@ -319,10 +322,6 @@
 </head>
 <body>
 <%@ include file="../include/modal.jsp" %>
-<!-- now라는 변수를 만들고  -->
-	<jsp:useBean id="now" class="java.util.Date"/>
-	<!-- 현재시간 -->
-	<fmt:formatDate value="${now}" pattern ="yyyy-MM-dd" var="today"/>	
 	<div id="content">
 		<div class="contents-inner cs-page">
 			<div class="section">
@@ -343,7 +342,11 @@
 										<strong>${one.writer}</strong>
 									</span>
 									<span class="divide-bar">&nbsp;</span>
-									<fmt:formatDate value="${one.updatedate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+		
+									<span class="regdate"><fmt:formatDate value="${one.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/> 작성 </span>
+									<c:if test="${one.regdate != one.updatedate}">
+										<span class ="updatedate"><fmt:formatDate value="${one.updatedate}" pattern="yyyy-MM-dd HH:mm:ss"/> 수정</span>
+									</c:if>
 								</div>
 								<div class="value">
 									<span class="text4">

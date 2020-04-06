@@ -93,15 +93,15 @@ public class BoardController {
 		return "board/writer";
 	}
 	
+	// 게시글 등록
 	@PostMapping("/write")
 	public String write(BoardDTO bDto) {
-		log.info(">>>>> POST : board write Action");
-		
-		log.info(bDto.toString());
-		
+		log.info(">>>>> POST : board write Action");		
 		bService.write(bDto);
 		
-		return "redirect:/board/list";
+		log.info("currval:" + bDto.getBno());
+		
+		return "redirect:/board/view/" + bDto.getBno();
 	}
 	
 	@GetMapping("/update")
