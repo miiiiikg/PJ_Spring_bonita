@@ -364,7 +364,7 @@
 						<div class="board-view-body">
 							<div class="textfield">
 								<br>
-								${one.content}
+								${one.search_content}
 								<br>
 							</div>
 						</div>

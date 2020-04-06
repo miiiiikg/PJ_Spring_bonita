@@ -182,7 +182,7 @@
 								</th>
 								<td>
 									<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-									<textarea name="content" id="board_content" rows="10" cols="100" style="height: 500px;">${one.content}</textarea>
+									<textarea name="view_content" id="board_content" rows="10" cols="100" style="height: 500px;">${one.search_content}</textarea>
 								</td>
 							</tr>
 	
@@ -261,10 +261,22 @@
 			$('.error_next_box').css('display','block');
 			return false;
 		} else {
-			//서버로 전송
-			// 에디터의 내용이 textarea에 적용된다.
+			
+			// 에디터의 내용이 textarea에 적용된다. 스마트에디터의 값을 #board_content에 입력
  			oEditors.getById["board_content"].exec("UPDATE_CONTENTS_FIELD", []);
+			
+			var view_content = $('#board_content').val();
+			
+			// 정규식을 통해 HTML 태그를 제거 후 순수 Text만 추출
+			var search_content = view_content.replace(/(<([^>]+)>)/ig,"").replace("&nbsp;","");
+			
+			// append 평상시엔 없다가 게시글 등록버튼을 눌렀을때 맨 마지막에 추가해준다. 
+			$('#frm_board').append('<textarea id="search_content" name ="search_content"></textarea>');
+			$('#search_content').val(search_content); // 순수 content
+			
+			// 서버로 전송
 			$('#frm_board').submit();
+			
 		}
 		
 		

@@ -341,21 +341,23 @@
 					</table>
 				</div>
 				<fieldset class="boardSearch">
-					<legend></legend>
-					<p>
+					<legend>
 						<c:if test="${!empty map.keyword}">
 							<div class ="bonita_board_search">
 								<form action="${path}/board/list" method = "GET">
 									<input type = "text" name = "keyword" class= "input_search" placeholder="검색어를 입력하세요." value="${map.keyword}">
 									<button type = "submit" class = "btn_search btn_search_board" >
-										<a class="btn btn-warning" href ="${path}/board/list"><i class= "fas fa-search"></i></a>
+										<a class="btn btn-warning" href ="${path}/board/list">
+											<i class= "fas fa-search"></i>
+										</a>
 										CLEAR
 									</button>
 								</form>
 							</div>
 						</c:if>
-					</p>
+					</legend>
 				</fieldset>
+				
 				
 					<div class="paging">
 						<c:if test="${map.pager.curBlock > 1}">
