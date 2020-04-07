@@ -315,7 +315,13 @@
 								<tr style="height: 50px">
 									<td class="ta-c">${list.bno}</td>
 									<td class="tit" style="text-align: left;">
-										<a href="${path}/board/view/${list.bno}">${list.title}
+									<c:if test="${list.re_level != 0}">
+										<c:forEach begin="1" end="${list.re_level}">
+											<img class="empty_val" src="${path}/resources/img/icons8-left-2-26.png">
+										</c:forEach>
+										RE:
+									</c:if>
+									<a href="${path}/board/view/${list.bno}">${list.title}
 											<span  class="txt_point num  b">[${list.replycnt}]</span>  
 											<c:if test="${today == regdate}">
 												<img src="${path}/resources/img/icons8-n-501.png" class = "blinking twinkle">	

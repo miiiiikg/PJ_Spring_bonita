@@ -113,6 +113,7 @@ public class BoardController {
 		// 수정을 원하는 게시글의 정보를(1줄) 원함
 		
 		model.addAttribute("one", bService.view(bno));
+		model.addAttribute("flag", "update");
 		return "/board/writer";
 	}
 	
@@ -123,6 +124,47 @@ public class BoardController {
 		bService.updateBoard(bDto);
 		
 		return "redirect:/board/view/"+bDto.getBno();
+	}
+	
+	@GetMapping("/answer")
+	// 객체생성 해준다 controller 
+	public String answerBoard(BoardDTO bDto, Model model) {
+		log.info(">>>>>> GET: Board answer view Page");
+		bDto = bService.view(bDto.getBno());
+		
+		String newContent = "<p style='font-size:20px; font-weight:bold;'>이전게시글내용</p>" +
+							 bDto.getView_content() +
+							 "<br> ============================= ";
+		bDto.setView_content(newContent);
+		
+		model.addAttribute("one", bDto);
+		model.addAttribute("flag", "answer");
+		return "/board/writer";
+		
+	}
+	@PostMapping("/answer")
+	public String answerBoard(BoardDTO bDto) {
+		log.info(">>>>>>> POST : Board answer Action");
+		// 현재상태  : 답글(bno(메인게시글), 타입, 제목, 내용, 작성자)
+		log.info("답글DTO:" + bDto.toString());
+		
+		// 현재상태 : 메인(ALL, ref, re_level, re_step)
+		BoardDTO prevDto = bService.view(bDto.getBno());
+		log.info("메인DTO :" + prevDto.toString());
+		
+		// 현재 상태 : 답글(bno(메인게시글), 타입, 제목, 내용, 작성자
+		//			ref(메인), re_level(메인), re_step(메인))
+		bDto.setRef(prevDto.getRef());
+		bDto.setRe_level(prevDto.getRe_level());
+		bDto.setRe_step(prevDto.getRe_step());
+		// ref, re_step, re_level
+		// ref = 그래도 메인게시글 ref c&p
+		// re_step = 메인게시글 re_step + 1
+		// re_level = 메인게시글 re_level + 1
+		
+		bService.answer(bDto);
+		
+		return "redirect:/board/view/"+ bDto.getBno();
 	}
 
 }

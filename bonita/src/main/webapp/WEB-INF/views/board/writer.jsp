@@ -146,7 +146,7 @@
 				</h2>
 				<p class="info"></p>
 			</div>
-			<form:form id="frm_board" >
+			<form:form id="frm_board">
 				<div class="boardWriter">
 					<table width="100%" border="1">
 						<tbody>
@@ -169,7 +169,7 @@
 								<td>
 									<select id="subject" name ="type" class="board_div">
 										<option value="free">자유게시판</option>
-										<option value="qna" selected>Q&N게시판</option>
+										<option value="qna">Q&N게시판</option>
 										<option value="review">REVIEW</option>
 									</select>
 								</td>
@@ -182,7 +182,7 @@
 								</th>
 								<td>
 									<script type="text/javascript" src="${path}/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-									<textarea name="view_content" id="board_content" rows="10" cols="100" style="height: 500px;">${one.search_content}</textarea>
+									<textarea name="view_content" id="board_content" rows="10" cols="100" style="height: 500px;">${one.view_content}</textarea>
 								</td>
 							</tr>
 	
@@ -219,12 +219,14 @@
 	</div>
 <script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
+	var flag = "${flag}";
+	console.log('flag: '+ flag);
+	
 	$(function(){
 		
 		// register => 게시글 등록과 게시글 수정
 		// ${one}에 값이 있으면 수정페이지 로딩! dto 객체
-		
-		if('${one}' != '') {
+		if(flag == 'update') {
 			//alert('데이터:' +  ${one});	
 			// 수정페이지로 디자인 변경
 			$('.tit-board > h2 > font').text('게시글 수정');
@@ -233,6 +235,15 @@
 			// selectBox 값으로 selected
 			$('.board_div').val('${one.type}').attr('selected','selected');
 			
+		} else if(flag == 'answer') {
+			$('.tit-board > h2 > font').text('게시글 답글');
+			$('.insert_btn').text('답글');
+			$('.board_div').val('${one.type}')
+						   .attr('selected','selected')
+						   .attr('onFocus', 'this.initialSelect = this.selectedIndex')
+						   .attr('onChange', 'this.selectedIndex = this.initialSelect');
+			$('#subject').val('RE:'+'${one.title}')
+							 .attr('readonly', 'readonly');
 		}
 	});
 	

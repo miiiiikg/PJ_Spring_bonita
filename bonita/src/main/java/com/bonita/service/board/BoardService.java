@@ -28,5 +28,8 @@ public interface BoardService {
 	
 	public void updateBoard(BoardDTO bDto);
 	
+	//게시글 답글 등록
+	public void answer(BoardDTO bDto);
+	
 
 }

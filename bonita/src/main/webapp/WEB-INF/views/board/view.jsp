@@ -364,14 +364,14 @@
 						<div class="board-view-body">
 							<div class="textfield">
 								<br>
-								${one.search_content}
+								${one.view_content}
 								<br>
 							</div>
 						</div>
 						<div class="ec-base-button">
 							<span class="gLeft">
 								<a href="${header.referer}" class="btnNormalFix sizeS">목록</a>
-								<a href="#" class="btnNormalFix sizeS">답변</a>
+								<a href="${path}/board/answer?bno=${one.bno}" class="btnNormalFix sizeS">답글</a>
 							</span>
 							<c:if test="${name == one.writer}">
 								<span class="gRight">
