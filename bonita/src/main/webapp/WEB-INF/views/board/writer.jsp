@@ -111,17 +111,21 @@
 			text-align: center;
 			border-radius: 10px;
 		}
-		.fileDrag {
+		.board_div {
 			font-size: 15px;
 			text-align: center;
 			width: 723px;
 			height: 105px;
 			border :2px dashed #939393;
 		}
+		.board_div > p {
+			margin-top : 41px;
+			margin-bottom : 41px;
+		}
 		.a {
 			transform: translate( 1%, 193% );
 		}
-		.board_div {
+		.board_type {
 			width: 723px;
 			height: 27px;
 		}
@@ -167,7 +171,7 @@
 							<tr class="first">
 								<th scope="row" class="thead txtLess">종류 </th>
 								<td>
-									<select id="subject" name ="type" class="board_div">
+									<select id="subject" name ="type" class="board_type">
 										<option value="free">자유게시판</option>
 										<option value="qna">Q&N게시판</option>
 										<option value="review">REVIEW</option>
@@ -188,20 +192,17 @@
 	
 							<tr class="first">
 								<th scope="row" class="thead txtLess">
-								
-								
 									<div style="transform: translate( 0%, -165% );">첨부파일 </div>
 								</th>
 								<td>
-									<div class="table_f">
-										<div id ="fileDragDesc" class="fileDrag">
-											<div class= "a">
-												<i class="fas fa-paperclip"></i>첨부파일을 드래그 해주세요.
-											</div>
+									<!-- 게시글 첨부파일 등록 -->
+									<div class = "input_wrap form-group">
+										<div class="board_div fileDrop">
+											<p><i class="fas fa-paperclip"></i>첨부파일을 드래그 해주세요.
 										</div>
+										<ul class="mailbox-attachments clearfix uploadList"></ul>
 									</div>
 								</td>
-								
 							</tr>
 						</tbody>
 					</table>
@@ -233,18 +234,52 @@
 			$('.insert_btn').text('수정');
 			
 			// selectBox 값으로 selected
-			$('.board_div').val('${one.type}').attr('selected','selected');
+			$('.board_type').val('${one.type}').attr('selected','selected');
 			
 		} else if(flag == 'answer') {
 			$('.tit-board > h2 > font').text('게시글 답글');
 			$('.insert_btn').text('답글');
-			$('.board_div').val('${one.type}')
+			$('.board_type').val('${one.type}')
 						   .attr('selected','selected')
 						   .attr('onFocus', 'this.initialSelect = this.selectedIndex')
 						   .attr('onChange', 'this.selectedIndex = this.initialSelect');
 			$('#subject').val('RE:'+'${one.title}')
 							 .attr('readonly', 'readonly');
 		}
+		
+		// 1. 웹브라우저에 drag&drop시 파일이 열리는 문제(기본 효과) %%%첨부파일%%%
+		//  : 기본효과를 막음
+		$('.fileDrop').on('dragenter dragover', function(e){
+			e.preventDefault();
+		});
+		
+		// 2. 사용자가 파일을 drop했을 때
+		$('.fileDrop').on('drop', function(e){
+			e.preventDefault();
+			
+			var file=e.originalEvent.dataTransfer.files; // 드래그에 전달된
+			var file=files[0]; // 그중 하나만 꺼내옴
+			
+			var formData = new FormData(); // 폼 객체 생성
+			formData.append('file', file); // 폼에 파일 1개 추가!
+			
+			// 서버에 파일 업로드
+			// ajax는 쿼리스트링=> 길이제한
+			$.ajax({
+				url: '${path}/upload/uploadAjax',
+				data: formData,
+				datatype: "text",
+				processData: false, // 쿼리스트링 방식 생성x
+				contentType: false, // 서버단으로 전송하는 데이터 타입(multipart) 
+				type: 'POST',
+				success: function(data) {
+					console.log(data);
+					// data: 업로드한 파일 정보와 http 상태 코드
+					printFiles(data); // 첨부파일 출력 메서드 호출
+				}
+			});
+		});
+		
 	});
 	
 	$(document).on('click', '.cancel_btn', function(){
