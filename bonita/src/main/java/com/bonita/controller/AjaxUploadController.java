@@ -108,14 +108,10 @@ public class AjaxUploadController {
 		// 확장자 검사 
 		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
 		MediaType mType = MediaUtils.getMediaType(formatName);
-		log.info("formatName:" + formatName);
-		log.info("mType:" + mType);
 		if(mType != null) { // 이미지 파일이면 원본이미지 삭제 if는 이미지일때 탄다
 			String front = fileName.substring(0, 12);
-			log.info("front:" + front);
 			// front : /2020/04/10/ 끝값은 포함이 안된다
 			String end = fileName.substring(14);
-			log.info("end:" + end);
 			// end : 650cf3f6-9e66-44a5-805e-2090abc72b36_31715582100_68edad2706_h.jpg 원본이미지
 			// File.separatorChar : 유닉스/ 원도우즈 \
 			// replace : (c:\\developer\ upload\2020\04\10650cf3f6-9e66-44a5-805e-2090abc72b36_31715582100_68edad2706_h.jpg)

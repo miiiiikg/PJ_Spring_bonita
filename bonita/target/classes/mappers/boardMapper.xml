@@ -108,6 +108,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>
 	</insert>
 	
+	<!-- 첨부파일 저장 -->
+	<insert id="addAttach">
+		INSERT INTO tbl_attach(fullName, bno)
+		VALUES(#{fullName}, seq_board.CURRVAL)
+	</insert>
+	
 	
 
 </mapper>

@@ -486,6 +486,29 @@
 			$('#frm_board').append('<textarea id="search_content" name ="search_content"></textarea>');
 			$('#search_content').val(search_content); // 순수 content
 			
+			// 첨부파일 목록[배열]도 추가
+			var str ='';
+			// uploadedList 내부의 .file 태그 각각 반복
+			// uploadedList에 클래스가 file인것
+			// i = 인덱스값
+			$(".uploadedList .file").each(function(i){
+				console.log(i);
+				// hidden 태그 구성
+				// 첨부파일 갯수만큼 반복해라
+				str += "<input type='hidden' name= 'files["+i+"]' value='" + $(this).val() + "'>";
+			});
+			
+			// 로컬드라이브에 저장되어있는 해당 게시글
+			// 첨부파일 삭제
+			//if(deleteFileList.length > 0) {
+			//	$.post('${path}/upload/deleteAllFile', {files:deleteFileList}, function(){});
+			//}
+			
+			//폼에 hidden 태그들을 붙임
+			// .append 등록을 하는데 맨 마지막에 등록한다 
+			// 로컬드라이브(실제 파일) db(파일이름)
+			$("#frm_board").append(str);
+			
 			// 서버로 전송
 			$('#frm_board').submit();
 			
