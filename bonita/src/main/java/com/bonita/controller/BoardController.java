@@ -59,6 +59,7 @@ public class BoardController {
 		map.put("keyword", keyword);
 		
 		model.addAttribute("map",map);
+		
 		//model.addAttribute("map", bService.listAll());
 		
 		return "board/list";
@@ -97,10 +98,17 @@ public class BoardController {
 	// 게시글 등록
 	@PostMapping("/write")
 	public String write(BoardDTO bDto) {
-		log.info(">>>>> POST : board write Action");		
-		bService.write(bDto);
+		log.info(">>>>> POST : board write Action");
 		log.info(bDto.toString());
 		
+		if(bDto.getFiles() == null) { // 첨부파일 no
+			bDto.setFileCnt(0);
+		} else { // 첨부파일 yes
+			log.info("첨부파일 수:" + bDto.getFiles().length);
+			bDto.setFileCnt(bDto.getFiles().length);
+		}
+		
+		bService.write(bDto);
 		//log.info("currval:" + bDto.getBno());
 		
 		return "redirect:/board/view/" + bDto.getBno();

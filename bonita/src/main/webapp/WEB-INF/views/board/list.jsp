@@ -323,11 +323,12 @@
 									</c:if>
 									<a href="${path}/board/view/${list.bno}">${list.title}
 											<span  class="txt_point num  b">[${list.replycnt}]</span> 
-											<i class="fas fa-paperclip"></i> 
+											<c:if test="${list.fileCnt != 0}">
+												<i class="fas fa-paperclip"></i>
+											</c:if>
 											<c:if test="${today == regdate}">
 												<img src="${path}/resources/img/icons8-n-501.png" class = "blinking twinkle">	
 											</c:if>
-			
 										</a>
 									</td>
 									<td class="ta-c">${list.writer}</td>
