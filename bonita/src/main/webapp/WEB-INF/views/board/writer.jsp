@@ -145,7 +145,7 @@
 		.uploadedList > li {
 			margin-left : 20px
 		}
-
+	
 	</style>
 </head>
 <body>
@@ -242,8 +242,8 @@
 		</div>
 	</li>
 </script>
-<script src="${path}/resources/js/validation.js"></script>
 <script src="${path}/resources/js/fileAttach.js"></script>
+<script src="${path}/resources/js/validation.js"></script>
 <script type="text/javascript">
 	var flag = "${flag}";
 	console.log('flag: '+ flag);

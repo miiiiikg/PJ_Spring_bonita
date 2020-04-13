@@ -40,5 +40,8 @@ public interface BoardDAO {
 	// 첨부파일 등록
 	public void addAttach(@Param("fullName") String fullName);
 	
+	// 해당 게시글 첨부파일 목록 출력
+	public List<String> getAttach(@Param("bno") int bno);
+	
 	
 }

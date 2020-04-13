@@ -5,6 +5,7 @@
 <html>
 <head>
 	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 	<script src="https://kit.fontawesome.com/83b564820d.js" crossorigin="anonymous"></script>
 	<style type="text/css">
 		em {font-style: normal; font-style: none;}
@@ -315,6 +316,12 @@
    		.updatedate {
    			text-decoration: underline;
    		}
+   		.uploadedList {
+			display: flex;
+		}
+		.uploadedList > li {
+			margin-left : 20px
+		}
 
 	
 
@@ -366,6 +373,7 @@
 								<br>
 								${one.view_content}
 								<br>
+								<ul class = "mailbox-attachments clearfix uploadedList"></ul>
 							</div>
 						</div>
 						<div class="ec-base-button">
@@ -393,9 +401,38 @@
 
 </body>
 <script src="${path}/resources/js/validation.js"></script>
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li>
+		<div class="mailbox-attachment-icon has-img">
+			<center><img src="{{imgSrc}}" alt="Attachment" class="s_img"></center>
+		</div>
+		<div class="mailbox-attachment-info">
+			<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class="fa fa-paperclip"></i> {{originalFileName}}
+			</a>
+		<span class="btn btn-default btn-xs pull-right delBtn" data-src="{{basicFileName}}">
+			<i class="fas fa-times"></i>
+			</span>
+		</div>
+	</li>
+</script>
+<script src="${path}/resources/js/fileAttach.js"></script>
 <script type="text/javascript">
+
+	//Handlebars 파일템플릿 컴파일
+	var fileTemplate = Handlebars.compile($("#fileTemplate").html());
+
 	// 문서가 완료되면 시작 listReply 호출
 	$(function(){
+		// 첨부파일 목록 불러오기
+		var listCnt = listAttach('${path}', '${one.bno}');
+		
+		// 첨부파일 0건일때 '첨부파일 없음' 출력
+		console.log('File count : '+ listCnt);
+		if(listCnt == 0) {
+			var text = '<span class="no_attach">첨부파일이 없습니다.</span>';
+			$('.uploadedList').html(text);
+		}
 		// 자바 내장함수
 		setInterval(newReply, 180000);
 		
