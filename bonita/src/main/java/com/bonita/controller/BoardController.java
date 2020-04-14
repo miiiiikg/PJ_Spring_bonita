@@ -161,6 +161,7 @@ public class BoardController {
 		BoardDTO prevDto = bService.view(bDto.getBno());
 		log.info("메인DTO :" + prevDto.toString());
 		
+		// 배열값으로 들어가있다
 		if(bDto.getFiles() == null) { // 첨부파일 no
 			bDto.setFileCnt(0);
 		} else { // 첨부파일 yes

@@ -85,17 +85,26 @@ public class BoardServiceImpl implements BoardService {
 		}
 	
 	}
-
-	@Override
-	public void delBoard(int bno) {
-		bDao.delBoard(bno);
-		
-		
-	}
+	
 	@Transactional
 	@Override
+	public void delBoard(int bno) {
 	
-	public void write(BoardDTO bDto) {
+		bDao.deleteAttach(bno);// DB에서 첨부파일 삭제(db, 로컬)
+		bDao.delBoard(bno); // 게시글 삭제
+		
+		// 기타방법 
+		// 예) 90일 이후에 일괄삭제
+		// tbl_board와 tbl_attach를 relation을 맺고
+		// cascade 작업을 통해 tbl_board에서 해당 게시글 삭제하면
+		// 자동으로 tbl_attach에 해당 게시글 첨부파일 일괄삭제
+		// 즉 첨부파일 db에서 삭제하는 코드는 작성 안해도 됨!
+		
+	}
+	
+	@Transactional
+	@Override 
+	public void write(BoardDTO bDto) { 
 		// tbl_board에 게시글 등록(type, title, content, writer)
 		bDao.write(bDto);
 		
@@ -153,5 +162,6 @@ public class BoardServiceImpl implements BoardService {
 	public List<String> getAttach(int bno) {
 		return bDao.getAttach(bno);
 	}
+
 
 }

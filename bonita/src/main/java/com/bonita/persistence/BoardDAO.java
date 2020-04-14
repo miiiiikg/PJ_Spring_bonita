@@ -27,6 +27,9 @@ public interface BoardDAO {
 	// 게시글삭제
 	public void delBoard(@Param("bno") int bno);
 	
+	// 첨부파일 삭제
+	public void deleteAttach(@Param("bno") int bno);
+	
 	// 게시글 등록
 	public void write(BoardDTO bDto);
 

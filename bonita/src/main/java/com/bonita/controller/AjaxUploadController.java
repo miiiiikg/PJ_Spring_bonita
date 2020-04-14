@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -127,6 +128,33 @@ public class AjaxUploadController {
 		// 레코드 삭제
 		// bService.deleteFile(fileName);
 		// ResponseEntity 설정값을 디테일하게 주고싶을때 HttpStatus.OK 성공 200번
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@PostMapping("upload/deleteAllFile")
+	public ResponseEntity<String> deleteFile(@RequestParam("files[]") String[] files) {
+		log.info("delete all file:" + files);
+		
+		if(files == null || files.length == 0) {
+			return new ResponseEntity<String>("deleted", HttpStatus.OK);
+		}
+		
+		for(String fileName : files) {
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			MediaType mType = MediaUtils.getMediaType(formatName);
+			
+			if(mType != null) { // 이미지 파일이면 원본 이미지 삭제
+				String front = fileName.substring(0 ,12);
+				String end = fileName.substring(14);
+				// File.separatorChar : 유닉스 / 윈도우즈 \
+				new File(uploadPath+(front+end).replace('/', File.separatorChar)).delete();
+			}
+			
+			// 원본 파일 삭제 (이미지면 썸네일 삭제)
+			new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+			
+		}
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 }
