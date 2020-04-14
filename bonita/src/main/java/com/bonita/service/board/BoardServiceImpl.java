@@ -94,6 +94,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	@Transactional
 	@Override
+	
 	public void write(BoardDTO bDto) {
 		// tbl_board에 게시글 등록(type, title, content, writer)
 		bDao.write(bDto);
@@ -117,6 +118,7 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Transactional
 	@Override
 	public void answer(BoardDTO bDto) {
 		// 답글 알고리즘
@@ -133,6 +135,17 @@ public class BoardServiceImpl implements BoardService {
 		bDto.setRe_level(bDto.getRe_level()+1);
 		bDto.setRe_step(bDto.getRe_step()+1);
 		bDao.answer(bDto);
+		
+		// tbl_attach에 해당 게시글 첨부파일 등록
+		String[] files = bDto.getFiles();
+		// files=null 첨부파일이 하나도 안들어온것
+		if (files == null) {
+			return; // 첨부파일 없음, 종료
+		}
+		for(String name : files) {
+			// tbl_attach 테이블에 첨부파일 1건씩 등록
+			bDao.addAttach(name);
+		}
 		
 	}
 
