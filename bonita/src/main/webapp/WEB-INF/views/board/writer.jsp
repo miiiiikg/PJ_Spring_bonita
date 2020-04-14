@@ -248,8 +248,11 @@
 	var flag = "${flag}";
 	console.log('flag: '+ flag);
 	
-	//Handlebars 파일템플릿 컴파일
+	// Handlebars 파일템플릿 컴파일
 	var fileTemplate = Handlebars.compile($("#fileTemplate").html());
+	
+	// 수정시 로컬에서 삭제할 기존 첨부파일 목록
+	var deleteFileList = new Array();
 	
 	$(function(){
 		
@@ -264,6 +267,8 @@
 			// selectBox 값으로 selected
 			$('.board_type').val('${one.type}').attr('selected','selected');
 			
+			// 게시글 수정할때 첨부파일도 같이 뜨는 작업
+			listAttach('${path}', '${one.bno}');
 		} else if(flag == 'answer') {
 			$('.tit-board > h2 > font').text('게시글 답글');
 			$('.insert_btn').text('답글');
@@ -328,7 +333,14 @@
 				});
 				
 			} else { // 게시글 수정
+				var arr_size = deleteFileList.length;
+				deleteFileList[arr_size] = $(this).attr('data-src');
+				$(this).parents('li').next('input').remove();
+				$(this).parents('li').remove();
 				
+				for (var i = 0; i < deleteFileList.length; i++) {
+					console.log(i+","+deleteFileList[i]);
+				}
 			}
 		});
 		
@@ -384,11 +396,11 @@
 				str += "<input type='hidden' name= 'files["+i+"]' value='" + $(this).val() + "'>";
 			});
 			
-			// 로컬드라이브에 저장되어있는 해당 게시글
+			// 삭제한 첨부파일 목록을 있는 첨부파일들 local에서 첨부파일 삭제
 			// 첨부파일 삭제
-			//if(deleteFileList.length > 0) {
-			//	$.post('${path}/upload/deleteAllFile', {files:deleteFileList}, function(){});
-			//}
+			if(deleteFileList.length > 0) {
+				$.post('${path}/upload/deleteAllFile', {files:deleteFileList}, function(){});
+			}
 			
 			//폼에 hidden 태그들을 붙임
 			// .append 등록을 하는데 맨 마지막에 등록한다 

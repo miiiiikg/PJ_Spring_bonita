@@ -46,5 +46,9 @@ public interface BoardDAO {
 	// 해당 게시글 첨부파일 목록 출력
 	public List<String> getAttach(@Param("bno") int bno);
 	
+	// 첨부파일 수정(재등록)
+	public void updateAttach(@Param("fullName") String fullName, @Param("bno") int bno);
+	
+	
 	
 }
