@@ -9,6 +9,7 @@
 		<typeAlias type ="com.bonita.domain.MemberDTO" alias="MemberDTO" />
 		<typeAlias type ="com.bonita.domain.BoardDTO" alias="BoardDTO" />
 		<typeAlias type ="com.bonita.domain.ReplyDTO" alias="ReplyDTO" />
+		<typeAlias type ="com.bonita.domain.AttachDTO" alias="AttachDTO" />
 	</typeAliases>
 
 
